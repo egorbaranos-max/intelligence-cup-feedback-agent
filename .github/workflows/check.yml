@@ -1,0 +1,28 @@
+name: Offline contract checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run stdlib contract tests without models or package installation
+        run: python3 -m unittest discover -s demo -p 'test_*.py' -v
+      - name: Run synthetic CLI
+        run: python3 -m demo
+      - name: Check final solution size and required submission files
+        run: >-
+          python3 scripts/check_submission.py
+          --require-file docs/solution.md
+          --require-file docs/metrics.md
+          --require-file submission/solution.docx
+          --require-file submission/solution.pdf
+          --require-file submission/presentation.pptx
+          --require-file submission/metrics.md
