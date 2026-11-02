@@ -8,7 +8,7 @@ import tempfile
 import unittest
 
 from agent.pipeline import validate_extraction
-from scripts.evaluate_live_run import evaluate, write_evaluation
+from scripts.evaluate_live_run import ROOT, evaluate, write_evaluation
 
 
 def dump(path, obj):
@@ -114,6 +114,41 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(report["summary"]["synthetic"]["valid_extraction_contracts"], 1)
         self.assertEqual(report["summary"]["all"]["model_statuses"], {"needs_review": 1, "ok": 1})
         self.assertIn("not human gold", report["disclaimer"])
+
+    def test_prefixed_validator_hash_mismatch_is_rejected(self):
+        fixture = self.fixture()
+        fixture.manifest["code_sha256"] = {
+            "agent/pipeline.py": "0" * 64,
+            # A valid legacy entry must not hide a wrong current-format entry.
+            "pipeline.py": sha(ROOT / "agent" / "pipeline.py"),
+        }
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "Validator source changed"):
+            fixture.evaluate()
+
+    def test_legacy_validator_hash_mismatch_is_still_rejected(self):
+        fixture = self.fixture()
+        fixture.manifest["code_sha256"] = {"pipeline.py": "0" * 64}
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "Validator source changed"):
+            fixture.evaluate()
+
+    def test_old_run_revalidation_accepts_changed_prompt_with_same_validator(self):
+        fixture = self.fixture()
+        baseline = fixture.evaluate()
+        original_calls = (fixture.run / "calls.jsonl").read_bytes()
+        for prefix in ("agent/", ""):
+            with self.subTest(prefix=prefix):
+                fixture.manifest["code_sha256"] = {
+                    prefix + "pipeline.py": sha(ROOT / "agent" / "pipeline.py"),
+                    # Deliberately differs from the currently installed prompt.
+                    prefix + "prompts.py": "0" * 64,
+                }
+                fixture.save()
+                report = fixture.evaluate()
+                self.assertEqual(report["summary"], baseline["summary"])
+                self.assertEqual(report["cases"], baseline["cases"])
+                self.assertEqual((fixture.run / "calls.jsonl").read_bytes(), original_calls)
 
     def test_reject_changed_inputs_and_changed_frozen_expectations(self):
         fixture = self.fixture()
