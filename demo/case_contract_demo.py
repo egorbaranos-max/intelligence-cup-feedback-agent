@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from hashlib import sha256
 import copy
 import json
+from datetime import datetime, timezone
 
 
 class ContractError(ValueError):
@@ -31,6 +32,8 @@ class Fragment:
     modality: str = "text"
     # Mock anchors only. These are trusted adapter inputs, never model claims.
     anchor: str = "body"
+    # Trusted message author/verified speaker; ASR text alone cannot establish this.
+    speaker: str = "unknown"
 
 
 @dataclass(frozen=True)
@@ -42,10 +45,11 @@ class Source:
     episode_key: str | None
     expires_at: int
     fragments: tuple[Fragment, ...]
+    episode_at: int = 99  # UTC seconds; trusted canonical episode time, not processing time.
 
     @property
     def digest(self):
-        payload = [(f.fragment_id, f.text, f.modality, f.anchor) for f in self.fragments]
+        payload = [(f.fragment_id, f.text, f.modality, f.anchor, f.speaker) for f in self.fragments]
         return sha256(json.dumps(payload, ensure_ascii=False).encode()).hexdigest()
 
 
@@ -54,9 +58,21 @@ class ContractDemo:
     labels = {"incident", "service_request", "feature_request", "usability", "unknown"}
     eligible = {"feature_request", "usability"}
 
-    def __init__(self, now=100):
+    def __init__(self, now=100, min_episodes=3, min_customers=2,
+                 customer_policy="require_known"):
+        if type(min_episodes) is not int or min_episodes < 1:
+            raise ContractError("Positive integer episode threshold required")
+        if type(min_customers) is not int or min_customers < 1:
+            raise ContractError("Positive integer customer threshold required")
+        if customer_policy not in {"require_known", "episodes_only"}:
+            raise ContractError("Unknown predeclared customer policy")
         self.now = now
+        self.min_episodes = min_episodes
+        self.min_customers = min_customers
+        self.customer_policy = customer_policy
+        self.window_seconds = 30 * 24 * 3600
         self.acl = {}  # Mutable permissions deliberately rechecked at every access.
+        self.source_acl = {}  # None: whole product; set: explicit source allowlist.
         self.sources = {}
         self.analyses = {}
         self.topics = {}
@@ -67,18 +83,50 @@ class ContractDemo:
         self.tombstones = {}  # Hashed source ID -> deleted version; blocks delayed replay.
         self.audit = []  # Metadata only; no quotes/prompts/source bodies.
 
-    def grant(self, actor, products):
+    @property
+    def now(self):
+        return self._now
+
+    @now.setter
+    def now(self, value):
+        if type(value) is not int or value < 0 or value < getattr(self, "_now", 0):
+            raise ContractError("Clock must be a nonnegative, monotonic UTC second")
+        self._now = value
+        if hasattr(self, "receiver"):
+            # A production scheduler must run this reconciliation as time advances.
+            # Current cards cannot retain counters after their 30-day window expires.
+            self.purge_expired()
+            for key, old in list(self.receiver.items()):
+                try:
+                    fresh = self.card(old["recipient"], old["topic_id"])
+                except ContractError:
+                    self.receiver.pop(key, None)
+                    continue
+                if not fresh["recurring"] or fresh != old:
+                    self.receiver.pop(key, None)
+
+    def grant(self, actor, products, source_ids=None):
         self.acl[actor] = set(products)
+        self.source_acl[actor] = None if source_ids is None else set(source_ids)
+        # Mock destination is protected state: revoke stale delivered cards immediately.
+        for key in [k for k, card in self.receiver.items() if card["recipient"] == actor]:
+            del self.receiver[key]
 
     def _scope(self, actor, product):
         if product not in self.acl.get(actor, set()):
             raise Forbidden("Product scope denied")
 
+    def _source_scope(self, actor, source):
+        self._scope(actor, source.product_id)
+        allowed = self.source_acl.get(actor)
+        if allowed is not None and source.source_id not in allowed:
+            raise Forbidden("Source scope denied")
+
     def _source(self, actor, source_id):
         source = self.sources.get(source_id)
         if source is None:
             raise SourceUnavailable("Source absent")
-        self._scope(actor, source.product_id)
+        self._source_scope(actor, source)
         if source.expires_at <= self.now:
             self.delete_source(source_id)
             raise SourceUnavailable("Source expired; derivatives purged")
@@ -107,6 +155,16 @@ class ContractDemo:
         """Trusted adapter ingress, unavailable to a model. Update invalidates derivatives."""
         if source.expires_at <= self.now or type(source.version) is not int or source.version < 1:
             raise ContractError("Expired or invalid source")
+        if type(source.episode_at) is not int or not 0 <= source.episode_at <= self.now:
+            raise ContractError("Invalid/future episode timestamp")
+        for existing in self.sources.values():
+            if (source.episode_key and source.source_id != existing.source_id
+                    and source.product_id == existing.product_id
+                    and source.episode_key == existing.episode_key):
+                if (source.episode_at != existing.episode_at or
+                        (source.customer_key and existing.customer_key
+                         and source.customer_key != existing.customer_key)):
+                    raise ContractError("Conflicting trusted episode metadata; review required")
         tombstone_key = sha256(source.source_id.encode()).hexdigest()
         if source.version <= self.tombstones.get(tombstone_key, 0):
             raise ContractError("Deleted source version cannot be resurrected by replay")
@@ -144,17 +202,19 @@ class ContractDemo:
         fragments = {f.fragment_id: f for f in source.fragments}
         validated = []
         for item in payload["items"]:
-            if set(item) != {"label", "need", "topic_id", "evidence"}:
+            if set(item) != {"label", "origin", "need", "topic_id", "evidence"}:
                 raise ContractError("Unexpected/missing item fields")
             if item["label"] not in self.labels or not isinstance(item["need"], str):
                 raise ContractError("Invalid label/need")
+            if item["origin"] not in {"user_explicit", "observed_pain", "hypothesis"}:
+                raise ContractError("Unknown origin")
             topic_id = item["topic_id"]
             if topic_id is not None:
                 topic = self.topics.get(topic_id)
                 if not topic or topic["product_id"] != source.product_id:
                     raise Forbidden("Topic outside source scope")
-                if item["label"] not in self.eligible:
-                    raise ContractError("Incident/service/unknown cannot enter wish topic")
+                if item["label"] not in self.eligible or item["origin"] != "user_explicit":
+                    raise ContractError("Only explicit wishes can enter the wish stream")
             if not isinstance(item["evidence"], list) or not item["evidence"]:
                 raise ContractError("Evidence required")
             evidence = []
@@ -169,10 +229,12 @@ class ContractDemo:
                     raise ContractError("Invalid coordinate range")
                 if fragment.text[start:end] != cite["quote"]:
                     raise ContractError("Quote does not match exact source span")
+                if item["origin"] == "user_explicit" and fragment.speaker != "user":
+                    raise ContractError("Unverified user authorship; review required")
                 evidence.append(dict(**cite, source_id=source.source_id,
                                      source_version=source.version, digest=source.digest,
                                      modality=fragment.modality, anchor=fragment.anchor))
-            validated.append(dict(label=item["label"], need=item["need"],
+            validated.append(dict(label=item["label"], origin=item["origin"], need=item["need"],
                                   topic_id=topic_id, evidence=evidence))
         # Commit after validating the complete response: no partial write on invalid item.
         key = (source.source_id, source.version, payload["pipeline_version"])
@@ -195,30 +257,55 @@ class ContractDemo:
         self._scope(actor, topic["product_id"])
         self.purge_expired()
         evidence, source_ids, episodes, customers = [], set(), set(), set()
-        unknown_customers = 0
+        unknown_customers, unknown_episodes = 0, 0
         for key, analysis in self.analyses.items():
             source = self.sources[key[0]]
             items = [i for i in analysis["items"] if i["topic_id"] == topic_id]
             if not items:
                 continue
-            self._scope(actor, source.product_id)
+            try:
+                self._source_scope(actor, source)
+            except Forbidden:
+                continue  # Hidden evidence never affects recipient counts or eligibility.
+            if not self.now - self.window_seconds < source.episode_at <= self.now:
+                continue
             source_ids.add(source.source_id)
             # episode_key must be a trusted canonical case/link ID, not a model guess.
-            episodes.add((source.product_id, source.episode_key or "source:" + source.source_id))
-            if source.customer_key:
-                customers.add(source.customer_key)
+            if source.episode_key:
+                episodes.add((source.product_id, source.episode_key))
             else:
+                unknown_episodes += 1
+            if source.customer_key and source.episode_key:
+                customers.add(source.customer_key)
+            if not source.customer_key:
                 unknown_customers += 1
             evidence.extend(c for i in items for c in i["evidence"])
-        return copy.deepcopy(dict(topic_id=topic_id, **topic, raw_sources=len(source_ids),
+        is_recurring = (len(episodes) >= self.min_episodes and
+                        (self.customer_policy == "episodes_only" or
+                         len(customers) >= self.min_customers))
+        scoped_metadata = dict(topic)
+        if self.source_acl.get(actor) is not None:
+            if not evidence:
+                raise Forbidden("No visible evidence; topic metadata unavailable")
+            # Global text/decisions may derive from hidden evidence. This mock cannot
+            # regenerate semantics per scope, so limited views use a neutral title.
+            scoped_metadata["title"] = "Тема с доступными доказательствами"
+            scoped_metadata["decision"] = "requires_owner_review"
+        return copy.deepcopy(dict(topic_id=topic_id, recipient=actor, **scoped_metadata,
+                    raw_sources=len(source_ids),
                     independent_episodes=len(episodes), known_customers=len(customers),
-                    sources_with_unknown_customer=unknown_customers, evidence=evidence))
+                    sources_with_unknown_customer=unknown_customers,
+                    sources_with_unknown_episode=unknown_episodes,
+                    customer_policy=self.customer_policy, recurring=is_recurring,
+                    evidence=evidence))
 
     def queue_card(self, actor, topic_id):
         payload = self.card(actor, topic_id)
         if not payload["evidence"]:
             raise ContractError("No live evidence; cannot publish")
-        key = payload["product_id"] + ":" + topic_id
+        if not payload["recurring"]:
+            raise ContractError("Recurrence threshold not met in recipient visibility/window")
+        key = payload["product_id"] + ":" + topic_id + ":" + actor
         self.outbox[key] = copy.deepcopy(payload)
         return key
 
@@ -226,10 +313,12 @@ class ContractDemo:
         pending = self.outbox.get(key)
         if pending is None:
             return False
+        if pending["recipient"] != actor:
+            raise Forbidden("Outbox recipient mismatch")
         # Permission and provenance may have changed since queueing.
         self._scope(actor, pending["product_id"])
         fresh = self.card(actor, pending["topic_id"])
-        if not fresh["evidence"] or fresh != pending:
+        if not fresh["evidence"] or not fresh["recurring"] or fresh != pending:
             self.outbox.pop(key, None)
             raise ContractError("Stale payload; regenerate before publication")
         # Mock receiver upsert is keyed by product/topic; no real external write.
@@ -264,31 +353,43 @@ class ContractDemo:
             self.delete_source(source_id)
 
 
-def prepared_output(source, topic_id="csv", label="feature_request", need="Экспорт CSV"):
+def prepared_output(source, topic_id="csv", label="feature_request", need="Экспорт CSV",
+                    origin="user_explicit"):
     """Hand-authored output fixture, explicitly NOT an LLM result."""
     f = source.fragments[0]
     return dict(source_id=source.source_id, source_version=source.version,
-                pipeline_version="fixture-v1", items=[dict(label=label, need=need,
+                pipeline_version="fixture-v1", items=[dict(label=label, origin=origin, need=need,
                 topic_id=topic_id, evidence=[dict(fragment_id=f.fragment_id,
                 start=0, end=len(f.text), quote=f.text)])])
 
 
 def run_demo():
-    demo = ContractDemo()
+    now = int(datetime(2026, 11, 2, tzinfo=timezone.utc).timestamp())
+    day = 24 * 3600
+    demo = ContractDemo(now=now)
     demo.grant("owner", {"fuel"})
     demo.add_topic("csv", "fuel", "Экспорт CSV")
     fixtures = (
-        Source("ticket-1", 1, "fuel", "client-a", "case-1", 1000,
-               (Fragment("body", "Хочу выгрузить заказы в CSV."),)),
-        Source("call-1", 1, "fuel", "client-a", "case-1", 1000,
-               (Fragment("segment-1", "Хочу выгрузить заказы в CSV.", "audio", "00:30–00:45"),)),
-        Source("ticket-2", 1, "fuel", "client-b", "case-2", 1000,
-               (Fragment("body", "Хочу выгрузить заказы в CSV."),)),
+        Source("ticket-1", 1, "fuel", "client-a", "case-1", now + day,
+               (Fragment("body", "Хочу выгрузить заказы в CSV.", speaker="user"),), now - 3 * day),
+        Source("call-1", 1, "fuel", "client-a", "case-1", now + day,
+               (Fragment("segment-1", "Хочу выгрузить заказы в CSV.", "audio", "00:30–00:45", "user"),), now - 3 * day),
+        Source("ticket-2", 1, "fuel", "client-b", "case-2", now + day,
+               (Fragment("body", "Хочу выгрузить заказы в CSV.", speaker="user"),), now - 2 * day),
     )
     for source in fixtures:
         demo.register_source(source)
         demo.analyze("owner", prepared_output(source))
-    demo.decide("owner", "csv", "accepted")
+    below_threshold = demo.card("owner", "csv")
+    try:
+        demo.queue_card("owner", "csv")
+        raise AssertionError("Two episodes must not pass the three-episode threshold")
+    except ContractError:
+        pass
+    fourth = Source("ticket-3", 1, "fuel", "client-a", "case-3", now + day,
+                    (Fragment("body", "Хочу выгрузить заказы в CSV.", speaker="user"),), now - day)
+    demo.register_source(fourth)
+    demo.analyze("owner", prepared_output(fourth))
     before = demo.card("owner", "csv")
     key = demo.queue_card("owner", "csv")
     try:
@@ -299,9 +400,19 @@ def run_demo():
     deliveries = len(demo.receiver)
     demo.delete_source("call-1")
     after = demo.card("owner", "csv")
+    retracted_after_delete = not demo.receiver
+    demo.queue_card("owner", "csv")
+    demo.deliver_once("owner", key)
+    demo.delete_source("ticket-3")
+    after_episode_delete = demo.card("owner", "csv")
     return {"disclaimer": "Синтетические данные; вызовов Qwen/ASR/VL и внешних API нет.",
-            "before_delete": before, "mock_destination_cards_after_retry": deliveries,
-            "after_delete": after,
+            "three_sources_two_episodes_blocked": below_threshold,
+            "four_sources_three_episodes_eligible": before,
+            "mock_destination_cards_after_retry": deliveries,
+            "after_call_delete": after,
+            "old_card_retracted_before_regeneration": retracted_after_delete,
+            "after_episode_delete_below_threshold": after_episode_delete,
+            "destination_cards_after_episode_delete": len(demo.receiver),
             "limits": "Проверяется программный контракт, не смысл/точность моделей."}
 
 

@@ -9,7 +9,9 @@ from demo.case_contract_demo import (
 
 class ContractTests(unittest.TestCase):
     def setUp(self):
-        self.demo = ContractDemo(now=100)
+        # Single-record fixtures isolate provenance/delivery invariants.
+        # Production proposal's 3/2 thresholds are exercised in test_recurrence.py.
+        self.demo = ContractDemo(now=100, min_episodes=1, min_customers=1)
         self.demo.grant("owner", {"fuel"})
         self.demo.grant("outsider", {"other"})
         self.demo.add_topic("csv", "fuel", "CSV")
@@ -22,7 +24,7 @@ class ContractTests(unittest.TestCase):
                     product="fuel", modality="text"):
         anchor = "00:10–00:25" if modality == "audio" else "body"
         return Source(source_id, version, product, customer, episode, expires,
-                      (Fragment("fragment-1", text, modality, anchor),))
+                      (Fragment("fragment-1", text, modality, anchor, "user"),))
 
     def ingest(self, source, **kwargs):
         self.demo.register_source(source)
@@ -66,7 +68,8 @@ class ContractTests(unittest.TestCase):
         card = self.demo.card("owner", "csv")
         self.assertEqual(card["known_customers"], 0)
         self.assertEqual(card["sources_with_unknown_customer"], 1)
-        self.assertEqual(card["independent_episodes"], 1)
+        self.assertEqual(card["independent_episodes"], 0)
+        self.assertEqual(card["sources_with_unknown_episode"], 1)
 
     def test_guessed_foreign_source_id_is_denied(self):
         with self.assertRaises(Forbidden):
@@ -200,8 +203,7 @@ class ContractTests(unittest.TestCase):
         self.ingest(self.source)
         key = self.demo.queue_card("owner", "csv")
         self.demo.now = self.source.expires_at
-        with self.assertRaises(ContractError):
-            self.demo.deliver_once("owner", key)
+        self.assertFalse(self.demo.deliver_once("owner", key))
         self.assertFalse(self.demo.receiver)
         self.assertFalse(self.demo.outbox)
         self.assertFalse(self.demo.cache)

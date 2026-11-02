@@ -16,7 +16,11 @@ jobs:
       - name: Run stdlib contract tests without models or package installation
         run: python3 -m unittest discover -s demo -p 'test_*.py' -v
       - name: Run synthetic CLI
-        run: python3 -m demo
+        run: python3 -m demo --compact
+      - name: Check independent finance and metric arithmetic
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Exercise auditable metric example
+        run: python3 tools/coverage_model.py --example | python3 tools/coverage_model.py -
       - name: Check final solution size and required submission files
         run: >-
           python3 scripts/check_submission.py
