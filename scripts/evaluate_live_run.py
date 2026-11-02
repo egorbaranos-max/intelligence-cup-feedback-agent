@@ -80,6 +80,76 @@ def check(name, passed, details, applicable=True):
             "passed": bool(passed) if applicable else None, "details": details}
 
 
+def evaluate_verification(calls, results, source_map, validated, manifest):
+    """Audit model-verifier evidence separately from extraction expectations."""
+    verification_calls = {identifier: call for identifier, call in calls.items()
+                          if call["stage"] == "verification"}
+    assignments_with_verification = [
+        (source_id, assignment)
+        for source_id, result in results.items()
+        for assignment in result.get("assignments", [])
+        if assignment.get("verification_call") is not None or assignment.get("verification") is not None]
+    if not verification_calls:
+        if assignments_with_verification:
+            raise ValueError("Saved verification has no corresponding model calls")
+        return None
+    # New verification runs must bind the verifier contract to recorded source.
+    # Old runs without this stage keep exactly their original report structure.
+    recorded = manifest.get("code_sha256", {}).get("agent/verifier.py",
+        manifest.get("code_sha256", {}).get("verifier.py"))
+    if not recorded or recorded != sha(ROOT / "agent" / "verifier.py"):
+        raise ValueError("Missing or changed verifier source after run: verifier.py")
+    from agent.verifier import verification_messages, validate_verification
+
+    counts = {name: 0 for name in ("supported", "unsupported", "unclear", "invalid")}
+    details, seen = [], set()
+    for source_id, assignment in assignments_with_verification:
+        call_id = assignment.get("verification_call")
+        call = verification_calls.get(call_id)
+        intent_id = assignment.get("intent_id")
+        if not call or call.get("source_id") != source_id or call.get("intent_id") != intent_id:
+            raise ValueError(f"Verification call/source/intent mismatch: {source_id}")
+        if call_id in seen:
+            raise ValueError("Verification call reused by multiple assignments")
+        seen.add(call_id)
+        extraction = validated.get(source_id)
+        if extraction is None or not extraction.ok:
+            raise ValueError("Verification cannot bind to an invalid extraction")
+        intents = [i for i in extraction.value["intents"] if i.get("intent_id") == intent_id]
+        if len(intents) != 1:
+            raise ValueError("Verification intent absent from validated extraction")
+        source, intent = source_map[source_id], intents[0]
+        # Compare the data payload only; the original system prompt is retained
+        # in the immutable calls file and never re-executed by this evaluator.
+        try:
+            actual_payload = json.loads(call["messages"][-1]["content"])
+            expected_payload = json.loads(verification_messages(source, intent)[-1]["content"])
+        except (KeyError, IndexError, TypeError, ValueError) as exc:
+            raise ValueError("Malformed saved verification prompt") from exc
+        if actual_payload != expected_payload:
+            raise ValueError(f"Verification prompt differs from bound source/intent: {source_id}")
+        verified = validate_verification(call.get("raw_response"), source, intent)
+        if asdict(verified) != assignment.get("verification"):
+            raise ValueError(f"Saved verification differs from raw-response revalidation: {source_id}")
+        verdict = verified.value["verdict"] if verified.ok else "invalid"
+        counts[verdict] += 1
+        blocks = verdict != "supported"
+        blocking_respected = (not blocks or
+            (assignment.get("topic_id") is None and assignment.get("matching_call") is None))
+        details.append({"call_id": call_id, "source_id": source_id, "intent_id": intent_id,
+            "valid_contract": verified.ok, "verdict": verdict, "errors": verified.errors,
+            "value": verified.value, "requires_blocking": blocks,
+            "blocking_respected": blocking_respected,
+            "assignment_status": assignment.get("status"), "topic_id": assignment.get("topic_id"),
+            "matching_call": assignment.get("matching_call")})
+    if seen != set(verification_calls):
+        raise ValueError("Verification calls are not linked to saved assignments")
+    return {"disclaimer": "A second model judgment, not human gold or proof of semantic correctness; errors may be correlated with extraction. Extraction expectation matches are unchanged by this block.",
+            "calls": len(verification_calls), "valid_contracts": sum(d["valid_contract"] for d in details),
+            "verdicts": counts, "blocking_violations": sum(not d["blocking_respected"] for d in details),
+            "details": details}
+
+
 def evaluate(run_path, inputs_path, expectations_path):
     """Pure post-run read and deterministic comparisons; write nothing here."""
     run_path, inputs_path, expectations_path = map(Path, (run_path, inputs_path, expectations_path))
@@ -121,7 +191,7 @@ def evaluate(run_path, inputs_path, expectations_path):
     if manifest.get("call_count") != len(calls):
         raise ValueError("Manifest call count differs")
     for call in calls.values():
-        if call.get("source_id") not in source_map or call.get("stage") not in {"extraction", "matching"}:
+        if call.get("source_id") not in source_map or call.get("stage") not in {"extraction", "matching", "verification"}:
             raise ValueError("Unknown source or stage in saved call")
 
     details, raw_by_id, validated, referenced = [], {}, {}, set()
@@ -185,6 +255,8 @@ def evaluate(run_path, inputs_path, expectations_path):
         valid = validate_matching(call.get("raw_response"), candidates)
         matching.append({"call_id": call["call_id"], "source_id": call["source_id"],
                          "valid_contract": valid.ok, "errors": valid.errors})
+
+    verification = evaluate_verification(calls, results, source_map, validated, manifest)
 
     summary = {}
     for label, origin in (("all", None), ("case_pdf", "case_pdf"), ("synthetic", "synthetic")):
@@ -271,7 +343,7 @@ def evaluate(run_path, inputs_path, expectations_path):
                                      "expected": expected_counts, "actual": actual_counts})
     focused.append(check("snapshot_counts_use_only_trusted_known_identities", not count_errors and not unavailable,
                          {"count_mismatches": count_errors, "unprocessed_sources": unavailable}))
-    return {"evaluation_type": "post_run_preliminary_ai_comparison", "disclaimer": DISCLAIMER,
+    report = {"evaluation_type": "post_run_preliminary_ai_comparison", "disclaimer": DISCLAIMER,
         "run_status": manifest["status"], "model": manifest.get("model"),
         "verified_sha256": {"inputs": sha(inputs_path), "expectations_pre_run": frozen,
             "manifest": sha(run_path / "manifest.json"), "calls": sha(run_path / "calls.jsonl"),
@@ -280,6 +352,9 @@ def evaluate(run_path, inputs_path, expectations_path):
             "valid": sum(m["valid_contract"] for m in matching), "details": matching},
         "focused_checks": focused, "cases": details,
         "disagreements": [d for d in details if not d["matched_preliminary_expectation"]]}
+    if verification is not None:
+        report["verification_contracts"] = verification
+    return report
 
 
 def markdown(report):
@@ -291,6 +366,14 @@ def markdown(report):
     out += ["", "Model statuses and classes:", ""]
     for label, s in report["summary"].items():
         out.append(f"- {label}: statuses `{json.dumps(s['model_statuses'], ensure_ascii=False)}`; class presence `{json.dumps(s['model_kind_presence'], ensure_ascii=False)}`.")
+    if "verification_contracts" in report:
+        verification = report["verification_contracts"]
+        out += ["", "Model verification (separate from extraction expectations):", "",
+                verification["disclaimer"], "",
+                f"- Calls: {verification['calls']}; valid contracts: {verification['valid_contracts']}; verdicts: `{json.dumps(verification['verdicts'])}`.",
+                f"- Blocking violations: {verification['blocking_violations']}."]
+        for item in verification["details"]:
+            out.append(f"- `{item['source_id']}` / `{item['intent_id']}`: {item['verdict']}; blocking respected: {item['blocking_respected']}.")
     out += ["", "Focused checks:", ""]
     for c in report["focused_checks"]:
         result = "not applicable" if not c["applicable"] else ("met" if c["passed"] else "not met")

@@ -37,16 +37,20 @@ class ScriptedTestBackend:
     provenance = {"backend": "TEST_ONLY_SCRIPTED_FIXTURE", "model_id": "NO_MODEL",
                   "warning": "Unit-test fixture; no inference or model accuracy measurement"}
 
-    def __init__(self, extraction_override=None, matching_override=None, relation="same"):
+    def __init__(self, extraction_override=None, matching_override=None, relation="same", verification_override=None):
         self.extraction_override = extraction_override
         self.matching_override = matching_override
         self.relation = relation
+        self.verification_override = verification_override
         self.calls = []
 
     def generate(self, messages, max_tokens):
         self.calls.append({"messages": messages, "max_tokens": max_tokens})
         payload = json.loads(messages[-1]["content"])
-        if "metadata" in payload:
+        if "proposed_intent" in payload:
+            result = self.verification_override(payload) if self.verification_override else {
+                "verdict": "supported", "reason": "Scripted test support", "evidence_quote": payload["text"]}
+        elif "metadata" in payload:
             result = self.extraction_override(payload) if self.extraction_override else extracted(payload)
         else:
             result = self.matching_override(payload) if self.matching_override else {"matches": [
@@ -85,7 +89,7 @@ class RunnerIntegrationTests(unittest.TestCase):
                    input_source("ticket-c")]
         manifest, out = self.execute(sources)
         self.assertEqual(manifest["status"], "complete")
-        self.assertEqual(manifest["call_count"], 7)
+        self.assertEqual(manifest["call_count"], 11)
         self.assertEqual(manifest["delivered_local_cards"], 1)
         receiver = self.read(out / "local-receiver.json")
         self.assertEqual(len(receiver), 1)
@@ -168,7 +172,7 @@ class RunnerIntegrationTests(unittest.TestCase):
     def test_products_are_separated_before_matching(self):
         backend = ScriptedTestBackend()
         manifest, out = self.execute([input_source("a"), input_source("b", product_id="other")], backend)
-        self.assertEqual(manifest["call_count"], 2)
+        self.assertEqual(manifest["call_count"], 4)
         topics = self.read(out / "topics.json")
         self.assertEqual({t["product_id"] for t in topics}, {"test-product", "other"})
         self.assertEqual(len({t["id"] for t in topics}), 2)
@@ -183,6 +187,24 @@ class RunnerIntegrationTests(unittest.TestCase):
         self.assertEqual(final["status"], "needs_review")
         self.assertIn("truncated", final["reason"])
         self.assertEqual(len(self.read(out / "topics.json")), 6)
+
+    def test_unconfirmed_support_never_enters_matching_or_counts(self):
+        for verdict in ("unsupported", "unclear", "invalid"):
+            def verify(payload):
+                if payload["metadata"]["id"] == "good":
+                    return {"verdict": "supported", "reason": "Test only", "evidence_quote": payload["text"]}
+                if verdict == "invalid":
+                    return "not JSON"
+                return {"verdict": verdict, "reason": "Test only", "evidence_quote": None}
+            sources = [input_source("good"), input_source("bad1", customer_id="b"), input_source("bad2", customer_id="c")]
+            manifest, out = self.execute(sources, ScriptedTestBackend(verification_override=verify), name=verdict)
+            self.assertEqual(manifest["delivered_local_cards"], 0)
+            self.assertEqual(self.read(out / "cards.json")[0]["independent_episodes"], 1)
+            for row in self.lines(out / "results.jsonl")[1:]:
+                assignment = row["assignments"][0]
+                self.assertIsNone(assignment["topic_id"])
+                self.assertIsNone(assignment["matching_call"])
+                self.assertEqual(assignment["status"], "needs_review")
 
     def test_backend_failure_retains_attempt_and_failed_manifest(self):
         def scripted(payload):

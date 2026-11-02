@@ -17,6 +17,7 @@ import time
 from demo.case_contract_demo import ContractDemo, Fragment, Source
 from .pipeline import (extraction_messages, validate_extraction, matching_messages,
                        validate_matching, resolve_topic, prepared_contract_payload)
+from .verifier import verification_messages, validate_verification
 
 
 def sha(path):
@@ -63,16 +64,20 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
                    "no human gold", "single ordered batch; matching can depend on input order"]}
     contract_code = Path(__file__).resolve().parents[1] / "demo" / "case_contract_demo.py"
     manifest["code_sha256"]["demo/case_contract_demo.py"] = sha(contract_code)
+    version_seed = json.dumps({"code": manifest["code_sha256"], "model": backend.provenance}, sort_keys=True)
+    manifest["pipeline_version"] = "text-" + hashlib.sha256(version_seed.encode()).hexdigest()[:24]
     dump(output_path / "manifest.json", manifest)
     demo = ContractDemo(now=now)
     demo.grant("local-reviewer", {s["product_id"] for s in sources})
     topics, results, call_count = [], [], 0
 
-    def invoke(stage, source_id, messages, limit):
+    def invoke(stage, source_id, messages, limit, intent_id=None):
         nonlocal call_count
         call_count += 1
         call = {"call_id": call_count, "stage": stage, "source_id": source_id,
                 "messages": messages, "raw_response": None, "stats": None}
+        if intent_id is not None:
+            call["intent_id"] = intent_id
         try:
             raw, stats = backend.generate(messages, max_tokens=limit)
             call.update(status="complete", raw_response=raw, stats=stats)
@@ -100,11 +105,22 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
                     candidates, pool_size = shortlist(intent, source, topics)
                     eligible = (not intent["review_required"] and intent["origin"] == "user_explicit"
                                 and intent["kind"] in {"feature_request", "usability"})
+                    verification, verification_call = None, None
+                    gate_open = False
+                    if eligible:
+                        raw_verification, verification_call = invoke("verification", source["id"],
+                            verification_messages(source, intent), 700, intent["intent_id"])
+                        verification = validate_verification(raw_verification, source, intent)
+                        gate_open = verification.ok and verification.value["verdict"] == "supported"
                     match, match_call = None, None
-                    if eligible and candidates:
+                    if gate_open and candidates:
                         raw_match, match_call = invoke("matching", source["id"], matching_messages(intent, candidates), 900)
                         match = validate_matching(raw_match, candidates)
-                    decision = resolve_topic(intent, source, candidates, match)
+                    if eligible and not gate_open:
+                        decision = {"status": "needs_review", "topic_id": None,
+                                    "reason": "Wish support not confirmed by semantic verifier"}
+                    else:
+                        decision = resolve_topic(intent, source, candidates, match)
                     # A truncated shortlist cannot prove absence from a larger registry.
                     if decision["status"] == "new" and pool_size > len(candidates):
                         decision = {"status": "needs_review", "topic_id": None,
@@ -116,6 +132,8 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
                         demo.add_topic(topic["id"], topic["product_id"], topic["statement"])
                     assignments[intent["intent_id"]] = decision["topic_id"]
                     result["assignments"].append({"intent_id": intent["intent_id"],
+                        "verification_call": verification_call,
+                        "verification": asdict(verification) if verification else None,
                         "matching_call": match_call, "matching": asdict(match) if match else None,
                         "candidate_pool_size": pool_size, "candidate_ids": [c["id"] for c in candidates],
                         **decision})
@@ -127,7 +145,8 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
                             source.get("customer_id"), source.get("episode_id"), now + 365 * 86400,
                             (Fragment("body", source["text"], speaker=source["speaker"]),),
                             episode_at=stamp(source["episode_at"])))
-                        demo.analyze("local-reviewer", prepared_contract_payload(source, extracted, assignments))
+                        demo.analyze("local-reviewer", prepared_contract_payload(source, extracted, assignments,
+                            pipeline_version=manifest["pipeline_version"]))
                         result["counting"] = "local contract accepted; unknown identities do not add episodes/customers"
                 else:
                     result["counting"] = "held for review or no intents"

@@ -91,6 +91,28 @@ class SavedEvidenceFixture:
         self.results[index]["extraction"] = asdict(validate_extraction(raw, self.sources[index]))
         self.save()
 
+    def add_verification(self, index=1, payload=None, respect_block=True):
+        from agent.verifier import verification_messages, validate_verification
+        src = self.sources[index]
+        intent = self.results[index]["extraction"]["value"]["intents"][0]
+        if payload is None:
+            payload = {"verdict": "supported", "reason": "The source directly requests this capability.",
+                       "evidence_quote": src["text"]}
+        raw = json.dumps(payload, ensure_ascii=False)
+        verified = validate_verification(raw, src, intent)
+        call_id = max(c["call_id"] for c in self.calls) + 1
+        self.calls.append(dict(call_id=call_id, stage="verification", source_id=src["id"],
+            intent_id=intent["intent_id"], messages=verification_messages(src, intent), raw_response=raw))
+        assignment = self.results[index]["assignments"][0]
+        assignment.update(intent_id=intent["intent_id"], verification_call=call_id,
+                          verification=asdict(verified), matching_call=None)
+        if respect_block and (not verified.ok or verified.value["verdict"] != "supported"):
+            assignment.update(topic_id=None, status="needs_review")
+        self.manifest["call_count"] = len(self.calls)
+        self.manifest.setdefault("code_sha256", {})["agent/verifier.py"] = sha(ROOT / "agent" / "verifier.py")
+        self.save()
+        return assignment, self.calls[-1]
+
     def evaluate(self):
         return evaluate(self.run, self.inputs, self.expectations)
 
@@ -282,6 +304,102 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(report["summary"]["all"]["processed"], 1)
         self.assertEqual(report["summary"]["all"]["matched_preliminary_expectations"], 1)
         self.assertEqual(report["cases"][1]["model_status"], "not_processed")
+
+    def test_verifier_supported_is_separate_and_old_report_has_no_new_block(self):
+        fixture = self.fixture()
+        baseline = fixture.evaluate()
+        self.assertNotIn("verification_contracts", baseline)
+        fixture.add_verification()
+        report = fixture.evaluate()
+        verification = report["verification_contracts"]
+        self.assertEqual(verification["verdicts"], {"supported": 1, "unsupported": 0, "unclear": 0, "invalid": 0})
+        self.assertEqual(verification["valid_contracts"], 1)
+        self.assertEqual(verification["blocking_violations"], 0)
+        self.assertIn("not human gold", verification["disclaimer"])
+        self.assertEqual(report["summary"], baseline["summary"])
+        self.assertEqual(report["cases"], baseline["cases"])
+
+    def test_verifier_unsupported_unclear_invalid_are_separate_blocking_results(self):
+        for verdict in ("unsupported", "unclear", "invalid"):
+            with self.subTest(verdict=verdict):
+                location = self.root / verdict
+                location.mkdir()
+                fixture = SavedEvidenceFixture(location)
+                payload = {"verdict": verdict, "reason": "Insufficient or contradictory evidence.", "evidence_quote": None}
+                fixture.add_verification(payload=payload)
+                report = fixture.evaluate()
+                verification = report["verification_contracts"]
+                self.assertEqual(verification["verdicts"][verdict], 1)
+                self.assertEqual(verification["blocking_violations"], 0)
+                self.assertTrue(verification["details"][0]["requires_blocking"])
+                self.assertEqual(verification["details"][0]["valid_contract"], verdict != "invalid")
+                # Blocking by a second model never silently relabels extraction.
+                self.assertTrue(report["cases"][1]["matched_preliminary_expectation"])
+
+    def test_verifier_call_source_and_intent_binding_are_checked(self):
+        fixture = self.fixture()
+        assignment, call = fixture.add_verification()
+        call["source_id"] = "case-01"
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "call/source/intent mismatch"):
+            fixture.evaluate()
+        call["source_id"] = "syn-01"
+        call["intent_id"] = "invented-intent"
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "call/source/intent mismatch"):
+            fixture.evaluate()
+        assignment["intent_id"] = "invented-intent"
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "intent absent"):
+            fixture.evaluate()
+
+    def test_verifier_prompt_data_is_bound_to_source_and_intent(self):
+        fixture = self.fixture()
+        _, call = fixture.add_verification()
+        data = json.loads(call["messages"][-1]["content"])
+        data["text"] = "Substituted source text"
+        call["messages"][-1]["content"] = json.dumps(data)
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "prompt differs"):
+            fixture.evaluate()
+
+    def test_verifier_saved_result_and_source_hash_must_match(self):
+        fixture = self.fixture()
+        assignment, _ = fixture.add_verification()
+        saved = copy.deepcopy(assignment["verification"])
+        assignment["verification"]["ok"] = False
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "Saved verification differs"):
+            fixture.evaluate()
+        assignment["verification"] = saved
+        fixture.manifest["code_sha256"]["agent/verifier.py"] = "0" * 64
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "changed verifier source"):
+            fixture.evaluate()
+        fixture.manifest["code_sha256"].pop("agent/verifier.py")
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "Missing or changed verifier"):
+            fixture.evaluate()
+
+    def test_verifier_block_bypass_is_reported(self):
+        fixture = self.fixture()
+        fixture.add_verification(payload={"verdict": "unsupported", "reason": "Not supported by the quote.",
+                                          "evidence_quote": None}, respect_block=False)
+        verification = fixture.evaluate()["verification_contracts"]
+        self.assertEqual(verification["blocking_violations"], 1)
+        self.assertFalse(verification["details"][0]["blocking_respected"])
+
+    def test_unlinked_or_reused_verifier_calls_are_rejected(self):
+        fixture = self.fixture()
+        assignment, _ = fixture.add_verification()
+        fixture.results[1]["assignments"].append(copy.deepcopy(assignment))
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "reused"):
+            fixture.evaluate()
+        fixture.results[1]["assignments"] = []
+        fixture.save()
+        with self.assertRaisesRegex(ValueError, "not linked"):
+            fixture.evaluate()
 
     def test_write_once_and_preserve_all_existing_evidence(self):
         fixture = self.fixture()
