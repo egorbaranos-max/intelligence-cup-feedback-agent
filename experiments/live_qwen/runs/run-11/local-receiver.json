@@ -1,0 +1,62 @@
+[
+  {
+    "topic_id": "topic_e9387111ebc4013c412878e1",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Добавьте возможность выгружать список заказов в CSV",
+    "decision": "new",
+    "raw_sources": 4,
+    "independent_episodes": 3,
+    "known_customers": 2,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 65,
+        "quote": "Добавьте, пожалуйста, возможность выгружать список заказов в CSV.",
+        "source_id": "syn-01",
+        "source_version": 1,
+        "digest": "34b36ad381e7be8100eb91327ac52695cc1a4853b841661c38ac7a19e105c236",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 105,
+        "quote": "Хочу скачивать реестр заказов в формате CSV: номер заказа, дата и сумма должны быть в отдельных колонках.",
+        "source_id": "syn-03",
+        "source_version": 1,
+        "digest": "0f17d41113ae7d2f399816a84b484cfc1aa41b30c553708547ae214f56e3ffa5",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 80,
+        "quote": "Еще раз пишу по тому же обращению: прошу добавить выгрузку списка заказов в CSV.",
+        "source_id": "syn-04",
+        "source_version": 1,
+        "digest": "990bb4f5e6d6cd9aad13a41dfedbc357fda44f9207a5e988890fc9197c561a56",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 53,
+        "end": 111,
+        "quote": "Еще отдельно прошу добавить выгрузку списка заказов в CSV.",
+        "source_id": "syn-07",
+        "source_version": 1,
+        "digest": "d6df0f8f2a99ef53ebfb51ea14156c9259023051450350548a04d9da4c59fc5a",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

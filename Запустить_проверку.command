@@ -14,9 +14,10 @@ else
   exit 1
 fi
 
-RUN_DIR="artifacts/replay-$(date -u +%Y%m%dT%H%M%SZ)"
+RUN_DIR="artifacts/replay-$(date -u +%Y%m%dT%H%M%SZ)-$$"
 print "Проверяем 7 текстов из кейса и 16 вымышленных примеров."
 print "Дата окна учета: 2 ноября 2026 года. Ответы модели сохраняются без исправлений."
+print "Результаты будут сохранены в: $REPO_DIR/$RUN_DIR"
 "$MODEL_PYTHON" -m agent --inputs experiments/live_qwen/inputs.jsonl \
   --model-manifest "$MODEL_MANIFEST" --output "$RUN_DIR" --as-of 2026-11-02T12:00:00Z
 "$MODEL_PYTHON" scripts/evaluate_live_run.py --run "$RUN_DIR" \

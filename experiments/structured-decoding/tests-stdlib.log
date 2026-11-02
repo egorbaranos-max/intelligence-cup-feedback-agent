@@ -1,0 +1,27 @@
+test_finish_failure_attaches_full_unmodified_text (test_structured_decoding.BackendRawLoggingTests.test_finish_failure_attaches_full_unmodified_text) ... ok
+test_generation_failure_attaches_exact_partial_output (test_structured_decoding.BackendRawLoggingTests.test_generation_failure_attaches_exact_partial_output) ... ok
+test_runner_retains_raw_and_stats_when_backend_raises (test_structured_decoding.BackendRawLoggingTests.test_runner_retains_raw_and_stats_when_backend_raises) ... ok
+test_success_passes_processor_and_preserves_raw (test_structured_decoding.BackendRawLoggingTests.test_success_passes_processor_and_preserves_raw) ... ok
+test_constructor_and_mask_resource_errors_fail_closed (test_structured_decoding.LifecycleTests.test_constructor_and_mask_resource_errors_fail_closed) ... ok
+test_empty_malformed_and_padding_only_masks_fail (test_structured_decoding.LifecycleTests.test_empty_malformed_and_padding_only_masks_fail) ... ok
+test_final_json_validation_never_extracts_or_repairs (test_structured_decoding.LifecycleTests.test_final_json_validation_never_extracts_or_repairs) ... ok
+test_finish_rejects_incomplete_or_unstarted_matcher (test_structured_decoding.LifecycleTests.test_finish_rejects_incomplete_or_unstarted_matcher) ... ok
+test_finish_rejects_truncation_even_if_raw_happens_to_be_valid (test_structured_decoding.LifecycleTests.test_finish_rejects_truncation_even_if_raw_happens_to_be_valid) ... ok
+test_history_rewind_jump_or_replacement_fails (test_structured_decoding.LifecycleTests.test_history_rewind_jump_or_replacement_fails) ... ok
+test_import_does_not_import_optional_packages (test_structured_decoding.LifecycleTests.test_import_does_not_import_optional_packages) ... ok
+test_invalid_dimensions_and_oov_fail (test_structured_decoding.LifecycleTests.test_invalid_dimensions_and_oov_fail) ... ok
+test_new_processor_has_independent_state (test_structured_decoding.LifecycleTests.test_new_processor_has_independent_state) ... ok
+test_prompt_is_never_validated_as_json (test_structured_decoding.LifecycleTests.test_prompt_is_never_validated_as_json) ... ok
+test_skip_entire_prompt_and_mlx_lookahead_including_eos (test_structured_decoding.LifecycleTests.test_skip_entire_prompt_and_mlx_lookahead_including_eos) ... ok
+test_unpinned_engine_version_rejected_before_runtime_import (test_structured_decoding.LifecycleTests.test_unpinned_engine_version_rejected_before_runtime_import) ... ok
+test_wrong_token_fails_without_reset (test_structured_decoding.LifecycleTests.test_wrong_token_fails_without_reset) ... ok
+test_actual_qwen_rejects_invalid_root_nan_and_extra_text (test_structured_decoding.LocalQwenTokenizerTests.test_actual_qwen_rejects_invalid_root_nan_and_extra_text) ... skipped 'set STRUCTURED_TOKENIZER_MANIFEST for local Qwen tokenizer tests'
+test_actual_qwen_tokens_nested_unicode_and_multiple_fresh_calls (test_structured_decoding.LocalQwenTokenizerTests.test_actual_qwen_tokens_nested_unicode_and_multiple_fresh_calls) ... skipped 'set STRUCTURED_TOKENIZER_MANIFEST for local Qwen tokenizer tests'
+test_eos_masked_until_complete_and_invalid_grammar_detected (test_structured_decoding.NativeGrammarTests.test_eos_masked_until_complete_and_invalid_grammar_detected) ... skipped 'optional native grammar dependency'
+test_invalid_json_cannot_be_selected (test_structured_decoding.NativeGrammarTests.test_invalid_json_cannot_be_selected) ... skipped 'optional native grammar dependency'
+test_nested_objects_split_utf8_and_unicode_escapes (test_structured_decoding.NativeGrammarTests.test_nested_objects_split_utf8_and_unicode_escapes) ... skipped 'optional native grammar dependency'
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.061s
+
+OK (skipped=5)

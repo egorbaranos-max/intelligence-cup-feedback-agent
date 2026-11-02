@@ -83,6 +83,79 @@ def check(name, passed, details, applicable=True):
             "passed": bool(passed) if applicable else None, "details": details}
 
 
+def audit_structured_completion(manifest, calls):
+    """Reject contradictory grammar logs without changing saved report objects.
+
+    This checks recorded lifecycle evidence, not that a model's meaning is right.
+    Failed calls may retain an accepting prefix or a length stop; only completed
+    calls must satisfy the backend's successful-completion policy.
+    """
+    grammar = manifest.get("model", {}).get("decoding", {}).get("structured_json", {})
+    enabled = isinstance(grammar, dict) and grammar.get("enabled") is True
+    if isinstance(grammar, dict) and grammar.get("mode") == "named_json_schemas" and not enabled:
+        raise ValueError("Named-schema provenance must enable structured generation")
+    for call in calls.values():
+        stats = call.get("stats")
+        structured = stats.get("structured_json") if isinstance(stats, dict) else None
+        if not enabled:
+            if structured is not None:
+                raise ValueError("Structured call statistics lack enabled grammar provenance")
+            continue
+        if call.get("status") != "complete":
+            continue
+        if (not isinstance(stats, dict) or stats.get("finish_reason") != "stop"
+                or not isinstance(structured, dict) or structured.get("accepting") is not True):
+            raise ValueError("Completed structured call lacks normal stop and accepting grammar state")
+    if enabled and (grammar.get("mode") == "named_json_schemas"
+                    or any("response_schema" in call for call in calls.values())):
+        audit_named_schemas(manifest, calls, grammar)
+
+
+def audit_named_schemas(manifest, calls, grammar):
+    """Bind each recorded stage to its frozen static schema and matcher log.
+
+    Grammar fingerprints are checked for shape; recompiling a native grammar is
+    deliberately not part of this stdlib audit. Exact runtime source archives
+    and integration smoke evidence are verified separately.
+    """
+    from agent.response_schemas import RESPONSE_SCHEMAS, STAGE_SCHEMAS
+    if grammar.get("mode") != "named_json_schemas":
+        raise ValueError("Stage-specific call lacks named-schema provenance")
+    recorded_code = manifest.get("code_sha256", {}).get("agent/response_schemas.py")
+    if recorded_code != sha(ROOT / "agent" / "response_schemas.py"):
+        raise ValueError("Missing or changed response-schema source after run")
+    expected = {"generic": {"type": "object"}, **RESPONSE_SCHEMAS}
+    records = grammar.get("schemas")
+    if not isinstance(records, dict) or set(records) != set(expected):
+        raise ValueError("Named-schema provenance inventory differs")
+    schema_hashes = {}
+    for name, schema in expected.items():
+        record = records[name]
+        digest = hashlib.sha256(json.dumps(schema, sort_keys=True,
+            separators=(",", ":"), ensure_ascii=False).encode("utf-8")).hexdigest()
+        recorded_schema_hash = hashlib.sha256(json.dumps(record.get("schema"), sort_keys=True,
+            separators=(",", ":"), ensure_ascii=False).encode("utf-8")).hexdigest() if isinstance(record, dict) else None
+        if not isinstance(record, dict) or recorded_schema_hash != digest or record.get("schema_sha256") != digest:
+            raise ValueError("Recorded schema differs from frozen response schema")
+        grammar_hash = record.get("grammar_sha256")
+        if (not isinstance(grammar_hash, str) or len(grammar_hash) != 64
+                or any(c not in "0123456789abcdef" for c in grammar_hash)):
+            raise ValueError("Missing or malformed compiled-grammar fingerprint")
+        schema_hashes[name] = digest
+    for call in calls.values():
+        name = STAGE_SCHEMAS.get(call.get("stage"))
+        if name is None or call.get("response_schema") != name:
+            raise ValueError("Call stage and requested response schema differ")
+        if call.get("status") != "complete":
+            # Construction failures can occur before processor statistics exist.
+            continue
+        stats = call.get("stats", {})
+        matched = stats.get("structured_json", {})
+        if (stats.get("response_schema") != name or matched.get("schema_name") != name
+                or matched.get("schema_sha256") != schema_hashes[name]):
+            raise ValueError("Completed call matcher schema differs from requested stage")
+
+
 def evaluate_verification(calls, results, source_map, validated, manifest):
     """Audit model-verifier evidence separately from extraction expectations."""
     verification_calls = {identifier: call for identifier, call in calls.items()
@@ -287,6 +360,7 @@ def evaluate(run_path, inputs_path, expectations_path):
             raise ValueError("Unknown source or stage in saved call")
         if v2 and manifest["status"] == "complete" and call.get("status") != "complete":
             raise ValueError("Complete run contains a failed or non-complete model call")
+    audit_structured_completion(manifest, calls)
 
     details, raw_by_id, validated, referenced = [], {}, {}, set()
     attempt_details, attempt_references = [], set()

@@ -22,6 +22,7 @@ from .repair import extraction_repair_messages
 from .prompts import VERIFICATION_POLICY
 from .registry import candidate_plan, resolve_registry_topic, MAX_REGISTRY_CANDIDATES, BATCH_SIZE
 from .source_risks import detect_source_risks
+from .response_schemas import STAGE_SCHEMAS
 
 
 def sha(path):
@@ -72,7 +73,8 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
                    "usability observations require human review and never count as automatic wishes",
                    "complete product registry comparison up to 25 candidates; overflow requires review",
                    "limited heuristic source-risk guard can miss attacks and flag legitimate prompt-editor requests",
-                   "source-level review conservatively holds all intents in that source"]}
+                   "extraction needs_review or source-risk guard holds all intents in that source",
+                   "a source review queue entry can coexist with acceptance of its other verified intents"]}
     manifest["extraction_repair_limit"] = 1
     manifest["registry_candidate_limit"] = MAX_REGISTRY_CANDIDATES
     manifest["registry_batch_size"] = BATCH_SIZE
@@ -90,13 +92,14 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
         nonlocal call_count
         call_count += 1
         call = {"call_id": call_count, "stage": stage, "source_id": source_id,
-                "messages": messages, "raw_response": None, "stats": None}
+                "messages": messages, "raw_response": None, "stats": None,
+                "response_schema": STAGE_SCHEMAS[stage]}
         if intent_id is not None:
             call["intent_id"] = intent_id
         if repair_of is not None:
             call["repair_of"] = repair_of
         try:
-            raw, stats = backend.generate(messages, max_tokens=limit)
+            raw, stats = backend.generate(messages, max_tokens=limit, schema_name=STAGE_SCHEMAS[stage])
             call.update(status="complete", raw_response=raw, stats=stats)
         except Exception as exc:
             call.update(status="failed", error_type=type(exc).__name__, error=str(exc))

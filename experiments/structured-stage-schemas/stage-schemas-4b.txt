@@ -1,0 +1,15 @@
+test_enums_and_fields_match_existing_validators (test_response_schemas.ContractTests.test_enums_and_fields_match_existing_validators) ... ok
+test_multiple_intents_refs_and_empty_intents_stay_valid (test_response_schemas.ContractTests.test_multiple_intents_refs_and_empty_intents_stay_valid) ... ok
+test_runner_routes_and_logs_extraction_repair_schema (test_response_schemas.ContractTests.test_runner_routes_and_logs_extraction_repair_schema) ... [1/1] routing: извлечение=ok; автоматический разбор завершён
+ok
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+test_actual_bpe_accepts_shapes_and_blocks_invalid_enums (test_response_schemas.LocalStageTests.test_actual_bpe_accepts_shapes_and_blocks_invalid_enums) ... ok
+test_schema_provenance_processor_hash_and_unknown_name (test_response_schemas.LocalStageTests.test_schema_provenance_processor_hash_and_unknown_name) ... ok
+test_authorship_and_membership_remain_validator_checks (test_response_schemas.NativeStageTests.test_authorship_and_membership_remain_validator_checks) ... ok
+test_limits_match_existing_contract (test_response_schemas.NativeStageTests.test_limits_match_existing_contract) ... ok
+test_valid_shapes_and_invalid_enums_keys_types (test_response_schemas.NativeStageTests.test_valid_shapes_and_invalid_enums_keys_types) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.152s
+
+OK

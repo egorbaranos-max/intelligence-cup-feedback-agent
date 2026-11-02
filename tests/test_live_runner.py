@@ -44,8 +44,8 @@ class ScriptedTestBackend:
         self.verification_override = verification_override
         self.calls = []
 
-    def generate(self, messages, max_tokens):
-        self.calls.append({"messages": messages, "max_tokens": max_tokens})
+    def generate(self, messages, max_tokens, schema_name="generic"):
+        self.calls.append({"messages": messages, "max_tokens": max_tokens, "schema_name": schema_name})
         payload = json.loads(messages[-1]["content"])
         if "proposed_intent" in payload:
             result = self.verification_override(payload) if self.verification_override else {

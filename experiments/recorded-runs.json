@@ -12,6 +12,10 @@
     "fresh_probe/runs/run-02",
     "live_qwen/runs/run-08",
     "fresh_probe/runs/run-03",
-    "live_qwen/runs/run-09"
+    "live_qwen/runs/run-09",
+    "live_qwen/runs/run-10",
+    "fresh_probe/runs/run-04",
+    "live_qwen/runs/run-11",
+    "fresh_probe/runs/run-05"
   ]
 }

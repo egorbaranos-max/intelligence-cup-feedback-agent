@@ -187,7 +187,7 @@ class BackendRawLoggingTests(unittest.TestCase):
             if finish_failure:
                 raise StructuredDecodingError('truncated')
         processor = SimpleNamespace(finish=finish, stats=lambda: {'accepting': not finish_failure})
-        backend.json_grammar = SimpleNamespace(new_processor=lambda: processor)
+        backend.json_grammar = SimpleNamespace(new_processor=lambda **kwargs: processor)
         return backend, processor
 
     def test_success_passes_processor_and_preserves_raw(self):
@@ -228,7 +228,7 @@ class BackendRawLoggingTests(unittest.TestCase):
         from agent.runner import run
         class FailingBackend:
             provenance = {'backend': 'test double; no model'}
-            def generate(self, messages, max_tokens):
+            def generate(self, messages, max_tokens, schema_name="generic"):
                 exc = StructuredDecodingError('grammar resource limit')
                 exc.raw_response = ' {"partial":'
                 exc.stats = {'max_tokens': max_tokens, 'structured_json': {'accepting': False}}

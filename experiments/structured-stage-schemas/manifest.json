@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "kind": "named-stage-schema-integration-evidence",
+  "created_at": "2026-11-02T21:58:37.100597+00:00",
+  "files": {
+    "README.md": {
+      "bytes": 4265,
+      "sha256": "d452813f0c8b3441540189ebfc313cad29c1da714f89102948743e860df5b30b"
+    },
+    "gpu-stage-4b.json": {
+      "bytes": 28816,
+      "sha256": "40510f0fcaa103d4f532e15858184e7125f2829246973f93133a624e6fa09e2e"
+    },
+    "gpu-stage-8b.json": {
+      "bytes": 29006,
+      "sha256": "a5c94b9550fa6ef1de9d5f472ef6fb4a124fd9b3a8b5402520b1bdf4be80cc53"
+    },
+    "source-snapshot/agent/backend.py": {
+      "bytes": 8048,
+      "sha256": "49fdcec1b69c1592e72143f5cd12069bd75cc96dd7f7e18cd4158ec7465abc5f"
+    },
+    "source-snapshot/agent/pipeline.py": {
+      "bytes": 18654,
+      "sha256": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7"
+    },
+    "source-snapshot/agent/prompts.py": {
+      "bytes": 8366,
+      "sha256": "3fa19cbb475006e90a514d21618f7e1cba38e693ffc8b9fc929e2f0923ea0611"
+    },
+    "source-snapshot/agent/response_schemas.py": {
+      "bytes": 2085,
+      "sha256": "a9c20822e7509f7583b0affeaabe3f4e2400d3285fb9aaea73385e1ae5a41276"
+    },
+    "source-snapshot/agent/runner.py": {
+      "bytes": 18341,
+      "sha256": "e8a47059e494a3df4a06f27fc34f214da831d5672f8940fda29708e29e94f809"
+    },
+    "source-snapshot/agent/structured.py": {
+      "bytes": 10275,
+      "sha256": "241b9e4e7d7189dc45d9827d646ece844fcfcab595955336d63341648ef4d25a"
+    },
+    "source-snapshot/agent/verifier_v2.py": {
+      "bytes": 10023,
+      "sha256": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2"
+    },
+    "source-snapshot/scripts/smoke_stage_schemas.py": {
+      "bytes": 4914,
+      "sha256": "d1e7a58cb87d8fa6d1c084c3d4b4d74692d3ae59fdca96a762772fa3a449ff68"
+    },
+    "source-snapshot/tests/test_response_schemas.py": {
+      "bytes": 9154,
+      "sha256": "a8433625fce2fd13636b97fcdfac2e1012ed5cedd126743a72c914a2859cc8e8"
+    },
+    "stage-schemas-4b.txt": {
+      "bytes": 1518,
+      "sha256": "7a04cdcb32a8c261c396e4789404d20e1f79d754c03f9c1bff9ea39750511357"
+    },
+    "stage-schemas-8b.txt": {
+      "bytes": 1518,
+      "sha256": "89ad9b6588a9ad8f2eb56f67b338284c397f37aea960301e226c2ba2e806d2aa"
+    },
+    "stage-schemas-full-stdlib.txt": {
+      "bytes": 41559,
+      "sha256": "e23a768564798d8eb3077e5f153ccdf3764f3a47a201cefafbb905c238c2be4d"
+    }
+  },
+  "model_calls": 6,
+  "mechanically_valid_calls": 6,
+  "holdout_used": false,
+  "human_labels": false,
+  "semantic_accuracy_evaluation": false,
+  "source_sha256": {
+    "agent/backend.py": "49fdcec1b69c1592e72143f5cd12069bd75cc96dd7f7e18cd4158ec7465abc5f",
+    "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+    "agent/prompts.py": "3fa19cbb475006e90a514d21618f7e1cba38e693ffc8b9fc929e2f0923ea0611",
+    "agent/response_schemas.py": "a9c20822e7509f7583b0affeaabe3f4e2400d3285fb9aaea73385e1ae5a41276",
+    "agent/runner.py": "e8a47059e494a3df4a06f27fc34f214da831d5672f8940fda29708e29e94f809",
+    "agent/structured.py": "241b9e4e7d7189dc45d9827d646ece844fcfcab595955336d63341648ef4d25a",
+    "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+    "scripts/smoke_stage_schemas.py": "d1e7a58cb87d8fa6d1c084c3d4b4d74692d3ae59fdca96a762772fa3a449ff68",
+    "tests/test_response_schemas.py": "a8433625fce2fd13636b97fcdfac2e1012ed5cedd126743a72c914a2859cc8e8"
+  }
+}

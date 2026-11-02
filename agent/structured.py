@@ -47,7 +47,7 @@ class JSONLogitsProcessor:
     The matcher permits EOS after completion, including MLX's extra look-ahead.
     """
 
-    def __init__(self, matcher, vocab_size, apply_mask):
+    def __init__(self, matcher, vocab_size, apply_mask, schema_name="generic", schema_sha256=None):
         self.matcher = matcher
         self.vocab_size = vocab_size
         self.apply_mask = apply_mask
@@ -56,6 +56,7 @@ class JSONLogitsProcessor:
         self.prompt_tokens = None
         self.generated_tokens_consumed = 0
         self.callback_count = 0
+        self.schema_name, self.schema_sha256 = schema_name, schema_sha256
         self._check_matcher()
 
     def _check_matcher(self):
@@ -114,7 +115,8 @@ class JSONLogitsProcessor:
             raise StructuredDecodingError(f"Generated JSON object failed validation: {exc}") from exc
 
     def stats(self):
-        return {"prompt_tokens_skipped": self.prompt_tokens,
+        return {"schema_name": self.schema_name, "schema_sha256": self.schema_sha256,
+                "prompt_tokens_skipped": self.prompt_tokens,
                 "generated_tokens_consumed": self.generated_tokens_consumed,
                 "logits_callbacks": self.callback_count,
                 "accepting": bool(self.matcher.is_accepting()),
@@ -124,7 +126,7 @@ class JSONLogitsProcessor:
 class JSONGrammar:
     """Compile once against the already loaded local tokenizer, match per call."""
 
-    def __init__(self, tokenizer, vocab_size):
+    def __init__(self, tokenizer, vocab_size, schemas=None):
         try:
             version = importlib.metadata.version("llguidance")
         except importlib.metadata.PackageNotFoundError as exc:
@@ -140,17 +142,33 @@ class JSONGrammar:
             raise StructuredDecodingError("Tokenizer must expose valid MLX end-of-sequence token IDs")
         hf_tokenizer = getattr(tokenizer, "_tokenizer", tokenizer)
         self.tokenizer = from_tokenizer(hf_tokenizer, n_vocab=vocab_size, eos_token=eos_ids)
-        self.grammar = LLMatcher.grammar_from_json_schema(OBJECT_SCHEMA, overrides=COMPILER_OPTIONS)
         self.matcher_type = LLMatcher
         self.vocab_size = vocab_size
+        if schemas is not None and (not isinstance(schemas, dict) or "generic" in schemas
+                or any(not isinstance(name, str) or not name or not isinstance(schema, dict)
+                       for name, schema in schemas.items())):
+            raise StructuredDecodingError("Named schemas must be objects and cannot replace generic")
+        # Copy JSON data so outside mutation cannot alter the recorded contract.
+        self.schemas = json.loads(json.dumps({"generic": OBJECT_SCHEMA, **(schemas or {})}))
+        self.grammars = {name: LLMatcher.grammar_from_json_schema(schema, overrides=COMPILER_OPTIONS)
+                         for name, schema in self.schemas.items()}
+        self.grammar = self.grammars["generic"]
+        schema_records = {}
         # LLMatcher reports grammar/resource errors in state, not necessarily by raising.
-        probe = self._new_matcher()
-        warnings = probe.get_grammar_warnings()
-        if warnings:
-            raise StructuredDecodingError("JSON grammar warnings: " + "; ".join(warnings))
+        for name, schema in self.schemas.items():
+            probe = self._new_matcher(name)
+            warnings = probe.get_grammar_warnings()
+            if warnings:
+                raise StructuredDecodingError(f"JSON grammar {name} warnings: " + "; ".join(warnings))
+            schema_records[name] = {
+                "schema": schema,
+                "schema_sha256": hashlib.sha256(json.dumps(schema, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest(),
+                "grammar_sha256": hashlib.sha256(self.grammars[name].encode()).hexdigest(),
+            }
         self.provenance = {
             "enabled": True, "engine": "llguidance", "version": version,
-            "mode": "json_object", "schema": OBJECT_SCHEMA.copy(),
+            "mode": "named_json_schemas" if schemas else "json_object", "schema": OBJECT_SCHEMA.copy(),
+            "schemas": schema_records,
             "compiler_options": COMPILER_OPTIONS.copy(),
             "grammar_sha256": hashlib.sha256(self.grammar.encode()).hexdigest(),
             "vocab_size": vocab_size, "eos_token_ids": eos_ids,
@@ -160,13 +178,16 @@ class JSONGrammar:
             "fallback": "none", "output_repair": False,
         }
 
-    def _new_matcher(self):
-        matcher = self.matcher_type(self.tokenizer, self.grammar, log_level=0)
+    def _new_matcher(self, schema_name="generic"):
+        if schema_name not in self.grammars:
+            raise StructuredDecodingError(f"Unknown response schema: {schema_name}")
+        matcher = self.matcher_type(self.tokenizer, self.grammars[schema_name], log_level=0)
         if matcher.is_error():
             raise StructuredDecodingError(f"Cannot initialize JSON grammar: {matcher.get_error()}")
         return matcher
 
-    def new_processor(self, apply_mask=None):
+    def new_processor(self, apply_mask=None, schema_name="generic"):
+        matcher = self._new_matcher(schema_name)
         if apply_mask is None:
             import numpy as np
             from llguidance.mlx import apply_token_bitmask
@@ -176,4 +197,5 @@ class JSONGrammar:
                 mask = np.frombuffer(mask_bytes, dtype="<i4").reshape(1, -1)
                 return apply_token_bitmask(logits, mask)
 
-        return JSONLogitsProcessor(self._new_matcher(), self.vocab_size, apply_mask)
+        return JSONLogitsProcessor(matcher, self.vocab_size, apply_mask, schema_name=schema_name,
+            schema_sha256=self.provenance["schemas"][schema_name]["schema_sha256"])

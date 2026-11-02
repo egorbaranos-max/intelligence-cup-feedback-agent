@@ -1,0 +1,127 @@
+[
+  {
+    "topic_id": "topic_9294258a8c34105ced474e0b",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Автоматическая отправка писем ответственному сотруднику за 30 дней до окончания договора",
+    "decision": "new",
+    "raw_sources": 3,
+    "independent_episodes": 3,
+    "known_customers": 2,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 95,
+        "quote": "Добавьте, пожалуйста, письмо ответственному сотруднику за 30 дней до окончания нашего договора.",
+        "source_id": "synthetic-fresh-01",
+        "source_version": 1,
+        "digest": "940bbb15c2f65600c01202b9474a177bbc225ea0bcc4fbe0c8c721eb8aab7fc5",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 84,
+        "quote": "Хотим получать на почту напоминание, когда до конца договора остается ровно 30 дней.",
+        "source_id": "synthetic-fresh-02",
+        "source_version": 1,
+        "digest": "394c536f381a74ee81b78094c04b2abb09440c6275f7d159fcbc7d08fd113e83",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 127,
+        "end": 170,
+        "quote": "Можно сделать такую отправку автоматически?",
+        "source_id": "synthetic-fresh-02",
+        "source_version": 1,
+        "digest": "394c536f381a74ee81b78094c04b2abb09440c6275f7d159fcbc7d08fd113e83",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 130,
+        "quote": "Дополню свое обращение про сроки договоров: речь именно об одном письме за 30 дней до завершения, чтобы успеть оформить продление.",
+        "source_id": "synthetic-fresh-04",
+        "source_version": 1,
+        "digest": "558f0f78c8a5c54eb56ccbc05b004073d3c31900a526db7ed8f3c01ac698dcff",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_757e94f2dc37f344e306a69c",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Хранить у каждой карты название проекта, на который списывается топливо",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 78,
+        "quote": "Нужно хранить у каждой карты название проекта, на который списывается топливо.",
+        "source_id": "synthetic-fresh-07",
+        "source_version": 1,
+        "digest": "19823538762ec2edab465946d904b0efb8b8b6843184bc0953b9f369c7d33a82",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 79,
+        "end": 136,
+        "quote": "Добавьте в карточку карты заполняемое нами поле «Проект».",
+        "source_id": "synthetic-fresh-07",
+        "source_version": 1,
+        "digest": "19823538762ec2edab465946d904b0efb8b8b6843184bc0953b9f369c7d33a82",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_0e9ae5194998e3558a6003fa",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Добавить еженедельную отправку одного отчета с расходами на топливо по всем нашим филиалам",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 107,
+        "end": 243,
+        "quote": "И еще добавьте еженедельную отправку одного отчета с расходами на топливо по всем нашим филиалам: хотим получать его каждый понедельник.",
+        "source_id": "synthetic-fresh-12",
+        "source_version": 1,
+        "digest": "98f2fa6da77eb94131d6fc4ae8cfec359457a85824c898eb09d988a3f7c8c441",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

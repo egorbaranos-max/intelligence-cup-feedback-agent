@@ -80,8 +80,9 @@ class LocalMLX:
         self.json_grammar = None
         if structured_json:
             from .structured import JSONGrammar
+            from .response_schemas import RESPONSE_SCHEMAS
             config = json.loads((model_path / "config.json").read_text())
-            self.json_grammar = JSONGrammar(self.tokenizer, config["vocab_size"])
+            self.json_grammar = JSONGrammar(self.tokenizer, config["vocab_size"], schemas=RESPONSE_SCHEMAS)
         self.provenance = {k: v for k, v in manifest.items() if k != "local_path"}
         self.provenance.update({"backend": "mlx-lm", "python": platform.python_version(),
             "machine": platform.machine(), "macos": platform.mac_ver()[0],
@@ -96,7 +97,7 @@ class LocalMLX:
         if self.json_grammar:
             self.provenance["packages"]["llguidance"] = importlib.metadata.version("llguidance")
 
-    def generate(self, messages, max_tokens=1200):
+    def generate(self, messages, max_tokens=1200, schema_name="generic"):
         self.mx.random.seed(self.seed + self.calls)
         self.calls += 1
         prompt = self.tokenizer.apply_chat_template(messages, tokenize=False,
@@ -108,6 +109,7 @@ class LocalMLX:
         def generation_stats():
             stats = {"started_at": started, "elapsed_seconds": round(time.perf_counter() - begin, 3),
                      "max_tokens": max_tokens, "seed": self.seed + self.calls - 1,
+                     "response_schema": schema_name,
                      "rendered_prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest()}
             if last is not None:
                 for name in ("prompt_tokens", "generation_tokens", "prompt_tps", "generation_tps",
@@ -122,7 +124,7 @@ class LocalMLX:
         try:
             kwargs = {}
             if self.json_grammar:
-                processor = self.json_grammar.new_processor()
+                processor = self.json_grammar.new_processor(schema_name=schema_name)
                 kwargs["logits_processors"] = [processor]
             for item in self.stream_generate(self.model, self.tokenizer, prompt=prompt,
                                             max_tokens=max_tokens, sampler=self.sampler, **kwargs):

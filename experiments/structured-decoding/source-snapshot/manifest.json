@@ -1,0 +1,7 @@
+{
+  "purpose": "Exact historical code for generic JSON grammar smoke reports; preserved before stage schemas",
+  "sha256": {
+    "backend.py": "80125a0ce9f2a405fac41c6eac2866215acce880a4b4e4a29d938d3039ef4ba8",
+    "structured.py": "5c50a27ff64ad7fdaa772b4d3dde141ad36470b974d7a8f730d8059af8fd4cfe"
+  }
+}
