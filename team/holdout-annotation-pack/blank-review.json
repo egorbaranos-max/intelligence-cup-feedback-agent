@@ -1,0 +1,585 @@
+{
+  "schema_version": "feedback-human-review-v1",
+  "dataset_sha256": "755364938c08aea93116d92efc0a65744d437d7b79565bcf67531e5a3be12e62",
+  "reviewer_id": "",
+  "label_author": "",
+  "attested_independent": false,
+  "items": [
+    {
+      "source_id": "hv2_001",
+      "source_sha256": "3105a1238046b141c53993016fc7e0290549d95ae24d0140de6d1b1e9b6ae3d9",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_002",
+      "source_sha256": "0d3aef7419ff475a0e638018cddf57b6ef5ae16b9c7c2c7ac3c32a8362090690",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_003",
+      "source_sha256": "cce7ce00fb9339c8daf0add69d0112e9f3867be39583f38e018c6e1dc15a65d3",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_004",
+      "source_sha256": "6d5af27d11cc7298c6fa51dc975287ef43d41a1092f8f83d4523aabbc85da219",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_005",
+      "source_sha256": "c055e7b3664cf320f7cbf0360222cfb536cc8a1ef5b56866975162be074d6d18",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_006",
+      "source_sha256": "18cba4df844726f0892f724ab97c03f40865505145f93bf2a4b3dede64149f7f",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_007",
+      "source_sha256": "9bf29dfa81fee9c48a6c087059968a6924ddc642e29b5809c09dcdf544194f18",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_008",
+      "source_sha256": "10ccbd1061843cb19292923f9dfe669a43fb6e76cbfa507dbf49c1727e2f9eea",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_009",
+      "source_sha256": "51751bb913fa5d68afeb36fb224974dcbef0c6e89086491cc747a1df21f959eb",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_010",
+      "source_sha256": "b7d92cff16e3c4134dd262bec86dab60515e418eb59c22ad362c99f583676519",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_011",
+      "source_sha256": "d1846343000e8fff067370d913702e97e48634d1259ef4430f22fbc4867f4472",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_012",
+      "source_sha256": "d79a701c8bdfd8fa2a4a718a1be6331cd4fb77f577d7d64fbcd1a577a656e534",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_013",
+      "source_sha256": "8f8b1d8a8c601f2ae8918f4db57e861f243ae46be2504aedd1b36678746fe6d3",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_014",
+      "source_sha256": "eead615e217ac356cf03169be10ae2e02385ee2fbb23d76bcf4505b69cc946be",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_015",
+      "source_sha256": "e7750930efb1933913c9a24b7c6f6aa1745a4b4d978812a687daffedaa4da3a7",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_016",
+      "source_sha256": "398bc50a3750d5bc3788b690f9d4152c8a234ed876846e20bc2b09a9ffa57dc8",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_017",
+      "source_sha256": "b1f90ed9ae920641821ab49586ee2ba32a8df5e16b2c261d7f2129952a0dc2d3",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_018",
+      "source_sha256": "7a6b6c0e1df5fe3801320693d027ba69478a8f7c42a00cceaedd673fd467c0ed",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_019",
+      "source_sha256": "f4a01c303def85349e8211b1dd652a15f0e4a3e842b885b4b844d31ba93bb3d9",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_020",
+      "source_sha256": "de8116f768e7ee158f044af8575dae9cb7d70b569c6b937789b74dd96484833e",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_021",
+      "source_sha256": "a933547cf0903af5e1f366a2c74458a641898a00e5c2f91afed9c0dbcf43719d",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_022",
+      "source_sha256": "48314297ff8d6c7f33a3ab27e4291034c33ff98cc442c007fec8b05b02105f0a",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_023",
+      "source_sha256": "de9ac26a4cc583ab550b8516f489808032e226e068c7f8df4aab0495e2649446",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_024",
+      "source_sha256": "54a4cfeb1bb9b63c375410cc402d97ca13319bf6031135ae7b2aa4fb93c0ac1a",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_025",
+      "source_sha256": "e8cacdec40fb41fc8974643f0d8fbd0d67dd1398bb983dcc9b978a309c178139",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_026",
+      "source_sha256": "e5b13cfa80b13a120da649d73903767736f863a9fcf680e7e4d4df3338295291",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_027",
+      "source_sha256": "79c4c4ac59bfac1ec43f9ccab64b5db2657140ddd69b7fdbe4c55dbf1b2f4b09",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_028",
+      "source_sha256": "32e9286adb14f5dd4d620f10e448bb01957d8be458ec0557119f37678c8b8c55",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_029",
+      "source_sha256": "4bb62afbcbe0c589b295f90804690f8204b1a1b7e951f59b25cc04c01f778c76",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_030",
+      "source_sha256": "46ad4b6d2de8852a576ce497737c3827fc8562a674c57c209a74b2815764e794",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_031",
+      "source_sha256": "70b804c7c046440f1191443ca21bb73732dbb0d394a03cf7b027456c2ba392d5",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_032",
+      "source_sha256": "28c5d2ac450320f4b4c8ef104d81fd89d69753bd8ee0aa9c5b11fa10c6f9fafc",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_033",
+      "source_sha256": "47b24bafa1e37676f23e8df9962ed7d998d1cc1212bd7d11fdc3bbe62d16910d",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_034",
+      "source_sha256": "6c2fff3fd38c51ce294019f10924cb8544139c315793b692b9634923fdb3a4d9",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_035",
+      "source_sha256": "b72d892c84a00bdee332bd3258778e30d16411428a22db2375bd73acc5ac648e",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_036",
+      "source_sha256": "50faf5a70c8a1aeadbbfaa4d6a3063a53b79e59f8e6e335fbc207f2ce4fb88b2",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "needs_review",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_037",
+      "source_sha256": "52a21d13b31fe73c5df273ad3f3d4f05240fa930b87710d96c25e222900093ec",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "needs_review",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_038",
+      "source_sha256": "d5da6c05fc5431122f0d6c2248d80bbbdd82127f8b4ddbacfe0c17943a799c0c",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_039",
+      "source_sha256": "b52e007f344dabbb175d91e7686bfbb16632b0c719ae556e840e14309458a775",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_040",
+      "source_sha256": "11aca94906850bfb6d16557cbb3dec22dc7ce4c77d54fd2dbf8869d1123fb12d",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_041",
+      "source_sha256": "48aa96a9b6d5cda1072712229931e0a2b8fce6531541d60ec9b3d83c7ce49353",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_042",
+      "source_sha256": "a0a303fe8e2e66aa8a6c4e1213e806ec378226b1cfb7a9b655b22bfde7055181",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_043",
+      "source_sha256": "2602fd7f25e775ab39b53e135623df933b72ea65f116065999be1c588cb3e40d",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_044",
+      "source_sha256": "26277b9b2d7cee93411461d85ea1273f46cb938d74b826e9fc2ad24583424a51",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_045",
+      "source_sha256": "56adc1f3129dd9fe8ed4076e19d00af50a605029e152cf39e3878cc3e5587c3f",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_046",
+      "source_sha256": "88a662ff4164b736582a37a6fdc1a3c53b57e611330d2e351528de7729852977",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "needs_review",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_047",
+      "source_sha256": "9934a8d3e3790195b0f74e4ecc7446d464af7f0ba1d1bf9b1271fbc65b452c01",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    },
+    {
+      "source_id": "hv2_048",
+      "source_sha256": "a565adb9c164fc835e5eef3439111f1dfe9ef9ff66d84c1c2acc85ba0898cf6a",
+      "reviewed": false,
+      "family_id": "",
+      "split": "unassigned",
+      "note": "",
+      "annotation": {
+        "status": "ok",
+        "intents": []
+      }
+    }
+  ]
+}

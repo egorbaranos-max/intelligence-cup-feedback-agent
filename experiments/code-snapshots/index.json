@@ -77,6 +77,7 @@
       },
       "runs": [
         "fresh_probe/runs/run-01",
+        "holdout_v2/runs/run-01",
         "live_qwen/runs/run-03"
       ]
     },
@@ -199,6 +200,7 @@
         "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
       },
       "runs": [
+        "holdout_v2/runs/run-02",
         "live_qwen/runs/run-11"
       ]
     },

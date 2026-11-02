@@ -1,0 +1,600 @@
+[
+  {
+    "topic_id": "topic_efa2b536d910aafd05834492",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавьте автоматическую отправку этого отчета на email каждый день в 09:00",
+    "decision": "new",
+    "raw_sources": 5,
+    "independent_episodes": 4,
+    "known_customers": 3,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 50,
+        "end": 125,
+        "quote": "Добавьте автоматическую отправку этого отчета на email каждый день в 09:00.",
+        "source_id": "hv2_001",
+        "source_version": 1,
+        "digest": "fecb5d22b264595018a7e0859cc20ffbc0a2f8cb85467b3b23d510ccdb68cb20",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 63,
+        "quote": "Can you add daily scheduled email delivery of the queue report?",
+        "source_id": "hv2_002",
+        "source_version": 1,
+        "digest": "1addf5763eee8c6facf7ff3e4f052babd691ff4e7c8ab2a8fac483a34cb1694d",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 64,
+        "end": 133,
+        "quote": "Нужна рассылка отчета на почту в заданное время, без ручного запуска.",
+        "source_id": "hv2_002",
+        "source_version": 1,
+        "digest": "1addf5763eee8c6facf7ff3e4f052babd691ff4e7c8ab2a8fac483a34cb1694d",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 81,
+        "quote": "Хотим чтобы отчет по очередям сам уходил нам на e-mail каждое утро по расписанию.",
+        "source_id": "hv2_003",
+        "source_version": 1,
+        "digest": "f9452bd48836c0cbbdfc13dee21959435fb6a096133cfbf4b66934f82de235b7",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 106,
+        "end": 139,
+        "quote": "просим именно новую авторассылку.",
+        "source_id": "hv2_003",
+        "source_version": 1,
+        "digest": "f9452bd48836c0cbbdfc13dee21959435fb6a096133cfbf4b66934f82de235b7",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 121,
+        "quote": "Дополняю тот же запрос syn-a01 из звонка: добавьте автоматическую отправку отчета по очередям на email ежедневно в 09:00.",
+        "source_id": "hv2_004",
+        "source_version": 1,
+        "digest": "cd72b5befe5fc5a752d3b379ee74df9c39ba26aa80a9675d45506edcf130f7c9",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 73,
+        "quote": "Нужна автоматическая выгрузка отчета по очередям на наш SFTP каждую ночь.",
+        "source_id": "hv2_026",
+        "source_version": 1,
+        "digest": "0a7c0d67c29a4628530235bf93eb85b0a91def3c1a48b0b0da9b3a22a9b63cb1",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_66e7c17d6192b71d3d1614c4",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавьте кнопку «Скачать все вложения обращения ZIP»",
+    "decision": "new",
+    "raw_sources": 3,
+    "independent_episodes": 3,
+    "known_customers": 2,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 123,
+        "quote": "Добавьте кнопку «Скачать все вложения обращения ZIP»: хочется забрать все файлы одной заявки одним архивом, а не по одному.",
+        "source_id": "hv2_005",
+        "source_version": 1,
+        "digest": "782c1ad0b6639c486e33b71080ce0c68a220550baf4f935e1f6b7ecc668ba47b",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 59,
+        "quote": "Сделайте пжлст скачать ВСЕ вложеня одной заявки в один ZIP.",
+        "source_id": "hv2_007",
+        "source_version": 1,
+        "digest": "db85e738372a4901e4ae32bb70cb48f4017734685406fdbb8d9935eb806f6625",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 81,
+        "quote": "Добавьте выгрузку всей переписки по всем обращениям выбранного клиента одним ZIP.",
+        "source_id": "hv2_027",
+        "source_version": 1,
+        "digest": "544b040aa7375b604638fe3b4e395d3d8be8bbb6230ee64bc22eb65e72e99138",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_bd54d5ba4140c665fb74dd0d",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавьте журнал изменения ролей сотрудников: кто, когда, с какой роли на какую перевел сотрудника",
+    "decision": "new",
+    "raw_sources": 3,
+    "independent_episodes": 3,
+    "known_customers": 3,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 98,
+        "quote": "Добавьте журнал изменения ролей сотрудников: кто, когда, с какой роли на какую перевел сотрудника.",
+        "source_id": "hv2_009",
+        "source_version": 1,
+        "digest": "d26e5c93f345f2ca11dfced35048c8d009071bb27517fb695469924897c0300c",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 85,
+        "quote": "Просим добавить аудит: кто и когда менял роль пользователя, плюс значение до и после.",
+        "source_id": "hv2_011",
+        "source_version": 1,
+        "digest": "518c99dce5801f52adb067a25bb6d1fa3a83b72ffcdf3840bba252c3e171da34",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 132,
+        "end": 158,
+        "quote": "Сейчас обоих действий нет.",
+        "source_id": "hv2_041",
+        "source_version": 1,
+        "digest": "55d9f5788eb6fad22643907a8c7a6c6b6de2345d2683857d46152982e3b70889",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_2daacf240cf5f7f2ab74e431",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавьте автоматическую паузу SLA, пока обращение в статусе «Ждем клиента», и продолжение отсчета после его ответа",
+    "decision": "new",
+    "raw_sources": 4,
+    "independent_episodes": 3,
+    "known_customers": 2,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 115,
+        "quote": "Добавьте автоматическую паузу SLA, пока обращение в статусе «Ждем клиента», и продолжение отсчета после его ответа.",
+        "source_id": "hv2_013",
+        "source_version": 1,
+        "digest": "f12570ed912fd20c335386d149060057e71d6cdf3aabb7ca4c226df7040a20c1",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 119,
+        "quote": "Хотим новую настройку: остановить счетчик SLA на время ожидания ответа клиента и запустить снова, когда клиент ответит.",
+        "source_id": "hv2_014",
+        "source_version": 1,
+        "digest": "a92adb35920b2feb4f75b8491ba77a0483fbd34ec07a69efc5ce3f5bd01ba14c",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 56,
+        "end": 132,
+        "quote": "Просим добавить автоматическую остановку таймера в «Ждем клиента» до ответа.",
+        "source_id": "hv2_015",
+        "source_version": 1,
+        "digest": "00855a13846bf69e8c8c8f5d8b3004c0aa636fdc522a5b19bc4e0134820f4058",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 120,
+        "quote": "Повторяю письмом пожелание из syn-d01: добавьте автоматическую паузу SLA в «Ждем клиента» с возобновлением после ответа.",
+        "source_id": "hv2_016",
+        "source_version": 1,
+        "digest": "c884fb80c752210e96844c145a6c0c3909b6d6926418f0a5dd038c5ca7c42b16",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_8ae10b268768313cd8ce58fd",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавить темную тему интерфейса",
+    "decision": "new",
+    "raw_sources": 3,
+    "independent_episodes": 3,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 39,
+        "quote": "Просим добавить темную тему интерфейса.",
+        "source_id": "hv2_017",
+        "source_version": 1,
+        "digest": "49a317f8c780d491d951885e4800f939e5fcbfab0a4ea55dcca20b26d154a98e",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 85,
+        "quote": "Еще раз от нашей компании: хотим переключатель на темное оформление всего интерфейса.",
+        "source_id": "hv2_018",
+        "source_version": 1,
+        "digest": "93c4e6872068e7a3c934cba8ce1632d5a435983752c9fd0cd0e6fb442c442680",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 54,
+        "quote": "Пишем новый запрос: нужна темная тема во всех экранах.",
+        "source_id": "hv2_019",
+        "source_version": 1,
+        "digest": "93670227300e4e3feac3a4acdec663aa6d535ea5b8ea4c3831c9fbb2c9f7eac9",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_6e6b42b1bba65f0cb8cbe884",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавьте отдельную громкость звонка и отдельную громкость звука нового сообщения чата",
+    "decision": "new",
+    "raw_sources": 3,
+    "independent_episodes": 2,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 1,
+    "sources_with_unknown_episode": 1,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 86,
+        "quote": "Добавьте отдельную громкость звонка и отдельную громкость звука нового сообщения чата.",
+        "source_id": "hv2_020",
+        "source_version": 1,
+        "digest": "38838affaeec16e83f92b4cfbaa789f72d5d92d0cfb420c40b333d33f58d20a8",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 93,
+        "quote": "Хотим два независимых ползунка громкости: для входящего звонка и для нового сообщения в чате.",
+        "source_id": "hv2_021",
+        "source_version": 1,
+        "digest": "57e92e0aa872a84983e03dc0f64abe05c1f158e0f471e76126a62748b605315f",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 63,
+        "quote": "Нужна раздельная настройка громкости уведомлений звонка и чата.",
+        "source_id": "hv2_022",
+        "source_version": 1,
+        "digest": "d3befbf30736957d57127a2b17241362136b50aeb8b7675aa91e49b3d5543d4f",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_fe6e482a2cf50c169defe433",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавьте отложенную отправку ответа клиенту в выбранные дату и время",
+    "decision": "new",
+    "raw_sources": 3,
+    "independent_episodes": 2,
+    "known_customers": 2,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 69,
+        "quote": "Добавьте отложенную отправку ответа клиенту в выбранные дату и время.",
+        "source_id": "hv2_023",
+        "source_version": 1,
+        "digest": "db50e4130ca9bbdb5d02a7826faec873085e3812ce2db14eddc84b20bbc7d9e2",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 69,
+        "quote": "Хочу написать ответ сейчас, а отправить автоматически завтра в 10:00.",
+        "source_id": "hv2_024",
+        "source_version": 1,
+        "digest": "0ec06992ba7afe03c6774d2f0ba3dcd5a0df2f131a10dbf29f27017d4d7fbbbf",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 70,
+        "end": 123,
+        "quote": "Добавьте такую отложенную отправку сообщений клиенту.",
+        "source_id": "hv2_024",
+        "source_version": 1,
+        "digest": "0ec06992ba7afe03c6774d2f0ba3dcd5a0df2f131a10dbf29f27017d4d7fbbbf",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 108,
+        "quote": "К тому же запросу syn-g01 по телефону: добавьте отложенную отправку ответа клиенту в выбранные дату и время.",
+        "source_id": "hv2_025",
+        "source_version": 1,
+        "digest": "8cf54fa0e97dae222705a306f8474597c8f39d15fadcde88f2ed3a9c879f63bd",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_dab24139410d0fb000c4df65",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Нужен календарь выходных, чтобы SLA автоматически не считался в субботу и воскресенье",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 86,
+        "quote": "Нужен календарь выходных, чтобы SLA автоматически не считался в субботу и воскресенье.",
+        "source_id": "hv2_029",
+        "source_version": 1,
+        "digest": "aa60a0094f5c9f62958faaa78101d7ac116dc91f41765be506da84553fc67817",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_f3ee4a95a3b7d79de97c7bb9",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавьте настройку, чтобы кнопку скачивания текущего вложения можно было закрепить прямо в шапке карточки",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 106,
+        "quote": "Добавьте настройку, чтобы кнопку скачивания текущего вложения можно было закрепить прямо в шапке карточки.",
+        "source_id": "hv2_033",
+        "source_version": 1,
+        "digest": "fbe4c2a8c3eecd901c2efd93f6acf3678edc9199036b8bf4efcea24ae666cadc",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_55eb769c556838b3b85760c2",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "добавить возврат удаленной очереди из корзины в течение 7 дней",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 70,
+        "quote": "Просим добавить возврат удаленной очереди из корзины в течение 7 дней.",
+        "source_id": "hv2_039",
+        "source_version": 1,
+        "digest": "ee6f4a88e2fde85a9820491c8ec69d590b81119fab576c9be97621103ed03e98",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_f8a687298dc51e1030ce10b0",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Нужны две независимые функции: переименовывать сохраненные фильтры без их пересоздания и делиться фильтром с выбранным сотрудником",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 131,
+        "quote": "Нужны две независимые функции: переименовывать сохраненные фильтры без их пересоздания и делиться фильтром с выбранным сотрудником.",
+        "source_id": "hv2_041",
+        "source_version": 1,
+        "digest": "55d9f5788eb6fad22643907a8c7a6c6b6de2345d2683857d46152982e3b70889",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_ecf92d64cdd58b1e7ba34f8c",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Включите нам SSO через OIDC",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 40,
+        "quote": "Включите нам SSO через OIDC, пожалуйста.",
+        "source_id": "hv2_042",
+        "source_version": 1,
+        "digest": "4094add394a03f629ea64e1ce4bf09ed4c7ebc9db6acaeb654def168ee1e6d38",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_989000e28800a996e4030014",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавить новый способ входа SSO по SAML 2.0",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 63,
+        "end": 114,
+        "quote": "Просим добавить новый способ входа SSO по SAML 2.0.",
+        "source_id": "hv2_043",
+        "source_version": 1,
+        "digest": "5397eb497cf425c45db38e644fb5a3507a0dabc4f49b6f863fd7d85e737a0afe",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_4a10a526e0e6b8b76c17bb40",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Need a webhook when a ticket changes queue, with old_queue and new_queue in payload",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 84,
+        "quote": "Need a webhook when a ticket changes queue, with old_queue and new_queue in payload.",
+        "source_id": "hv2_044",
+        "source_version": 1,
+        "digest": "4f9f778f30c6d4136697c50cd93b94b0bb61a4dfd5c2514735f3c8fe293e83f0",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1860 @@
+{
+  "benchmark_version": 1,
+  "review_measurement": "Post-hoc proxy from saved v1 dispositions under v2 routing rules; no materialized v1 review queue",
+  "contract_version": "legacy-text-v1",
+  "verified_sha256": {
+    "inputs": "93f3551878146ee40aa81df15bc3cb24edb3e637beb7f2754b0fcdfe690223e7",
+    "expectations_pre_run": "fb98601b7221d99eeb7085989d266bb6193091b604747d9c4979a1808f3768d0",
+    "manifest": "14cdc35860b9d15f5a82e2f9c8f8a1ecfc304b767c5bd43e26e35758d83b5a8c",
+    "calls": "cf8d6b23b493dfd5ebfef6c29943dd040962d8d7d37ea2cd19444afcecf3bb07",
+    "results": "6512cb7288751deca49bfd4bf7a2c8ad5f632a9ef5e4aad3b896e4122531a333"
+  },
+  "disclaimer": "Preliminary AI-authored labels, not human gold. Evidence/class alignment does not prove a faithful paraphrase. This small constructed sample cannot establish production precision, recall, safety or financial effect.",
+  "alignment_method": "Exact quote containment plus allowed class/origin/new-demand flag; maximum one-to-one matching. Paraphrase fidelity requires human review.",
+  "intent_labels_available_for_all_sources": true,
+  "theme_labels_available": true,
+  "summary": {
+    "sources": 48,
+    "sources_with_intent_labels": 48,
+    "valid_extraction_contracts": 46,
+    "sources_all_expected_intents_matched": 28,
+    "expected_intents": 54,
+    "expected_intents_evidence_and_class_matched": 32,
+    "unmatched_actual_intents": 23,
+    "review_queue_sources": 29,
+    "review_queue_items": 29,
+    "delivered_local_cards": 1,
+    "delivered_cards_supported_by_provisional_labels": 0,
+    "delivered_cards_contradicting_provisional_labels": 1,
+    "delivered_cards_unscored": 0,
+    "expected_recurring_themes": 4,
+    "recurring_themes_missed_or_unconfirmed": 4
+  },
+  "sources": [
+    {
+      "source_id": "hv2_001",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_f15e4e7f4c249b3cd9ce53a7",
+          "status": "new",
+          "topic_id": "topic_002bbd72e42bec6e3de7d9d4",
+          "reason": "No same or unclear candidate"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_001_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_f15e4e7f4c249b3cd9ce53a7"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_f15e4e7f4c249b3cd9ce53a7"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_002",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_c00afdc6008cdab3c7a22cf0",
+          "status": "matched",
+          "topic_id": "topic_002bbd72e42bec6e3de7d9d4",
+          "reason": "One same relation"
+        },
+        {
+          "intent_id": "intent_f63fd2c9fffbbc502971540e",
+          "status": "matched",
+          "topic_id": "topic_002bbd72e42bec6e3de7d9d4",
+          "reason": "One same relation"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_002_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_f63fd2c9fffbbc502971540e"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_003",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_4119e5e24c41f5b483c9527f",
+          "status": "matched",
+          "topic_id": "topic_002bbd72e42bec6e3de7d9d4",
+          "reason": "One same relation"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_003_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_4119e5e24c41f5b483c9527f"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_4119e5e24c41f5b483c9527f"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_004",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_3d583cacbd3bbbfd8057a388",
+          "status": "matched",
+          "topic_id": "topic_002bbd72e42bec6e3de7d9d4",
+          "reason": "One same relation"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_004_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_3d583cacbd3bbbfd8057a388"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_3d583cacbd3bbbfd8057a388"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_005",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_202a699c5ff925b09c931581",
+          "status": "new",
+          "topic_id": "topic_66e7c17d6192b71d3d1614c4",
+          "reason": "No same or unclear candidate"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_005_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_202a699c5ff925b09c931581"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_202a699c5ff925b09c931581"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_006",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_820fdf17010e528449fd0bab",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_006_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_820fdf17010e528449fd0bab"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_007",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_70b261bf1298336a8397f40a",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_007_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_70b261bf1298336a8397f40a"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_70b261bf1298336a8397f40a"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_008",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_8bb94961376f7b17373d2b4b",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_008_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_8bb94961376f7b17373d2b4b"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_009",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_845bd63568ecfeef9c3c703e",
+          "status": "new",
+          "topic_id": "topic_b9733b6cdd34de998864ca12",
+          "reason": "No same or unclear candidate"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_009_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_845bd63568ecfeef9c3c703e"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_845bd63568ecfeef9c3c703e"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_010",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_8bc62616f52111a668af84cc",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_010_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_8bc62616f52111a668af84cc"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_011",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_fd57e8f9208faeb7a5a1281f",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_011_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_fd57e8f9208faeb7a5a1281f"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_fd57e8f9208faeb7a5a1281f"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_012",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_51689220e3517a1f48ae21b6",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_012_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_51689220e3517a1f48ae21b6"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_013",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_0df78a6460c97c3804c2b182",
+          "status": "new",
+          "topic_id": "topic_2daacf240cf5f7f2ab74e431",
+          "reason": "No same or unclear candidate"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_013_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_0df78a6460c97c3804c2b182"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_0df78a6460c97c3804c2b182"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_014",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_1470cc429d60236613941af8",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_014_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_1470cc429d60236613941af8"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_1470cc429d60236613941af8"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_015",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_bfc3d79c47795b3eec288541",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_155da12d49999791fa235ae1",
+          "status": "new",
+          "topic_id": "topic_886b35133d7e45a76d26234a",
+          "reason": "No same or unclear candidate"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_015_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_bfc3d79c47795b3eec288541"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_016",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_f5a16fe6c6a522eda063ae72",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_016_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_f5a16fe6c6a522eda063ae72"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_f5a16fe6c6a522eda063ae72"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_017",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_30fe35c77db9ae4385aef155",
+          "status": "matched",
+          "topic_id": "topic_886b35133d7e45a76d26234a",
+          "reason": "One same relation"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_017_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_30fe35c77db9ae4385aef155"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_30fe35c77db9ae4385aef155"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_018",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_14cb102c1f85d81a9a62deee",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Wish support not confirmed by semantic verifier"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_018_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_14cb102c1f85d81a9a62deee"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_14cb102c1f85d81a9a62deee"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_019",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_e6296f47a2e48a7774995f11",
+          "status": "new",
+          "topic_id": "topic_579d83fe4f4d0e76bf5692e6",
+          "reason": "No same or unclear candidate"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_019_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_e6296f47a2e48a7774995f11"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_e6296f47a2e48a7774995f11"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_020",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_9e320b197302db4ba15c3b6e",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_020_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_9e320b197302db4ba15c3b6e"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_9e320b197302db4ba15c3b6e"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_021",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_d7c779aa3f2814424fd62cbf",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_021_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_d7c779aa3f2814424fd62cbf"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_d7c779aa3f2814424fd62cbf"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_022",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_6ec303e89f0e56056fac78bf",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        },
+        {
+          "intent_id": "intent_7225118218918c0ebd8e4b85",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_022_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_6ec303e89f0e56056fac78bf"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_6ec303e89f0e56056fac78bf"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_023",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_c4b73e2bfd038da5cffa946a",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_023_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_c4b73e2bfd038da5cffa946a"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_c4b73e2bfd038da5cffa946a"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_024",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_c59e15a2edcb0d4620258522",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_024_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_c59e15a2edcb0d4620258522"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_c59e15a2edcb0d4620258522"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_025",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_d2de1140715a3888c805855e",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_025_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_d2de1140715a3888c805855e"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_d2de1140715a3888c805855e"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_026",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_4519e4e2ba088a6d0414eb54",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_f398da5e6268d89985fbdce0",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Wish support not confirmed by semantic verifier"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_026_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_4519e4e2ba088a6d0414eb54"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        },
+        {
+          "intent_id": "hv2_026_i2",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_f398da5e6268d89985fbdce0"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_027",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_3ced9335793e436700c519ad",
+          "status": "matched",
+          "topic_id": "topic_66e7c17d6192b71d3d1614c4",
+          "reason": "One same relation"
+        },
+        {
+          "intent_id": "intent_2ea42aece303ba33e8ffbcfa",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_027_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_3ced9335793e436700c519ad"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_3ced9335793e436700c519ad"
+        },
+        {
+          "intent_id": "hv2_027_i2",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_2ea42aece303ba33e8ffbcfa"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_028",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_5db0a6def3f61472d5a7557e",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        },
+        {
+          "intent_id": "intent_52834aff54d43065bff636a4",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_028_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_5db0a6def3f61472d5a7557e"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_5db0a6def3f61472d5a7557e"
+        },
+        {
+          "intent_id": "hv2_028_i2",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_52834aff54d43065bff636a4"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_029",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_bb2c4aeadc7cf14c2b4e07d8",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_029_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_bb2c4aeadc7cf14c2b4e07d8"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        },
+        {
+          "intent_id": "hv2_029_i2",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_030",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_ef0ce6ddd21a376f2a2f701d",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_030_i1",
+          "kind": "incident",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_ef0ce6ddd21a376f2a2f701d"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_ef0ce6ddd21a376f2a2f701d"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_031",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_c4e7908d6e550fbed48db26e",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_031_i1",
+          "kind": "service_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_032",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_ec6f30f88bbc5d24b4ccb10f",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_032_i1",
+          "kind": "usability",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_ec6f30f88bbc5d24b4ccb10f"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_033",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_fece113fbef94a357933ce65",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_033_i1",
+          "kind": "usability",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_fece113fbef94a357933ce65"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_fece113fbef94a357933ce65"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_034",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_7e38325b8af2a52ec505fcfd",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_843bd6f50dff21de2d9e6071",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_034_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_7e38325b8af2a52ec505fcfd"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_035",
+      "processed": true,
+      "valid_contract": false,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_035_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 0
+    },
+    {
+      "source_id": "hv2_036",
+      "processed": true,
+      "valid_contract": false,
+      "in_review_queue": true,
+      "expected_delivery": "review",
+      "assignments": [],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_036_i1",
+          "kind": "feature_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 0
+    },
+    {
+      "source_id": "hv2_037",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "review",
+      "assignments": [
+        {
+          "intent_id": "intent_a1b11772ef37fe638f57cae5",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Extraction requires review"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_037_i1",
+          "kind": "feature_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_a1b11772ef37fe638f57cae5"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_a1b11772ef37fe638f57cae5"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_038",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_038_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 0
+    },
+    {
+      "source_id": "hv2_039",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_1ee17bc728e8ccc70755d0df",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_039_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_1ee17bc728e8ccc70755d0df"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_1ee17bc728e8ccc70755d0df"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_040",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_b3dd2fe71560b8dcf88e724a",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_4ee683ddc6aeac28b0498149",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_040_i1",
+          "kind": "incident",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_b3dd2fe71560b8dcf88e724a"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_b3dd2fe71560b8dcf88e724a"
+        },
+        {
+          "intent_id": "hv2_040_i2",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_4ee683ddc6aeac28b0498149"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_4ee683ddc6aeac28b0498149"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_041",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_adbc18983aeef006d97a4511",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_041_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_adbc18983aeef006d97a4511"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_adbc18983aeef006d97a4511"
+        },
+        {
+          "intent_id": "hv2_041_i2",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_adbc18983aeef006d97a4511"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_042",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_68db17906102e38939a7356f",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        },
+        {
+          "intent_id": "intent_49f386c3ec0df5498e487703",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_042_i1",
+          "kind": "service_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_49f386c3ec0df5498e487703"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_49f386c3ec0df5498e487703"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_043",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_a71edd7a47f25b85e0d8160e",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Matching response missing or invalid"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_043_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_a71edd7a47f25b85e0d8160e"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_a71edd7a47f25b85e0d8160e"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_044",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_9459da412286685097fdb114",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        },
+        {
+          "intent_id": "intent_18e2a81bb6f2fec457eefdc3",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_044_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_9459da412286685097fdb114"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_9459da412286685097fdb114"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_045",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_a8eac0b6847e21e7a880e3df",
+          "status": "matched",
+          "topic_id": "topic_579d83fe4f4d0e76bf5692e6",
+          "reason": "One same relation"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_045_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_046",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "review",
+      "assignments": [
+        {
+          "intent_id": "intent_ce97b44be545fb5257e52114",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Extraction requires review"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_046_i1",
+          "kind": "feature_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_ce97b44be545fb5257e52114"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_047",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_bbc46b44cad2a164d06e639f",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_047_i1",
+          "kind": "service_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_bbc46b44cad2a164d06e639f"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_bbc46b44cad2a164d06e639f"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_048",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_fbe7999c115370488c439168",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Candidate search truncated; cannot establish novelty"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_048_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_fbe7999c115370488c439168"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    }
+  ],
+  "cards": [
+    {
+      "actual_topic_id": "topic_002bbd72e42bec6e3de7d9d4",
+      "title": "Добавьте автоматическую отправку этого отчета на email каждый день в 09:00",
+      "delivered": true,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": "scheduled_email_report",
+      "unsupported_source_ids": [
+        "hv2_002"
+      ],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_001",
+        "hv2_002",
+        "hv2_003",
+        "hv2_004"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_66e7c17d6192b71d3d1614c4",
+      "title": "Добавьте кнопку «Скачать все вложения обращения ZIP»",
+      "delivered": false,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": null,
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_005",
+        "hv2_027"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_b9733b6cdd34de998864ca12",
+      "title": "Добавьте журнал изменения ролей сотрудников: кто, когда, с какой роли на какую перевел сотрудника",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "role_change_audit",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_009"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_2daacf240cf5f7f2ab74e431",
+      "title": "Добавьте автоматическую паузу SLA, пока обращение в статусе «Ждем клиента», и продолжение отсчета после его ответа",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "sla_waiting_customer_pause",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_013"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_886b35133d7e45a76d26234a",
+      "title": "Пока ждем ответ заказчика, SLA не должен расходоваться.",
+      "delivered": false,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": "dark_interface",
+      "unsupported_source_ids": [
+        "hv2_015"
+      ],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_015",
+        "hv2_017"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_579d83fe4f4d0e76bf5692e6",
+      "title": "нужна темная тема во всех экранах",
+      "delivered": false,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": "dark_interface",
+      "unsupported_source_ids": [
+        "hv2_045"
+      ],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_019",
+        "hv2_045"
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "topic_id": "scheduled_email_report",
+      "expected_recurring": true,
+      "eligible_sources": 4,
+      "independent_episodes": 3,
+      "known_customers": 2,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": true
+    },
+    {
+      "topic_id": "ticket_attachments_zip",
+      "expected_recurring": true,
+      "eligible_sources": 4,
+      "independent_episodes": 3,
+      "known_customers": 2,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": true
+    },
+    {
+      "topic_id": "role_change_audit",
+      "expected_recurring": true,
+      "eligible_sources": 4,
+      "independent_episodes": 3,
+      "known_customers": 3,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": true
+    },
+    {
+      "topic_id": "sla_waiting_customer_pause",
+      "expected_recurring": true,
+      "eligible_sources": 4,
+      "independent_episodes": 3,
+      "known_customers": 2,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": true
+    },
+    {
+      "topic_id": "dark_interface",
+      "expected_recurring": false,
+      "eligible_sources": 3,
+      "independent_episodes": 3,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "separate_notification_volume",
+      "expected_recurring": false,
+      "eligible_sources": 3,
+      "independent_episodes": 2,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "scheduled_customer_reply",
+      "expected_recurring": false,
+      "eligible_sources": 3,
+      "independent_episodes": 2,
+      "known_customers": 2,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "scheduled_sftp_report",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "customer_all_transcripts_zip",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "employee_login_audit",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "sla_weekend_calendar",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "pin_attachment_download_button",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "restore_deleted_queue",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "customer_xlsx_import",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "rename_saved_filter",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "share_saved_filter",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "saml_sso",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "ticket_queue_change_webhook",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    }
+  ]
+}

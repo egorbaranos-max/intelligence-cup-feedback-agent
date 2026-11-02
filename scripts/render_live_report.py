@@ -14,24 +14,54 @@ def e(value):
     return escape(str(value), quote=True)
 
 
+def render_card(card, source_anchors):
+    """Show saved evidence as recorded, without reinterpreting or correcting it."""
+    state = "Передана в локальную тестовую очередь" if card["recurring"] else "Порог повторяемости пока не достигнут"
+    evidence = card.get("evidence", [])
+    quotes = []
+    for ref in evidence:
+        source_id = ref["source_id"]
+        anchor = source_anchors.get(source_id)
+        source_link = (f'<a href="#{e(anchor)}">Полное обращение и ответ модели</a>' if anchor
+                       else '<span class="error">Полного источника нет в этом отчете</span>')
+        quotes.append(f'<div class="card-evidence"><small>source_id: <code>{e(source_id)}</code> · {source_link}</small>'
+                      f'<blockquote>{e(ref["quote"])}</blockquote></div>')
+    evidence_block = (f'<details><summary>Сохраненные точные цитаты: {len(evidence)}</summary>{"".join(quotes)}</details>'
+                      if evidence else '<p class="error">В карточке нет сохраненных цитат; доказательства нужно проверить.</p>')
+    return (f'<article><b>{e(card["title"])}</b>'
+            '<p class="draft-label"><b>Черновик модели — смысл и объединение ещё не одобрены человеком</b></p>'
+            f'<p>{e(state)}</p><div class="numbers"><span><strong>{e(card["raw_sources"])}</strong>источников</span>'
+            f'<span><strong>{e(card["independent_episodes"])}</strong>эпизодов</span>'
+            f'<span><strong>{e(card["known_customers"])}</strong>известных клиентов</span></div>'
+            '<small>Точная цитата помогает проверить вывод, но сама по себе не подтверждает правильное понимание или объединение тем.</small>'
+            f'{evidence_block}</article>')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", type=Path, required=True)
     parser.add_argument("--inputs", type=Path, required=True)
+    parser.add_argument("--replace-report", action="store_true",
+                        help="Explicitly replace only report.html; saved model inputs/results remain untouched")
     args = parser.parse_args()
-    manifest = json.loads((args.run / "manifest.json").read_text())
-    inputs = {x["id"]: x for x in map(json.loads, args.inputs.read_text().splitlines())}
-    results = list(map(json.loads, (args.run / "results.jsonl").read_text().splitlines()))
-    calls = {x["call_id"]: x for x in map(json.loads, (args.run / "calls.jsonl").read_text().splitlines())}
-    cards = json.loads((args.run / "cards.json").read_text())
+    manifest = json.loads((args.run / "manifest.json").read_text(encoding="utf-8"))
+    inputs = {x["id"]: x for x in map(json.loads, args.inputs.read_text(encoding="utf-8").splitlines())}
+    results = list(map(json.loads, (args.run / "results.jsonl").read_text(encoding="utf-8").splitlines()))
+    calls = {x["call_id"]: x for x in map(json.loads, (args.run / "calls.jsonl").read_text(encoding="utf-8").splitlines())}
+    cards = json.loads((args.run / "cards.json").read_text(encoding="utf-8"))
+    # Generated anchors avoid unsafe URI fragments and collisions with the
+    # report's fixed IDs. Only rendered source sections receive a link.
+    source_anchors = {row["source_id"]: f"source-{index}" for index, row in enumerate(results, 1)}
     case_ids = [key for key, row in inputs.items() if row.get("origin") == "case_pdf"]
     synthetic_ids = [key for key, row in inputs.items() if row.get("origin") == "synthetic"]
     material = f"Материал: {len(case_ids)} текстов из задания и {len(synthetic_ids)} вымышленных проверочных примеров."
     navigation = '<a href="#cards">Карточки</a>'
-    if case_ids:
-        navigation += f'<a href="#{e(case_ids[0])}">Примеры из PDF</a>'
-    if synthetic_ids:
-        navigation += f'<a href="#{e(synthetic_ids[0])}">Проверочные ситуации</a>'
+    shown_case_ids = [key for key in case_ids if key in source_anchors]
+    shown_synthetic_ids = [key for key in synthetic_ids if key in source_anchors]
+    if shown_case_ids:
+        navigation += f'<a href="#{e(source_anchors[shown_case_ids[0]])}">Примеры из PDF</a>'
+    if shown_synthetic_ids:
+        navigation += f'<a href="#{e(source_anchors[shown_synthetic_ids[0]])}">Проверочные ситуации</a>'
     navigation += '<a href="evaluation.md">Сравнение с предварительными ожиданиями</a>'
     sections = []
     for result in results:
@@ -74,34 +104,32 @@ def main():
                 raw_block += f'<p><b>{e(label)}</b> · вызов {e(call_id)}</p><pre>{e(calls[call_id]["raw_response"])}</pre>'
             raw_block += '</details>'
         origin = "Из условия, страница 6" if source["origin"] == "case_pdf" else "Вымышленный проверочный пример"
-        sections.append(f'<article id="{e(source["id"])}"><div class="row"><b>{e(source["id"])}</b><span>{e(status)}</span></div><small>{origin}</small><h3>Обращение</h3><p>{e(source["text"])}</p><h3>Ответ модели</h3>{details}{raw_block}</article>')
-    card_blocks = []
-    for card in cards:
-        state = "Передана в локальную тестовую очередь" if card["recurring"] else "Порог повторяемости пока не достигнут"
-        card_blocks.append(f'<article><b>{e(card["title"])}</b><p>{e(state)}</p><div class="numbers"><span><strong>{card["raw_sources"]}</strong>источников</span><span><strong>{card["independent_episodes"]}</strong>эпизодов</span><span><strong>{card["known_customers"]}</strong>известных клиентов</span></div><small>Объединение тем выполнила модель; корректность смысла нужно проверять отдельно.</small></article>')
+        sections.append(f'<article id="{e(source_anchors[source["id"]])}"><div class="row"><b>{e(source["id"])}</b><span>{e(status)}</span></div><small>{origin}</small><h3>Обращение</h3><p class="source-text">{e(source["text"])}</p><h3>Ответ модели</h3>{details}{raw_block}</article>')
+    card_blocks = [render_card(card, source_anchors) for card in cards]
     html = '''<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Проверка агента на обращениях</title><style>
+.draft-label{padding:10px 12px;border-left:3px solid #997126;background:#fff6de}.card-evidence+.card-evidence{margin-top:20px;padding-top:12px;border-top:1px solid #dde6eb}.source-text,blockquote{white-space:pre-wrap;overflow-wrap:anywhere}article[id]{scroll-margin-top:20px}
 body{margin:0;background:#f3f5f7;color:#17232f;font:16px/1.55 system-ui,sans-serif}main{max-width:1000px;margin:auto;padding:44px 24px}h1{font-size:38px;line-height:1.12;max-width:780px}h2{margin-top:42px;font-size:27px}h3{font-size:15px;color:#527085;margin-bottom:4px}p{margin:10px 0}article,.notice{padding:22px 26px;background:white;border:1px solid #dbe3e9;border-radius:13px;margin:16px 0}small{color:#536b7d}blockquote{margin:14px 0;padding:8px 14px;border-left:3px solid #2f847d;background:#f2f8f7}.row{display:flex;gap:16px;justify-content:space-between}.row span{font-size:14px;color:#526b7c}.numbers{display:flex;gap:38px;margin:14px 0;flex-wrap:wrap}.numbers span{color:#536b7d;font-size:14px}.numbers strong{display:block;font-size:32px;color:#163d54}details{margin-top:20px}summary{cursor:pointer;color:#176b80}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;background:#f3f5f7;padding:14px;border-radius:6px}.intent+.intent{margin-top:22px;padding-top:18px;border-top:1px solid #dde6eb}.notice{background:#eaf2f6}.error{color:#973c32}a{color:#116a82}nav{display:flex;gap:18px;flex-wrap:wrap}.eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:12px;font-weight:700;color:#176b80}@media(max-width:600px){h1{font-size:30px}main{padding:25px 14px}article{padding:18px}.row{display:block}}</style><main>'''
     html += f'<div class="eyebrow">Intelligence Cup · локальный эксперимент</div><h1>Что агент увидел в обращениях</h1><p>Настоящие ответы {e(manifest["model"]["model_id"])}, сохранённые без ручных исправлений.</p><div class="notice"><b>Граница опыта</b><p>Это текстовый запуск открытой Qwen на Mac. {e(material)} Корпоративная Qwen, звонки, изображения и денежный эффект здесь не испытаны. Проверка JSON и цитат не доказывает правильность смысла.</p></div>'
-    html += f'<div class="numbers"><span><strong>{len(results)}</strong>обращений</span><span><strong>{manifest["valid_extractions"]}</strong>ответов прошли проверку формата и цитат</span><span><strong>{manifest["delivered_local_cards"]}</strong>карточек в тестовой очереди</span></div><p><small>Время обработки: {manifest["elapsed_seconds"]:.1f} с. Это один запуск; скорость рабочего потока не измерена. Дата окна для воспроизведения: {e(manifest["as_of"])}.</small></p><nav>{navigation}</nav>'
+    html += f'<div class="numbers"><span><strong>{len(results)}</strong>обращений</span><span><strong>{e(manifest["valid_extractions"])}</strong>ответов прошли проверку формата и цитат</span><span><strong>{e(manifest["delivered_local_cards"])}</strong>карточек в тестовой очереди</span></div><p><small>Время обработки: {manifest["elapsed_seconds"]:.1f} с. Это один запуск; скорость рабочего потока не измерена. Дата окна для воспроизведения: {e(manifest["as_of"])}.</small></p><nav>{navigation}</nav>'
     if "extraction_repair_calls" in manifest:
-        html += f'<div class="notice"><b>Одна повторная попытка после ошибки контракта</b><p>С первой попытки проверку прошли {manifest["first_pass_valid_extractions"]} ответов. Повторных запросов: {manifest["extraction_repair_calls"]}; из них исправили формат: {manifest["repaired_valid_extractions"]}. Первоначальные ответы сохранены ниже. Повтор может изменить смысл, поэтому эти числа не являются оценкой понимания.</p></div>'
+        html += f'<div class="notice"><b>Одна повторная попытка после ошибки контракта</b><p>С первой попытки проверку прошли {e(manifest["first_pass_valid_extractions"])} ответов. Повторных запросов: {e(manifest["extraction_repair_calls"])}; из них исправили формат: {e(manifest["repaired_valid_extractions"])}. Первоначальные ответы сохранены ниже. Повтор может изменить смысл, поэтому эти числа не являются оценкой понимания.</p></div>'
     evaluation_path = args.run / "evaluation.json"
     if evaluation_path.exists():
-        evaluation = json.loads(evaluation_path.read_text())
+        evaluation = json.loads(evaluation_path.read_text(encoding="utf-8"))
         semantic = evaluation.get("provisional_semantics")
         if semantic:
             s = semantic["summary"]
             html += '<div class="notice"><b>Смысл проверяется отдельно от формата</b>'
-            html += f'<p>В ручной разбор попало {s["review_queue_sources"]} из {s["sources"]} обращений. Среди доставленных карточек: {s["delivered_cards_supported_by_provisional_labels"]} согласуются с предварительными метками, {s["delivered_cards_contradicting_provisional_labels"]} противоречат им, {s["delivered_cards_unscored"]} пока нельзя оценить.</p>'
+            html += f'<p>В ручной разбор попало {e(s["review_queue_sources"])} из {e(s["sources"])} обращений. Среди доставленных карточек: {e(s["delivered_cards_supported_by_provisional_labels"])} согласуются с предварительными метками, {e(s["delivered_cards_contradicting_provisional_labels"])} противоречат им, {e(s["delivered_cards_unscored"])} пока нельзя оценить.</p>'
             if semantic["theme_labels_available"]:
-                html += f'<p>По предварительной разметке ожидалось {s["expected_recurring_themes"]} повторяющихся тем. Пропущены или не подтверждены: {s["recurring_themes_missed_or_unconfirmed"]}.</p>'
+                html += f'<p>По предварительной разметке ожидалось {e(s["expected_recurring_themes"])} повторяющихся тем. Пропущены или не подтверждены: {e(s["recurring_themes_missed_or_unconfirmed"])}.</p>'
             else:
                 html += '<p>Для этого набора нет подробных меток тем; число пропущенных тем не оценено.</p>'
             html += '<p>Разметка составлена ИИ, а не независимыми экспертами. Совпадение цитаты и класса не доказывает точность пересказа. Ноль отправленных карточек может означать пропуск полезных пожеланий.</p><a href="evaluation.md">Подробное сравнение</a> · <a href="review-queue.json">Очередь ручного разбора</a></div>'
     html += '<h2 id="cards">Какие темы получились</h2>' + ("".join(card_blocks) or '<p>Тем для автоматического учета не создано.</p>')
     html += '<h2>Все обращения и ответы</h2>' + "".join(sections)
     html += f'<p><small>Модель: {e(manifest["model"]["model_id"])} · revision {e(manifest["model"]["revision"])}. Полные запросы и ответы: calls.jsonl. Код и контрольные суммы: manifest.json.</small></p></main></html>'
-    with (args.run / "report.html").open("x", encoding="utf-8") as handle:
+    with (args.run / "report.html").open("w" if args.replace_report else "x", encoding="utf-8") as handle:
         handle.write(html)
     print(args.run / "report.html")
 

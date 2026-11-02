@@ -1,0 +1,72 @@
+[
+  {
+    "id": "topic_efa2b536d910aafd05834492",
+    "product_id": "sd-alpha",
+    "statement": "Добавьте автоматическую отправку этого отчета на email каждый день в 09:00"
+  },
+  {
+    "id": "topic_66e7c17d6192b71d3d1614c4",
+    "product_id": "sd-alpha",
+    "statement": "Добавьте кнопку «Скачать все вложения обращения ZIP»"
+  },
+  {
+    "id": "topic_bd54d5ba4140c665fb74dd0d",
+    "product_id": "sd-alpha",
+    "statement": "Добавьте журнал изменения ролей сотрудников: кто, когда, с какой роли на какую перевел сотрудника"
+  },
+  {
+    "id": "topic_2daacf240cf5f7f2ab74e431",
+    "product_id": "sd-alpha",
+    "statement": "Добавьте автоматическую паузу SLA, пока обращение в статусе «Ждем клиента», и продолжение отсчета после его ответа"
+  },
+  {
+    "id": "topic_8ae10b268768313cd8ce58fd",
+    "product_id": "sd-alpha",
+    "statement": "Добавить темную тему интерфейса"
+  },
+  {
+    "id": "topic_6e6b42b1bba65f0cb8cbe884",
+    "product_id": "sd-alpha",
+    "statement": "Добавьте отдельную громкость звонка и отдельную громкость звука нового сообщения чата"
+  },
+  {
+    "id": "topic_fe6e482a2cf50c169defe433",
+    "product_id": "sd-alpha",
+    "statement": "Добавьте отложенную отправку ответа клиенту в выбранные дату и время"
+  },
+  {
+    "id": "topic_dab24139410d0fb000c4df65",
+    "product_id": "sd-alpha",
+    "statement": "Нужен календарь выходных, чтобы SLA автоматически не считался в субботу и воскресенье"
+  },
+  {
+    "id": "topic_f3ee4a95a3b7d79de97c7bb9",
+    "product_id": "sd-alpha",
+    "statement": "Добавьте настройку, чтобы кнопку скачивания текущего вложения можно было закрепить прямо в шапке карточки"
+  },
+  {
+    "id": "topic_55eb769c556838b3b85760c2",
+    "product_id": "sd-alpha",
+    "statement": "добавить возврат удаленной очереди из корзины в течение 7 дней"
+  },
+  {
+    "id": "topic_f8a687298dc51e1030ce10b0",
+    "product_id": "sd-alpha",
+    "statement": "Нужны две независимые функции: переименовывать сохраненные фильтры без их пересоздания и делиться фильтром с выбранным сотрудником"
+  },
+  {
+    "id": "topic_ecf92d64cdd58b1e7ba34f8c",
+    "product_id": "sd-alpha",
+    "statement": "Включите нам SSO через OIDC"
+  },
+  {
+    "id": "topic_989000e28800a996e4030014",
+    "product_id": "sd-alpha",
+    "statement": "Добавить новый способ входа SSO по SAML 2.0"
+  },
+  {
+    "id": "topic_4a10a526e0e6b8b76c17bb40",
+    "product_id": "sd-alpha",
+    "statement": "Need a webhook when a ticket changes queue, with old_queue and new_queue in payload"
+  }
+]

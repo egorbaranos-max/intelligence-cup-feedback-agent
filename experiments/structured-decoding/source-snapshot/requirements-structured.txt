@@ -1,0 +1,3 @@
+# Optional local token-level JSON constraints; installed alongside requirements-live.txt.
+# Published native wheels; no mandatory transitive dependencies, Torch, or API client.
+llguidance==1.9.1

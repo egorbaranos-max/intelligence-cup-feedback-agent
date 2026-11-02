@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "created_after_code_freeze_at_utc": "2026-11-02T22:40:17.316482+00:00",
+  "author": "AI annotation auditor; not human gold",
+  "status": "human_review_pending",
+  "original_expectations_sha256": "fb98601b7221d99eeb7085989d266bb6193091b604747d9c4979a1808f3768d0",
+  "applies_to_current_primary_score": false,
+  "policy": "Proposal only. Never overwrite frozen expectations.json, scorer, protocol or run reports. Any approved revision must be a separate version for a future evaluation with explicit old/new results.",
+  "proposal_count": 9,
+  "proposals": [
+    {
+      "source_id": "hv2_026",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_026_i2"
+      ],
+      "case_group": "mixed_positive_and_negative",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "feature_request",
+          "unknown"
+        ],
+        "expected_delivery": "candidate"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing.",
+        "A source-level needs_review holds the positive intent too. Reconcile expected_delivery=candidate with the intended annotation layer before approving a new label version."
+      ],
+      "primary_score_change_applied": false
+    },
+    {
+      "source_id": "hv2_027",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_027_i2"
+      ],
+      "case_group": "mixed_positive_and_negative",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "feature_request",
+          "unknown"
+        ],
+        "expected_delivery": "candidate"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing.",
+        "A source-level needs_review holds the positive intent too. Reconcile expected_delivery=candidate with the intended annotation layer before approving a new label version."
+      ],
+      "primary_score_change_applied": false
+    },
+    {
+      "source_id": "hv2_028",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_028_i2"
+      ],
+      "case_group": "mixed_positive_and_negative",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "feature_request",
+          "unknown"
+        ],
+        "expected_delivery": "candidate"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing.",
+        "A source-level needs_review holds the positive intent too. Reconcile expected_delivery=candidate with the intended annotation layer before approving a new label version."
+      ],
+      "primary_score_change_applied": false
+    },
+    {
+      "source_id": "hv2_029",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_029_i2"
+      ],
+      "case_group": "mixed_positive_and_negative",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "feature_request",
+          "unknown"
+        ],
+        "expected_delivery": "candidate"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing.",
+        "A source-level needs_review holds the positive intent too. Reconcile expected_delivery=candidate with the intended annotation layer before approving a new label version."
+      ],
+      "primary_score_change_applied": false
+    },
+    {
+      "source_id": "hv2_034",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_034_i1"
+      ],
+      "case_group": "only_unknown_labels",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "unknown"
+        ],
+        "expected_delivery": "no_demand"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing."
+      ],
+      "primary_score_change_applied": false
+    },
+    {
+      "source_id": "hv2_035",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_035_i1"
+      ],
+      "case_group": "only_unknown_labels",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "unknown"
+        ],
+        "expected_delivery": "no_demand"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing."
+      ],
+      "primary_score_change_applied": false
+    },
+    {
+      "source_id": "hv2_038",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_038_i1"
+      ],
+      "case_group": "only_unknown_labels",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "unknown"
+        ],
+        "expected_delivery": "no_demand"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing."
+      ],
+      "primary_score_change_applied": false
+    },
+    {
+      "source_id": "hv2_045",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_045_i1"
+      ],
+      "case_group": "only_unknown_labels",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "unknown"
+        ],
+        "expected_delivery": "no_demand"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing."
+      ],
+      "primary_score_change_applied": false
+    },
+    {
+      "source_id": "hv2_048",
+      "status": "human_review_pending",
+      "issue": "unknown_kind_with_ok_source_status",
+      "unknown_intent_ids": [
+        "hv2_048_i1"
+      ],
+      "case_group": "only_unknown_labels",
+      "original": {
+        "expected_status": "ok",
+        "accepted_kinds": [
+          "unknown"
+        ],
+        "expected_delivery": "no_demand"
+      },
+      "proposed_minimal_contract_fix": {
+        "field": "expected_status",
+        "value": "needs_review",
+        "condition": "Only if the human retains the existing required unknown intent(s)."
+      },
+      "reason": "The fixed extraction contract requires source status needs_review whenever any intent kind is unknown. The current label requests unknown together with ok.",
+      "follow_up_consistency_review": [
+        "Decide whether this text needs an explicit negative/unknown intent at all; an empty no-demand result or omission of a negated alternative may be legitimate under a revised annotation rubric.",
+        "Clarify semantic review_required versus mechanical source routing; do not mechanically replace meaning with routing."
+      ],
+      "primary_score_change_applied": false
+    }
+  ]
+}

@@ -1,0 +1,2100 @@
+{
+  "benchmark_version": 1,
+  "review_measurement": "Materialized v2 review queue, hash-bound and reconciled to saved dispositions",
+  "contract_version": "text-spans-v3-chunked-repair-v1",
+  "verified_sha256": {
+    "inputs": "93f3551878146ee40aa81df15bc3cb24edb3e637beb7f2754b0fcdfe690223e7",
+    "expectations_pre_run": "fb98601b7221d99eeb7085989d266bb6193091b604747d9c4979a1808f3768d0",
+    "manifest": "807d0c74dca51bedbe071ff21b06f47835bf46f2c6958a6043d421062100b265",
+    "calls": "4ba71ae2869e995fc8c02a6c581e7c0d5bf06d03afd1d19d45fc99f70b0acff3",
+    "results": "27d31988bff408448a377e6f98c89ffed9527092fc2105c438ffe6c88693d20b"
+  },
+  "disclaimer": "Preliminary AI-authored labels, not human gold. Evidence/class alignment does not prove a faithful paraphrase. This small constructed sample cannot establish production precision, recall, safety or financial effect.",
+  "alignment_method": "Exact quote containment plus allowed class/origin/new-demand flag; maximum one-to-one matching. Paraphrase fidelity requires human review.",
+  "intent_labels_available_for_all_sources": true,
+  "theme_labels_available": true,
+  "summary": {
+    "sources": 48,
+    "sources_with_intent_labels": 48,
+    "valid_extraction_contracts": 47,
+    "sources_all_expected_intents_matched": 29,
+    "expected_intents": 54,
+    "expected_intents_evidence_and_class_matched": 35,
+    "unmatched_actual_intents": 39,
+    "review_queue_sources": 22,
+    "review_queue_items": 22,
+    "delivered_local_cards": 4,
+    "delivered_cards_supported_by_provisional_labels": 1,
+    "delivered_cards_contradicting_provisional_labels": 3,
+    "delivered_cards_unscored": 0,
+    "expected_recurring_themes": 4,
+    "recurring_themes_missed_or_unconfirmed": 3
+  },
+  "sources": [
+    {
+      "source_id": "hv2_001",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_5e9ee3480106f25aa7db8cd8",
+          "status": "new",
+          "topic_id": "topic_efa2b536d910aafd05834492",
+          "reason": "No same or unclear relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_001_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_5e9ee3480106f25aa7db8cd8"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_5e9ee3480106f25aa7db8cd8"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_002",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_0ddb3a4376604051fc96e2b0",
+          "status": "matched",
+          "topic_id": "topic_efa2b536d910aafd05834492",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_002_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_0ddb3a4376604051fc96e2b0"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_0ddb3a4376604051fc96e2b0"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_003",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_188b052de3648457a2f142da",
+          "status": "matched",
+          "topic_id": "topic_efa2b536d910aafd05834492",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_003_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_188b052de3648457a2f142da"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_188b052de3648457a2f142da"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_004",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_be0e85d073e4686a0cdccd85",
+          "status": "matched",
+          "topic_id": "topic_efa2b536d910aafd05834492",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_004_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_be0e85d073e4686a0cdccd85"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_be0e85d073e4686a0cdccd85"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_005",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_202a699c5ff925b09c931581",
+          "status": "new",
+          "topic_id": "topic_66e7c17d6192b71d3d1614c4",
+          "reason": "No same or unclear relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_005_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_202a699c5ff925b09c931581"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_202a699c5ff925b09c931581"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_006",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_6d79fa8bb53898b936f51615",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_1d6a22aee9f03b031177596a",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_006_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_6d79fa8bb53898b936f51615"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_007",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_15d1346c33afa31af2965e60",
+          "status": "matched",
+          "topic_id": "topic_66e7c17d6192b71d3d1614c4",
+          "reason": "One same relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_85bd4fc6d5c4cf7f31aa25b5",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_007_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_15d1346c33afa31af2965e60"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_15d1346c33afa31af2965e60"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_008",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_8bb94961376f7b17373d2b4b",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_008_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_8bb94961376f7b17373d2b4b"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_009",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_a5236933990a9802434b88dc",
+          "status": "new",
+          "topic_id": "topic_bd54d5ba4140c665fb74dd0d",
+          "reason": "No same or unclear relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_e96a938c13f5df7aad05c84e",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "At least one candidate batch is invalid; no automatic assignment"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_009_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_a5236933990a9802434b88dc"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_a5236933990a9802434b88dc"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_010",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_e9176adc6626ba6899ab9e6b",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_531410947f33476cf289a032",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_010_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_e9176adc6626ba6899ab9e6b"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_011",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_fd57e8f9208faeb7a5a1281f",
+          "status": "matched",
+          "topic_id": "topic_bd54d5ba4140c665fb74dd0d",
+          "reason": "One same relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_aa22365e4c5c1f4e0d5df7af",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Wish support not confirmed by semantic verifier"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_011_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_fd57e8f9208faeb7a5a1281f"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_fd57e8f9208faeb7a5a1281f"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_012",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_df6f38c10c369458bcb9106c",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_012_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_df6f38c10c369458bcb9106c"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_013",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_0df78a6460c97c3804c2b182",
+          "status": "new",
+          "topic_id": "topic_2daacf240cf5f7f2ab74e431",
+          "reason": "No same or unclear relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_013_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_0df78a6460c97c3804c2b182"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_0df78a6460c97c3804c2b182"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_014",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_8cb9d2d3f45431d5c6d4f6c7",
+          "status": "matched",
+          "topic_id": "topic_2daacf240cf5f7f2ab74e431",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_014_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_8cb9d2d3f45431d5c6d4f6c7"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_8cb9d2d3f45431d5c6d4f6c7"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_015",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_f90911750b4382a7b1f7d50a",
+          "status": "matched",
+          "topic_id": "topic_2daacf240cf5f7f2ab74e431",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_015_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_f90911750b4382a7b1f7d50a"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_f90911750b4382a7b1f7d50a"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_016",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_f7e318ae4f514b3e97cd65a3",
+          "status": "matched",
+          "topic_id": "topic_2daacf240cf5f7f2ab74e431",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_016_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_f7e318ae4f514b3e97cd65a3"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_f7e318ae4f514b3e97cd65a3"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_017",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_73f86984c1e6f27f4c81ebc5",
+          "status": "new",
+          "topic_id": "topic_8ae10b268768313cd8ce58fd",
+          "reason": "No same or unclear relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_017_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_73f86984c1e6f27f4c81ebc5"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_73f86984c1e6f27f4c81ebc5"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_018",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_116bdceda1872cf9a2c43d27",
+          "status": "matched",
+          "topic_id": "topic_8ae10b268768313cd8ce58fd",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_018_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_116bdceda1872cf9a2c43d27"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_116bdceda1872cf9a2c43d27"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_019",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_fef1cf1cecd808ea4b57c8b5",
+          "status": "matched",
+          "topic_id": "topic_8ae10b268768313cd8ce58fd",
+          "reason": "One same relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_cad9b570dffbec02bebce576",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Wish support not confirmed by semantic verifier"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_019_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_fef1cf1cecd808ea4b57c8b5"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_fef1cf1cecd808ea4b57c8b5"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_020",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_9e320b197302db4ba15c3b6e",
+          "status": "new",
+          "topic_id": "topic_6e6b42b1bba65f0cb8cbe884",
+          "reason": "No same or unclear relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_020_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_9e320b197302db4ba15c3b6e"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_9e320b197302db4ba15c3b6e"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_021",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_01136c34cb6151fce2ace012",
+          "status": "matched",
+          "topic_id": "topic_6e6b42b1bba65f0cb8cbe884",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_021_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_01136c34cb6151fce2ace012"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_01136c34cb6151fce2ace012"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_022",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_240f18215f0bccb5e524008a",
+          "status": "matched",
+          "topic_id": "topic_6e6b42b1bba65f0cb8cbe884",
+          "reason": "One same relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_dbee9649e323c367acdbd63d",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_022_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_240f18215f0bccb5e524008a"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_240f18215f0bccb5e524008a"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_023",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_c4b73e2bfd038da5cffa946a",
+          "status": "new",
+          "topic_id": "topic_fe6e482a2cf50c169defe433",
+          "reason": "No same or unclear relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_023_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_c4b73e2bfd038da5cffa946a"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_c4b73e2bfd038da5cffa946a"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_024",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_51fa8ca28922cd396a7bf424",
+          "status": "matched",
+          "topic_id": "topic_fe6e482a2cf50c169defe433",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_024_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_51fa8ca28922cd396a7bf424"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_51fa8ca28922cd396a7bf424"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_025",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_c5b4997a687a6f7f3681fd87",
+          "status": "matched",
+          "topic_id": "topic_fe6e482a2cf50c169defe433",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_025_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_c5b4997a687a6f7f3681fd87"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_c5b4997a687a6f7f3681fd87"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_026",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_c96631e7adfc0bf28c7a2d8a",
+          "status": "matched",
+          "topic_id": "topic_efa2b536d910aafd05834492",
+          "reason": "One same relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_468e33f7f621969865eb153b",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Wish support not confirmed by semantic verifier"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_026_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_c96631e7adfc0bf28c7a2d8a"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_c96631e7adfc0bf28c7a2d8a"
+        },
+        {
+          "intent_id": "hv2_026_i2",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_468e33f7f621969865eb153b"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_027",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_53587fa07daee1a8042437f4",
+          "status": "matched",
+          "topic_id": "topic_66e7c17d6192b71d3d1614c4",
+          "reason": "One same relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_8fc488399c5516f1bd8b28be",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_027_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_53587fa07daee1a8042437f4"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_53587fa07daee1a8042437f4"
+        },
+        {
+          "intent_id": "hv2_027_i2",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_8fc488399c5516f1bd8b28be"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_028",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_605abb8fe82a31e8d69cb490",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "At least one candidate batch is invalid; no automatic assignment"
+        },
+        {
+          "intent_id": "intent_abde8adb383f92fc75d65738",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_028_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_605abb8fe82a31e8d69cb490"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_605abb8fe82a31e8d69cb490"
+        },
+        {
+          "intent_id": "hv2_028_i2",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_abde8adb383f92fc75d65738"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_029",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_ca4a1fd766a30c8e741d4684",
+          "status": "new",
+          "topic_id": "topic_dab24139410d0fb000c4df65",
+          "reason": "No same or unclear relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_1d0446ab419b9b4ce9df880a",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_029_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_ca4a1fd766a30c8e741d4684"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_ca4a1fd766a30c8e741d4684"
+        },
+        {
+          "intent_id": "hv2_029_i2",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_1d0446ab419b9b4ce9df880a"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_030",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_ae3c2df54ec3e684f9871675",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_4cd5658a7a662f7fcc8eafa8",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_030_i1",
+          "kind": "incident",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_ae3c2df54ec3e684f9871675"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_031",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_c4e7908d6e550fbed48db26e",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_3187f4e3d1cc1daf5b5e94e6",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_031_i1",
+          "kind": "service_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_3187f4e3d1cc1daf5b5e94e6"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_3187f4e3d1cc1daf5b5e94e6"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_032",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_cf3c90ebd015d42aa2402c3b",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        },
+        {
+          "intent_id": "intent_eec18d85a80aee115bca9136",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_eb27aea3cebf47ac8fb39acd",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_032_i1",
+          "kind": "usability",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_cf3c90ebd015d42aa2402c3b"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_cf3c90ebd015d42aa2402c3b"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 3
+    },
+    {
+      "source_id": "hv2_033",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_fece113fbef94a357933ce65",
+          "status": "new",
+          "topic_id": "topic_f3ee4a95a3b7d79de97c7bb9",
+          "reason": "No same or unclear relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_147531df4239c41eda23218b",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "At least one candidate batch is invalid; no automatic assignment"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_033_i1",
+          "kind": "usability",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_fece113fbef94a357933ce65"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_fece113fbef94a357933ce65"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_034",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_d0e22248739fea5c4854ff9b",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Wish support not confirmed by semantic verifier"
+        },
+        {
+          "intent_id": "intent_e8c92823299208d7bcedb194",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_034_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_d0e22248739fea5c4854ff9b"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_035",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_e22e8d1dcd460f6b1172213c",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        },
+        {
+          "intent_id": "intent_2690d747b8a2d9567e484946",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_035_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_2690d747b8a2d9567e484946"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_036",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "review",
+      "assignments": [
+        {
+          "intent_id": "intent_88e80768f08a949d9f183853",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        },
+        {
+          "intent_id": "intent_cdf30ff4beeb903ab4ad0506",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Extraction requires review"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_036_i1",
+          "kind": "feature_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_88e80768f08a949d9f183853",
+            "intent_cdf30ff4beeb903ab4ad0506"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_037",
+      "processed": true,
+      "valid_contract": false,
+      "in_review_queue": true,
+      "expected_delivery": "review",
+      "assignments": [],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_037_i1",
+          "kind": "feature_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 0
+    },
+    {
+      "source_id": "hv2_038",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_aa34945fb68a93f73035753d",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Source-risk guard: all intents held for human review; no automatic evidence count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_038_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_039",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_659957f10cd13dd55765b08f",
+          "status": "new",
+          "topic_id": "topic_55eb769c556838b3b85760c2",
+          "reason": "No same or unclear relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_8810d6bb2d44b282abe5d96d",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_039_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_659957f10cd13dd55765b08f"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_659957f10cd13dd55765b08f"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_040",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_36176158e06bfcd52fb4fd78",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_881cc0f618b5c74d1b818d77",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "At least one candidate batch is invalid; no automatic assignment"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_040_i1",
+          "kind": "incident",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_36176158e06bfcd52fb4fd78"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        },
+        {
+          "intent_id": "hv2_040_i2",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_881cc0f618b5c74d1b818d77"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_881cc0f618b5c74d1b818d77"
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_041",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_32351a011d0e58e335375eaf",
+          "status": "new",
+          "topic_id": "topic_f8a687298dc51e1030ce10b0",
+          "reason": "No same or unclear relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_f6c45d0d044bc14b043e0a0c",
+          "status": "matched",
+          "topic_id": "topic_bd54d5ba4140c665fb74dd0d",
+          "reason": "One same relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_041_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_32351a011d0e58e335375eaf"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_32351a011d0e58e335375eaf"
+        },
+        {
+          "intent_id": "hv2_041_i2",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_32351a011d0e58e335375eaf"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_042",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_b2096218ff8cce74eca8af65",
+          "status": "new",
+          "topic_id": "topic_ecf92d64cdd58b1e7ba34f8c",
+          "reason": "No same or unclear relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_7447202b818b295997f70c0c",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_042_i1",
+          "kind": "service_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_7447202b818b295997f70c0c"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_7447202b818b295997f70c0c"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_043",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_3ed80d8c03fe0125fef1406b",
+          "status": "new",
+          "topic_id": "topic_989000e28800a996e4030014",
+          "reason": "No same or unclear relation after complete registry comparison"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_043_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_3ed80d8c03fe0125fef1406b"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_3ed80d8c03fe0125fef1406b"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 0,
+      "actual_intents": 1
+    },
+    {
+      "source_id": "hv2_044",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "candidate",
+      "assignments": [
+        {
+          "intent_id": "intent_9ba5c86ff536baff98971d9c",
+          "status": "new",
+          "topic_id": "topic_4a10a526e0e6b8b76c17bb40",
+          "reason": "No same or unclear relation after complete registry comparison"
+        },
+        {
+          "intent_id": "intent_a4084beee1f6cbb0ae03e06d",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "At least one candidate batch is invalid; no automatic assignment"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_044_i1",
+          "kind": "feature_request",
+          "new_demand": true,
+          "evidence_aligned_actual_ids": [
+            "intent_9ba5c86ff536baff98971d9c"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_9ba5c86ff536baff98971d9c"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_045",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_8ce20b1a6276a797850b78ca",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        },
+        {
+          "intent_id": "intent_e9bc3d5b12582e10446c6543",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_045_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_8ce20b1a6276a797850b78ca"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_046",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "review",
+      "assignments": [
+        {
+          "intent_id": "intent_ce0625350b76dc22cf5b11be",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        },
+        {
+          "intent_id": "intent_eb0e1f9ef462aaede10e92a2",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Extraction requires review"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_046_i1",
+          "kind": "feature_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_ce0625350b76dc22cf5b11be",
+            "intent_eb0e1f9ef462aaede10e92a2"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 2,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_047",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": true,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_bbc46b44cad2a164d06e639f",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        },
+        {
+          "intent_id": "intent_ba572da10288f0c1edbe1988",
+          "status": "needs_review",
+          "topic_id": null,
+          "reason": "Observed usability pain requires explicit-change review; no automatic wish count"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_047_i1",
+          "kind": "service_request",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_bbc46b44cad2a164d06e639f"
+          ],
+          "evidence_and_class_match": true,
+          "matched_actual_id": "intent_bbc46b44cad2a164d06e639f"
+        }
+      ],
+      "all_expected_intents_matched": true,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 2
+    },
+    {
+      "source_id": "hv2_048",
+      "processed": true,
+      "valid_contract": true,
+      "in_review_queue": false,
+      "expected_delivery": "no_demand",
+      "assignments": [
+        {
+          "intent_id": "intent_5aa4f3cbf35e1a5b562c776b",
+          "status": "not_eligible",
+          "topic_id": null,
+          "reason": "Not an explicit wish"
+        }
+      ],
+      "intent_labels_available": true,
+      "expected_intents": [
+        {
+          "intent_id": "hv2_048_i1",
+          "kind": "unknown",
+          "new_demand": false,
+          "evidence_aligned_actual_ids": [
+            "intent_5aa4f3cbf35e1a5b562c776b"
+          ],
+          "evidence_and_class_match": false,
+          "matched_actual_id": null
+        }
+      ],
+      "all_expected_intents_matched": false,
+      "unmatched_actual_intents": 1,
+      "actual_intents": 1
+    }
+  ],
+  "cards": [
+    {
+      "actual_topic_id": "topic_efa2b536d910aafd05834492",
+      "title": "Добавьте автоматическую отправку этого отчета на email каждый день в 09:00",
+      "delivered": true,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": null,
+      "unsupported_source_ids": [
+        "hv2_002",
+        "hv2_003"
+      ],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_001",
+        "hv2_002",
+        "hv2_003",
+        "hv2_004",
+        "hv2_026"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_66e7c17d6192b71d3d1614c4",
+      "title": "Добавьте кнопку «Скачать все вложения обращения ZIP»",
+      "delivered": true,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": null,
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_005",
+        "hv2_007",
+        "hv2_027"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_bd54d5ba4140c665fb74dd0d",
+      "title": "Добавьте журнал изменения ролей сотрудников: кто, когда, с какой роли на какую перевел сотрудника",
+      "delivered": true,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": "role_change_audit",
+      "unsupported_source_ids": [
+        "hv2_041"
+      ],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_009",
+        "hv2_011",
+        "hv2_041"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_2daacf240cf5f7f2ab74e431",
+      "title": "Добавьте автоматическую паузу SLA, пока обращение в статусе «Ждем клиента», и продолжение отсчета после его ответа",
+      "delivered": true,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "sla_waiting_customer_pause",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_013",
+        "hv2_014",
+        "hv2_015",
+        "hv2_016"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_8ae10b268768313cd8ce58fd",
+      "title": "Добавить темную тему интерфейса",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "dark_interface",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_017",
+        "hv2_018",
+        "hv2_019"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_6e6b42b1bba65f0cb8cbe884",
+      "title": "Добавьте отдельную громкость звонка и отдельную громкость звука нового сообщения чата",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "separate_notification_volume",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_020",
+        "hv2_021",
+        "hv2_022"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_fe6e482a2cf50c169defe433",
+      "title": "Добавьте отложенную отправку ответа клиенту в выбранные дату и время",
+      "delivered": false,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": "scheduled_customer_reply",
+      "unsupported_source_ids": [
+        "hv2_024"
+      ],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_023",
+        "hv2_024",
+        "hv2_025"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_dab24139410d0fb000c4df65",
+      "title": "Нужен календарь выходных, чтобы SLA автоматически не считался в субботу и воскресенье",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "sla_weekend_calendar",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_029"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_f3ee4a95a3b7d79de97c7bb9",
+      "title": "Добавьте настройку, чтобы кнопку скачивания текущего вложения можно было закрепить прямо в шапке карточки",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "pin_attachment_download_button",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_033"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_55eb769c556838b3b85760c2",
+      "title": "добавить возврат удаленной очереди из корзины в течение 7 дней",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "restore_deleted_queue",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_039"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_f8a687298dc51e1030ce10b0",
+      "title": "Нужны две независимые функции: переименовывать сохраненные фильтры без их пересоздания и делиться фильтром с выбранным сотрудником",
+      "delivered": false,
+      "assessment": "unscored_ambiguous_evidence_alignment",
+      "provisional_theme_id": null,
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [
+        "hv2_041"
+      ],
+      "source_ids": [
+        "hv2_041"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_ecf92d64cdd58b1e7ba34f8c",
+      "title": "Включите нам SSO через OIDC",
+      "delivered": false,
+      "assessment": "provisionally_unsupported_or_mixed",
+      "provisional_theme_id": null,
+      "unsupported_source_ids": [
+        "hv2_042"
+      ],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_042"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_989000e28800a996e4030014",
+      "title": "Добавить новый способ входа SSO по SAML 2.0",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "saml_sso",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_043"
+      ]
+    },
+    {
+      "actual_topic_id": "topic_4a10a526e0e6b8b76c17bb40",
+      "title": "Need a webhook when a ticket changes queue, with old_queue and new_queue in payload",
+      "delivered": false,
+      "assessment": "provisionally_supported_evidence_and_class",
+      "provisional_theme_id": "ticket_queue_change_webhook",
+      "unsupported_source_ids": [],
+      "ambiguous_source_ids": [],
+      "source_ids": [
+        "hv2_044"
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "topic_id": "scheduled_email_report",
+      "expected_recurring": true,
+      "eligible_sources": 4,
+      "independent_episodes": 3,
+      "known_customers": 2,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": true
+    },
+    {
+      "topic_id": "ticket_attachments_zip",
+      "expected_recurring": true,
+      "eligible_sources": 4,
+      "independent_episodes": 3,
+      "known_customers": 2,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": true
+    },
+    {
+      "topic_id": "role_change_audit",
+      "expected_recurring": true,
+      "eligible_sources": 4,
+      "independent_episodes": 3,
+      "known_customers": 3,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": true
+    },
+    {
+      "topic_id": "sla_waiting_customer_pause",
+      "expected_recurring": true,
+      "eligible_sources": 4,
+      "independent_episodes": 3,
+      "known_customers": 2,
+      "supported_delivery_topic_ids": [
+        "topic_2daacf240cf5f7f2ab74e431"
+      ],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "dark_interface",
+      "expected_recurring": false,
+      "eligible_sources": 3,
+      "independent_episodes": 3,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "separate_notification_volume",
+      "expected_recurring": false,
+      "eligible_sources": 3,
+      "independent_episodes": 2,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "scheduled_customer_reply",
+      "expected_recurring": false,
+      "eligible_sources": 3,
+      "independent_episodes": 2,
+      "known_customers": 2,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "scheduled_sftp_report",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "customer_all_transcripts_zip",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "employee_login_audit",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "sla_weekend_calendar",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "pin_attachment_download_button",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "restore_deleted_queue",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "customer_xlsx_import",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "rename_saved_filter",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "share_saved_filter",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "saml_sso",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    },
+    {
+      "topic_id": "ticket_queue_change_webhook",
+      "expected_recurring": false,
+      "eligible_sources": 1,
+      "independent_episodes": 1,
+      "known_customers": 1,
+      "supported_delivery_topic_ids": [],
+      "missed_or_unconfirmed": false
+    }
+  ]
+}

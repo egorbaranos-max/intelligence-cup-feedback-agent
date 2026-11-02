@@ -3,6 +3,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -10,7 +11,7 @@ import sys
 import time
 
 
-INVENTORY_SCOPE = ("Python sources under agent/demo/tools/scripts/tests; root requirements and .command files; "
+INVENTORY_SCOPE = ("Python sources under agent/demo/tools/scripts/tests; root requirements, .gitattributes and .command files; "
                    "GitHub workflows; submission files; main document/metrics/AI-footnote sources. "
                    "Generated audits and experiment runs are excluded; saved-run evidence has its own verification.")
 
@@ -21,7 +22,7 @@ def source_inventory(root):
     paths = set()
     for folder in ("agent", "demo", "tools", "scripts", "tests"):
         paths.update((root / folder).rglob("*.py"))
-    for pattern in ("requirements*.txt", "*.command", ".github/workflows/*.yml",
+    for pattern in ("requirements*.txt", "*.command", ".gitattributes", ".github/workflows/*.yml",
                     ".github/workflows/*.yaml", "submission/*"):
         paths.update(root.glob(pattern))
     paths.update(root / "docs" / name for name in ("solution.md", "metrics.md", "ai-footnotes.md"))
@@ -43,13 +44,13 @@ def git_evidence(root):
         return {"git": None, "reason": "git_unavailable"}
     try:
         top = subprocess.run([git, "-C", str(root), "rev-parse", "--show-toplevel"],
-                             capture_output=True, text=True, timeout=5)
+                             capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=5)
         if top.returncode or Path(top.stdout.strip()).resolve() != root:
             return {"git": None, "reason": "no_repository_here"}
         head = subprocess.run([git, "-C", str(root), "rev-parse", "HEAD"],
-                              capture_output=True, text=True, timeout=5)
+                              capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=5)
         status = subprocess.run([git, "-C", str(root), "status", "--porcelain=v1", "--untracked-files=normal"],
-                                capture_output=True, text=True, timeout=5)
+                                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=5)
         if head.returncode or status.returncode:
             return {"git": None, "reason": "git_revision_unavailable"}
         return {"git": {"head": head.stdout.strip(), "dirty": bool(status.stdout.strip()),
@@ -58,6 +59,15 @@ def git_evidence(root):
         # Git diagnostics can expose local configuration. Source hashes remain
         # sufficient for a ZIP audit; no arbitrary stderr is copied into it.
         return {"git": None, "reason": "git_read_failed"}
+
+
+def run_check(command, root):
+    """Use UTF-8 for Russian fixtures and captured diagnostics on every OS."""
+    environment = os.environ.copy()
+    environment["PYTHONUTF8"] = "1"
+    return subprocess.run([sys.executable, *command], cwd=root, capture_output=True,
+                          text=True, encoding="utf-8", errors="replace",
+                          env=environment, timeout=180)
 
 
 def main():
@@ -71,6 +81,7 @@ def main():
         ("Program contracts", ["-m", "unittest", "discover", "-s", "demo", "-p", "test_*.py"]),
         ("Pipeline, evaluation, finance, metrics and human-label safeguards", ["-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"]),
         ("Saved real model evidence", ["scripts/check_live_runs.py"]),
+        ("Saved auxiliary smoke evidence and historical source snapshots", ["scripts/verify_auxiliary_evidence.py"]),
         ("Submission files and character limit", ["scripts/check_submission.py", "--require-file", "submission/solution.docx", "--require-file", "submission/solution.pdf", "--require-file", "submission/presentation.pptx", "--require-file", "submission/metrics.md"]),
     ]
     report = {"schema": "delivery-audit-v2", "started_at": datetime.now(timezone.utc).isoformat(), "checks": [],
@@ -81,7 +92,7 @@ def main():
         begin = time.perf_counter()
         print(f"Checking: {label}", flush=True)
         try:
-            result = subprocess.run([sys.executable, *command], cwd=root, capture_output=True, text=True, timeout=180)
+            result = run_check(command, root)
             record = {"name": label, "command": [sys.executable, *command], "exit_code": result.returncode,
                       "elapsed_seconds": round(time.perf_counter() - begin, 3),
                       "stdout": result.stdout, "stderr": result.stderr}

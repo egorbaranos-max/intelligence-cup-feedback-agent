@@ -1,0 +1,73 @@
+[
+  {
+    "topic_id": "topic_002bbd72e42bec6e3de7d9d4",
+    "recipient": "local-reviewer",
+    "product_id": "sd-alpha",
+    "title": "Добавьте автоматическую отправку этого отчета на email каждый день в 09:00",
+    "decision": "new",
+    "raw_sources": 4,
+    "independent_episodes": 3,
+    "known_customers": 2,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 50,
+        "end": 124,
+        "quote": "Добавьте автоматическую отправку этого отчета на email каждый день в 09:00",
+        "source_id": "hv2_001",
+        "source_version": 1,
+        "digest": "fecb5d22b264595018a7e0859cc20ffbc0a2f8cb85467b3b23d510ccdb68cb20",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 63,
+        "quote": "Can you add daily scheduled email delivery of the queue report?",
+        "source_id": "hv2_002",
+        "source_version": 1,
+        "digest": "1addf5763eee8c6facf7ff3e4f052babd691ff4e7c8ab2a8fac483a34cb1694d",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 64,
+        "end": 133,
+        "quote": "Нужна рассылка отчета на почту в заданное время, без ручного запуска.",
+        "source_id": "hv2_002",
+        "source_version": 1,
+        "digest": "1addf5763eee8c6facf7ff3e4f052babd691ff4e7c8ab2a8fac483a34cb1694d",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 80,
+        "quote": "Хотим чтобы отчет по очередям сам уходил нам на e-mail каждое утро по расписанию",
+        "source_id": "hv2_003",
+        "source_version": 1,
+        "digest": "f9452bd48836c0cbbdfc13dee21959435fb6a096133cfbf4b66934f82de235b7",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 42,
+        "end": 120,
+        "quote": "добавьте автоматическую отправку отчета по очередям на email ежедневно в 09:00",
+        "source_id": "hv2_004",
+        "source_version": 1,
+        "digest": "cd72b5befe5fc5a752d3b379ee74df9c39ba26aa80a9675d45506edcf130f7c9",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

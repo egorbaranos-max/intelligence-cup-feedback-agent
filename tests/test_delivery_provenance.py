@@ -1,5 +1,6 @@
 """Audit identity must bind real bytes and not a ZIP's enclosing Git checkout."""
 import hashlib
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -7,7 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from scripts.verify_delivery import git_evidence, source_inventory
+from scripts.verify_delivery import git_evidence, run_check, source_inventory
 
 
 class DeliveryProvenanceTests(unittest.TestCase):
@@ -24,7 +25,7 @@ class DeliveryProvenanceTests(unittest.TestCase):
 
     def test_inventory_has_relative_paths_and_excludes_reports_model_runs_and_secrets(self):
         included = ['agent/core.py', 'tests/test_core.py', 'scripts/audit.py', 'requirements-live.txt',
-                    '.github/workflows/check.yml', 'Проверить.command', 'submission/manifest.json',
+                    '.github/workflows/check.yml', '.gitattributes', 'Проверить.command', 'submission/manifest.json',
                     'docs/solution.md']
         for name in included:
             self.put(name)
@@ -44,6 +45,14 @@ class DeliveryProvenanceTests(unittest.TestCase):
         self.assertNotEqual(before['agent/core.py'], after['agent/core.py'])
         with patch('scripts.verify_delivery.shutil.which', return_value=None):
             self.assertEqual(git_evidence(self.root), {'git': None, 'reason': 'git_unavailable'})
+
+    def test_child_checks_use_utf8_even_when_parent_environment_disables_it(self):
+        (self.root / 'text.txt').write_text('Ия — проверка', encoding='utf-8')
+        with patch.dict(os.environ, {'PYTHONUTF8': '0'}):
+            result = run_check(['-c', 'from pathlib import Path; import sys; '
+                                'print(sys.flags.utf8_mode); print(Path("text.txt").read_text())'], self.root)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.splitlines(), ['1', 'Ия — проверка'])
 
     @unittest.skipUnless(shutil.which('git'), 'Git required to test a ZIP nested in another checkout')
     def test_zip_inside_another_git_checkout_does_not_borrow_parent_revision(self):
