@@ -21,6 +21,8 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Exercise auditable metric example
         run: python3 tools/coverage_model.py --example | python3 tools/coverage_model.py -
+      - name: Verify saved live experiment evidence without inference
+        run: python3 scripts/check_live_runs.py
       - name: Check final solution size and required submission files
         run: >-
           python3 scripts/check_submission.py

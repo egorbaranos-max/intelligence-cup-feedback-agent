@@ -1,0 +1,1218 @@
+{
+  "evaluation_type": "post_run_preliminary_ai_comparison",
+  "disclaimer": "Frozen preliminary AI expectations only; not human gold, not a corporate accuracy estimate, not an acceptance gate. Text only; no financial effect, ASR/VL or corporate integration is tested.",
+  "run_status": "complete",
+  "model": {
+    "model_id": "Qwen/Qwen3-4B-MLX-4bit",
+    "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+    "files": {
+      "LICENSE": {
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+        "bytes": 11343
+      },
+      "README.md": {
+        "sha256": "a3ac01d2a1fff2f02be25e1d2e9160f03db51dbee2cc17f13b774f646648adf9",
+        "bytes": 14708
+      },
+      "config.json": {
+        "sha256": "76eae114d67a444c7296be7a6bc0409ecc15c340e113f1bac7572cb7d0928b6f",
+        "bytes": 988
+      },
+      "model.safetensors": {
+        "sha256": "e56a94b846a2dce7d1cc154ce58b9cfc4b8d99e8ffb74bfe256a265f4cbc7fb9",
+        "bytes": 2137326367
+      },
+      "model.safetensors.index.json": {
+        "sha256": "278844a566da15beab6e9068c57f606c50a99c440d4515206b871a8b5282b3de",
+        "bytes": 63924
+      },
+      "tokenizer.json": {
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "bytes": 11422654
+      },
+      "tokenizer_config.json": {
+        "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "bytes": 9732
+      },
+      "vocab.json": {
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "bytes": 2776833
+      }
+    },
+    "backend": "mlx-lm",
+    "python": "3.11.5",
+    "machine": "arm64",
+    "macos": "26.6.2",
+    "packages": {
+      "mlx": "0.32.4",
+      "mlx-lm": "0.32.2",
+      "transformers": "5.22.1",
+      "huggingface-hub": "2.4.0",
+      "safetensors": "0.8.0"
+    },
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "seed": 42,
+      "per_call_seed": "seed + zero-based call index",
+      "enable_thinking": false
+    },
+    "inference_network": "HF offline flags; local model directory; no network client in backend"
+  },
+  "verified_sha256": {
+    "inputs": "cc55b4558832fdd7bf77f9af1561b24494e53cd92bf60ed1796e25b2f91e2992",
+    "expectations_pre_run": "fab41c9313f09a89e2a798b1645d8a200a57cfc5a17e35de30c916ded879e973",
+    "manifest": "44dde5d19de3606308afca2182dbe30ac5842718eb77ff06bb7e78f5f9cee480",
+    "calls": "d5494066aefe334778da3873d7df2bb96bb0bfa076979fbb9f233f92b6364cfa",
+    "results": "ec11a5725f53fd0a7db148d863fb24ffb208fe33b14c511f95f4ef816dddc7a6"
+  },
+  "summary": {
+    "all": {
+      "sources": 23,
+      "processed": 23,
+      "valid_extraction_contracts": 20,
+      "matched_preliminary_expectations": 14,
+      "model_statuses": {
+        "needs_review": 9,
+        "ok": 14
+      },
+      "model_kind_presence": {
+        "feature_request": 10,
+        "incident": 9,
+        "service_request": 5,
+        "usability": 4
+      }
+    },
+    "case_pdf": {
+      "sources": 7,
+      "processed": 7,
+      "valid_extraction_contracts": 7,
+      "matched_preliminary_expectations": 5,
+      "model_statuses": {
+        "needs_review": 7
+      },
+      "model_kind_presence": {
+        "incident": 6,
+        "service_request": 2
+      }
+    },
+    "synthetic": {
+      "sources": 16,
+      "processed": 16,
+      "valid_extraction_contracts": 13,
+      "matched_preliminary_expectations": 9,
+      "model_statuses": {
+        "needs_review": 2,
+        "ok": 14
+      },
+      "model_kind_presence": {
+        "feature_request": 10,
+        "incident": 3,
+        "service_request": 3,
+        "usability": 4
+      }
+    }
+  },
+  "matching_contracts": {
+    "calls": 6,
+    "valid": 5,
+    "details": [
+      {
+        "call_id": 13,
+        "source_id": "syn-03",
+        "valid_contract": true,
+        "errors": []
+      },
+      {
+        "call_id": 16,
+        "source_id": "syn-04",
+        "valid_contract": true,
+        "errors": []
+      },
+      {
+        "call_id": 22,
+        "source_id": "syn-08",
+        "valid_contract": true,
+        "errors": []
+      },
+      {
+        "call_id": 26,
+        "source_id": "syn-10",
+        "valid_contract": true,
+        "errors": []
+      },
+      {
+        "call_id": 32,
+        "source_id": "syn-12",
+        "valid_contract": false,
+        "errors": [
+          "response: invalid JSON (Extra data: line 1 column 427 (char 426))"
+        ]
+      },
+      {
+        "call_id": 39,
+        "source_id": "syn-16",
+        "valid_contract": true,
+        "errors": []
+      }
+    ]
+  },
+  "focused_checks": [
+    {
+      "name": "syn07_two_separate_intents",
+      "applicable": true,
+      "passed": false,
+      "details": "Separate incident and feature_request intents must both survive the contract."
+    },
+    {
+      "name": "syn01_04_one_topic_and_deduplicated_snapshot",
+      "applicable": true,
+      "passed": false,
+      "details": {
+        "topic_ids_by_source": {
+          "syn-01": [
+            "topic_f0a91bb5e864043b9f240557"
+          ],
+          "syn-02": [],
+          "syn-03": [
+            "topic_f0a91bb5e864043b9f240557"
+          ],
+          "syn-04": [
+            "topic_f0a91bb5e864043b9f240557"
+          ]
+        },
+        "snapshot": null
+      }
+    },
+    {
+      "name": "syn10_invoices_separate_from_orders",
+      "applicable": true,
+      "passed": false,
+      "details": {
+        "orders_topic": null,
+        "invoice_topics": [
+          "topic_59df5a8ce4e56f32e3faf884"
+        ]
+      }
+    },
+    {
+      "name": "trusted_authorship_respected_by_raw_model",
+      "applicable": true,
+      "passed": false,
+      "details": {
+        "violating_sources": [
+          "syn-09"
+        ],
+        "unprocessed_sources": []
+      }
+    },
+    {
+      "name": "no_invented_source_or_identity_fields_in_raw_extraction",
+      "applicable": true,
+      "passed": true,
+      "details": {
+        "violating_sources": [],
+        "unprocessed_sources": [],
+        "scope": "Checks structured IDs only; statements need manual review for invented counts or facts."
+      }
+    },
+    {
+      "name": "snapshot_counts_use_only_trusted_known_identities",
+      "applicable": true,
+      "passed": true,
+      "details": {
+        "count_mismatches": [],
+        "unprocessed_sources": []
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "case-01",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "case-02",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "case-03",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "incident",
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "case-04",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "service_request"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "case-05",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "case-06",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "service_request"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "case-07",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-01",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-02",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "syn-03",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-04",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-05",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-06",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-07",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "intents[1].evidence_refs[0].quote: no exact source match"
+      ],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "incident"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident",
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract"
+      ]
+    },
+    {
+      "id": "syn-08",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-09",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "intents[0].origin: unverified user authorship; needs_review required"
+      ],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "syn-10",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "usability"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "syn-11",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request",
+        "usability"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "service_request",
+        "usability"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-12",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "usability"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": null,
+      "explicit_feature_comparison": "not_scored_ambiguous",
+      "accepted_kinds": [
+        "unknown",
+        "usability"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "status differs"
+      ]
+    },
+    {
+      "id": "syn-13",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "intents[0].origin: invalid origin"
+      ],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract"
+      ]
+    },
+    {
+      "id": "syn-14",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "service_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "unknown",
+        "service_request"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs",
+        "status differs"
+      ]
+    },
+    {
+      "id": "syn-15",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "usability"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "usability"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "syn-16",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    }
+  ],
+  "disagreements": [
+    {
+      "id": "case-03",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "incident",
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "case-06",
+      "origin": "case_pdf",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "service_request"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "syn-02",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "syn-07",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "intents[1].evidence_refs[0].quote: no exact source match"
+      ],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "incident"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident",
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract"
+      ]
+    },
+    {
+      "id": "syn-09",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "intents[0].origin: unverified user authorship; needs_review required"
+      ],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "syn-10",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "usability"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "syn-12",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "usability"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": null,
+      "explicit_feature_comparison": "not_scored_ambiguous",
+      "accepted_kinds": [
+        "unknown",
+        "usability"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "status differs"
+      ]
+    },
+    {
+      "id": "syn-13",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "intents[0].origin: invalid origin"
+      ],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract"
+      ]
+    },
+    {
+      "id": "syn-14",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "service_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "unknown",
+        "service_request"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs",
+        "status differs"
+      ]
+    }
+  ],
+  "verification_contracts": {
+    "disclaimer": "A second model judgment, not human gold or proof of semantic correctness; errors may be correlated with extraction. Extraction expectation matches are unchanged by this block.",
+    "calls": 10,
+    "valid_contracts": 9,
+    "verdicts": {
+      "supported": 7,
+      "unsupported": 2,
+      "unclear": 0,
+      "invalid": 1
+    },
+    "blocking_violations": 0,
+    "details": [
+      {
+        "call_id": 9,
+        "source_id": "syn-01",
+        "intent_id": "intent_d840cffde647c7f88c90dbb9",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо просит добавить функцию экспорта заказов в CSV",
+          "evidence_quote": "Добавьте, пожалуйста, возможность выгружать список заказов в CSV."
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "new",
+        "topic_id": "topic_f0a91bb5e864043b9f240557",
+        "matching_call": null
+      },
+      {
+        "call_id": 12,
+        "source_id": "syn-03",
+        "intent_id": "intent_813150caefa13ef17825be59",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо просит изменить продукт, указав конкретную функцию (скачивание реестра заказов в CSV) и описав её требования.",
+          "evidence_quote": "Хочу скачивать реестр заказов в формате CSV: номер заказа, дата и сумма должны быть в отдельных колонках."
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "matched",
+        "topic_id": "topic_f0a91bb5e864043b9f240557",
+        "matching_call": 13
+      },
+      {
+        "call_id": 15,
+        "source_id": "syn-04",
+        "intent_id": "intent_ef954dfb32e99b91059c0625",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо просит добавить функцию экспорта списка заказов в CSV, что соответствует proposed_intent",
+          "evidence_quote": "прошу добавить выгрузку списка заказов в CSV"
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "matched",
+        "topic_id": "topic_f0a91bb5e864043b9f240557",
+        "matching_call": 16
+      },
+      {
+        "call_id": 21,
+        "source_id": "syn-08",
+        "intent_id": "intent_1d6a86939d1eb376aa48a147",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо просит добавить функцию экспорта списка заказов в CSV, что соответствует proposed_intent",
+          "evidence_quote": "Прошу добавить экспорт списка заказов в CSV"
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "matched",
+        "topic_id": "topic_f0a91bb5e864043b9f240557",
+        "matching_call": 22
+      },
+      {
+        "call_id": 25,
+        "source_id": "syn-10",
+        "intent_id": "intent_6a337d7071c86eb5533339bf",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Текст прямо указывает на просьбу добавить функцию скачивания счетов на оплату в CSV с указанием номера счета и срока оплаты, что соответствует proposed_intent",
+          "evidence_quote": "Добавьте скачивание счетов на оплату в CSV, с номером счета и сроком оплаты."
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "new",
+        "topic_id": "topic_59df5a8ce4e56f32e3faf884",
+        "matching_call": 26
+      },
+      {
+        "call_id": 27,
+        "source_id": "syn-10",
+        "intent_id": "intent_5e4e232dcf8be028375315a9",
+        "valid_contract": true,
+        "verdict": "unsupported",
+        "errors": [],
+        "value": {
+          "verdict": "unsupported",
+          "reason": "Текст не подтверждает просьбу изменить продукт, а отрицает необходимость реестра заказов",
+          "evidence_quote": "Реестр заказов мне не нужен"
+        },
+        "requires_blocking": true,
+        "blocking_respected": true,
+        "assignment_status": "needs_review",
+        "topic_id": null,
+        "matching_call": null
+      },
+      {
+        "call_id": 29,
+        "source_id": "syn-11",
+        "intent_id": "intent_d9a87bb748876d860d18bd1f",
+        "valid_contract": true,
+        "verdict": "unsupported",
+        "errors": [],
+        "value": {
+          "verdict": "unsupported",
+          "reason": "Пользователь жалуется на неудобство поиска существующего функционала, а не на необходимость добавления нового.",
+          "evidence_quote": null
+        },
+        "requires_blocking": true,
+        "blocking_respected": true,
+        "assignment_status": "needs_review",
+        "topic_id": null,
+        "matching_call": null
+      },
+      {
+        "call_id": 31,
+        "source_id": "syn-12",
+        "intent_id": "intent_8a086c118233ff3ad38a8aed",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо просит изменить продукт, указав, что CSV неудобен, и требует сделать его нормальным.",
+          "evidence_quote": "С CSV неудобно. Сделайте нормально."
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "needs_review",
+        "topic_id": null,
+        "matching_call": 32
+      },
+      {
+        "call_id": 35,
+        "source_id": "syn-14",
+        "intent_id": "intent_595449ffc3d7197ef143d59f",
+        "valid_contract": false,
+        "verdict": "invalid",
+        "errors": [
+          "verification.evidence_quote: no exact source match"
+        ],
+        "value": null,
+        "requires_blocking": true,
+        "blocking_respected": true,
+        "assignment_status": "needs_review",
+        "topic_id": null,
+        "matching_call": null
+      },
+      {
+        "call_id": 38,
+        "source_id": "syn-16",
+        "intent_id": "intent_693648af50848196b2c52e57",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Текст содержит прямую просьбу пользователя о добавлении уведомления за сутки до окончания срока действия договора, что полностью соответствует proposed_intent.",
+          "evidence_quote": "Добавьте уведомление за сутки до окончания срока действия договора."
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "new",
+        "topic_id": "topic_51b74f38aa204deb383fabcc",
+        "matching_call": 39
+      }
+    ]
+  }
+}

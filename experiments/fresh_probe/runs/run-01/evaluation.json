@@ -1,0 +1,916 @@
+{
+  "evaluation_type": "post_run_preliminary_ai_comparison",
+  "disclaimer": "Frozen preliminary AI expectations only; not human gold, not a corporate accuracy estimate, not an acceptance gate. Text only; no financial effect, ASR/VL or corporate integration is tested.",
+  "run_status": "complete",
+  "model": {
+    "model_id": "Qwen/Qwen3-4B-MLX-4bit",
+    "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+    "files": {
+      "LICENSE": {
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+        "bytes": 11343
+      },
+      "README.md": {
+        "sha256": "a3ac01d2a1fff2f02be25e1d2e9160f03db51dbee2cc17f13b774f646648adf9",
+        "bytes": 14708
+      },
+      "config.json": {
+        "sha256": "76eae114d67a444c7296be7a6bc0409ecc15c340e113f1bac7572cb7d0928b6f",
+        "bytes": 988
+      },
+      "model.safetensors": {
+        "sha256": "e56a94b846a2dce7d1cc154ce58b9cfc4b8d99e8ffb74bfe256a265f4cbc7fb9",
+        "bytes": 2137326367
+      },
+      "model.safetensors.index.json": {
+        "sha256": "278844a566da15beab6e9068c57f606c50a99c440d4515206b871a8b5282b3de",
+        "bytes": 63924
+      },
+      "tokenizer.json": {
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "bytes": 11422654
+      },
+      "tokenizer_config.json": {
+        "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "bytes": 9732
+      },
+      "vocab.json": {
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "bytes": 2776833
+      }
+    },
+    "backend": "mlx-lm",
+    "python": "3.11.5",
+    "machine": "arm64",
+    "macos": "26.6.2",
+    "packages": {
+      "mlx": "0.32.4",
+      "mlx-lm": "0.32.2",
+      "transformers": "5.22.1",
+      "huggingface-hub": "2.4.0",
+      "safetensors": "0.8.0"
+    },
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "seed": 42,
+      "per_call_seed": "seed + zero-based call index",
+      "enable_thinking": false
+    },
+    "inference_network": "HF offline flags; local model directory; no network client in backend"
+  },
+  "verified_sha256": {
+    "inputs": "b35c336d26e5ed4d87112386003d22d15fe65af4901e6a592d81edcc7ba51b2a",
+    "expectations_pre_run": "3ed6ab205c013ec347b4c6b09db957023fd7c4304cf726c4c4236f08ac5f0c71",
+    "manifest": "953d4f06efff8689742f3e603dfb3e8e78382034e59eb795f07ca7840655dd0b",
+    "calls": "5cadc782af5040ec6309f69bbdb61cdd2e3ac6b5a9a43320a606d015a643d0eb",
+    "results": "80d6064cc40edb770b2d7d173180bf029e7d85229cf78b2f53b5e863239aae05"
+  },
+  "summary": {
+    "all": {
+      "sources": 12,
+      "processed": 12,
+      "valid_extraction_contracts": 10,
+      "matched_preliminary_expectations": 2,
+      "model_statuses": {
+        "needs_review": 1,
+        "ok": 10,
+        "unparseable_or_missing": 1
+      },
+      "model_kind_presence": {
+        "feature_request": 5,
+        "incident": 2,
+        "service_request": 4,
+        "usability": 4
+      }
+    },
+    "case_pdf": {
+      "sources": 0,
+      "processed": 0,
+      "valid_extraction_contracts": 0,
+      "matched_preliminary_expectations": 0,
+      "model_statuses": {},
+      "model_kind_presence": {}
+    },
+    "synthetic": {
+      "sources": 12,
+      "processed": 12,
+      "valid_extraction_contracts": 10,
+      "matched_preliminary_expectations": 2,
+      "model_statuses": {
+        "needs_review": 1,
+        "ok": 10,
+        "unparseable_or_missing": 1
+      },
+      "model_kind_presence": {
+        "feature_request": 5,
+        "incident": 2,
+        "service_request": 4,
+        "usability": 4
+      }
+    }
+  },
+  "matching_contracts": {
+    "calls": 5,
+    "valid": 2,
+    "details": [
+      {
+        "call_id": 4,
+        "source_id": "synthetic-fresh-01",
+        "valid_contract": true,
+        "errors": []
+      },
+      {
+        "call_id": 10,
+        "source_id": "synthetic-fresh-05",
+        "valid_contract": false,
+        "errors": [
+          "matches: every candidate must be covered exactly once"
+        ]
+      },
+      {
+        "call_id": 14,
+        "source_id": "synthetic-fresh-07",
+        "valid_contract": false,
+        "errors": [
+          "matches: every candidate must be covered exactly once"
+        ]
+      },
+      {
+        "call_id": 16,
+        "source_id": "synthetic-fresh-07",
+        "valid_contract": false,
+        "errors": [
+          "matches: every candidate must be covered exactly once"
+        ]
+      },
+      {
+        "call_id": 18,
+        "source_id": "synthetic-fresh-07",
+        "valid_contract": true,
+        "errors": []
+      }
+    ]
+  },
+  "focused_checks": [
+    {
+      "name": "syn07_two_separate_intents",
+      "applicable": false,
+      "passed": null,
+      "details": "Separate incident and feature_request intents must both survive the contract."
+    },
+    {
+      "name": "syn01_04_one_topic_and_deduplicated_snapshot",
+      "applicable": false,
+      "passed": null,
+      "details": {
+        "topic_ids_by_source": {
+          "syn-01": [],
+          "syn-02": [],
+          "syn-03": [],
+          "syn-04": []
+        },
+        "snapshot": null
+      }
+    },
+    {
+      "name": "syn10_invoices_separate_from_orders",
+      "applicable": false,
+      "passed": null,
+      "details": {
+        "orders_topic": null,
+        "invoice_topics": []
+      }
+    },
+    {
+      "name": "trusted_authorship_respected_by_raw_model",
+      "applicable": true,
+      "passed": true,
+      "details": {
+        "violating_sources": [],
+        "unprocessed_sources": []
+      }
+    },
+    {
+      "name": "no_invented_source_or_identity_fields_in_raw_extraction",
+      "applicable": true,
+      "passed": true,
+      "details": {
+        "violating_sources": [],
+        "unprocessed_sources": [],
+        "scope": "Checks structured IDs only; statements need manual review for invented counts or facts."
+      }
+    },
+    {
+      "name": "snapshot_counts_use_only_trusted_known_identities",
+      "applicable": true,
+      "passed": true,
+      "details": {
+        "count_mismatches": [],
+        "unprocessed_sources": []
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "synthetic-fresh-01",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "usability"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-02",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-03",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-04",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-05",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request",
+        "usability"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-06",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "incident"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "synthetic-fresh-07",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "usability"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-08",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "unknown"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-09",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "usability"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "usability",
+        "unknown"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "status differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-10",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "response: invalid JSON (Extra data: line 1 column 487 (char 486))"
+      ],
+      "model_status": "unparseable_or_missing",
+      "model_kinds": [],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": null,
+      "explicit_feature_comparison": "not_scored_ambiguous",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract",
+        "kinds outside accepted set or no intents",
+        "status differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-11",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "needs_review",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": null,
+      "explicit_feature_comparison": "not_scored_ambiguous",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": true,
+      "disagreements": []
+    },
+    {
+      "id": "synthetic-fresh-12",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "intents[1].evidence_refs[0].quote: no exact source match"
+      ],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "incident"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident",
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract"
+      ]
+    }
+  ],
+  "disagreements": [
+    {
+      "id": "synthetic-fresh-01",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "usability"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-02",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-03",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-04",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-05",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "service_request",
+        "usability"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-07",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "usability"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-08",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": false,
+      "accepted_kinds": [
+        "unknown"
+      ],
+      "accepted_status": [
+        "ok",
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "kinds outside accepted set or no intents",
+        "explicit feature flag differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-09",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": true,
+      "contract_errors": [],
+      "model_status": "ok",
+      "model_kinds": [
+        "usability"
+      ],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": false,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "usability",
+        "unknown"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "status differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-10",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "response: invalid JSON (Extra data: line 1 column 487 (char 486))"
+      ],
+      "model_status": "unparseable_or_missing",
+      "model_kinds": [],
+      "model_explicit_feature": false,
+      "expected_explicit_feature": null,
+      "explicit_feature_comparison": "not_scored_ambiguous",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "accepted_status": [
+        "needs_review"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract",
+        "kinds outside accepted set or no intents",
+        "status differs"
+      ]
+    },
+    {
+      "id": "synthetic-fresh-12",
+      "origin": "synthetic",
+      "processed": true,
+      "valid_contract": false,
+      "contract_errors": [
+        "intents[1].evidence_refs[0].quote: no exact source match"
+      ],
+      "model_status": "ok",
+      "model_kinds": [
+        "feature_request",
+        "incident"
+      ],
+      "model_explicit_feature": true,
+      "expected_explicit_feature": true,
+      "explicit_feature_comparison": true,
+      "accepted_kinds": [
+        "incident",
+        "feature_request"
+      ],
+      "accepted_status": [
+        "ok"
+      ],
+      "matched_preliminary_expectation": false,
+      "disagreements": [
+        "invalid extraction contract"
+      ]
+    }
+  ],
+  "verification_contracts": {
+    "disclaimer": "A second model judgment, not human gold or proof of semantic correctness; errors may be correlated with extraction. Extraction expectation matches are unchanged by this block.",
+    "calls": 7,
+    "valid_contracts": 7,
+    "verdicts": {
+      "supported": 6,
+      "unsupported": 1,
+      "unclear": 0,
+      "invalid": 0
+    },
+    "blocking_violations": 0,
+    "details": [
+      {
+        "call_id": 2,
+        "source_id": "synthetic-fresh-01",
+        "intent_id": "intent_a754b3b489f044ec0cfd3620",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо просит добавить функцию автоматической отправки писем ответственному сотруднику за 30 дней до окончания договора, что соответствует proposed_intent",
+          "evidence_quote": "Добавьте, пожалуйста, письмо ответственному сотруднику за 30 дней до окончания нашего договора."
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "new",
+        "topic_id": "topic_17f32e316020b42a03b8d955",
+        "matching_call": null
+      },
+      {
+        "call_id": 3,
+        "source_id": "synthetic-fresh-01",
+        "intent_id": "intent_95828e0769cbd02ef687e6ca",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо просит добавить функцию автоматической отправки писем ответственному сотруднику за 30 дней до окончания договора, что соответствует proposed_intent",
+          "evidence_quote": "Добавьте, пожалуйста, письмо ответственному сотруднику за 30 дней до окончания нашего договора."
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "new",
+        "topic_id": "topic_c3e91c9c953193521a5f7b70",
+        "matching_call": 4
+      },
+      {
+        "call_id": 9,
+        "source_id": "synthetic-fresh-05",
+        "intent_id": "intent_174b66241c3e98040d0893c0",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо указал, что письма о приближении конца договора не нужны, так как это берет на себя юрист.",
+          "evidence_quote": "Письма о приближении конца договора нам не нужны, это ведет юрист."
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "needs_review",
+        "topic_id": null,
+        "matching_call": 10
+      },
+      {
+        "call_id": 13,
+        "source_id": "synthetic-fresh-07",
+        "intent_id": "intent_f7d8f0b5187844b641769f98",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Текст прямо указывает на необходимость добавления нового поля 'Проект' в карточку карты, что соответствует proposed_intent",
+          "evidence_quote": "Нужно хранить у каждой карты название проекта, на который списывается топливо"
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "needs_review",
+        "topic_id": null,
+        "matching_call": 14
+      },
+      {
+        "call_id": 15,
+        "source_id": "synthetic-fresh-07",
+        "intent_id": "intent_19b2c9712449fd562e1f38c1",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Текст прямо указывает на необходимость добавления нового поля 'Проект' в карточку карты, что соответствует proposed_intent",
+          "evidence_quote": "Добавьте в карточку карты заполняемое нами поле «Проект»"
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "needs_review",
+        "topic_id": null,
+        "matching_call": 16
+      },
+      {
+        "call_id": 17,
+        "source_id": "synthetic-fresh-07",
+        "intent_id": "intent_e768a455ba31406ad58c339e",
+        "valid_contract": true,
+        "verdict": "supported",
+        "errors": [],
+        "value": {
+          "verdict": "supported",
+          "reason": "Пользователь прямо просит добавить поле «Проект» в карточку карты, что соответствует proposed_intent",
+          "evidence_quote": "Добавьте в карточку карты заполняемое нами поле «Проект»"
+        },
+        "requires_blocking": false,
+        "blocking_respected": true,
+        "assignment_status": "new",
+        "topic_id": "topic_48be227d485ffd129f04f731",
+        "matching_call": 18
+      },
+      {
+        "call_id": 20,
+        "source_id": "synthetic-fresh-08",
+        "intent_id": "intent_1b467517251b44f917658a4d",
+        "valid_contract": true,
+        "verdict": "unsupported",
+        "errors": [],
+        "value": {
+          "verdict": "unsupported",
+          "reason": "Текст не содержит прямого указания на просьбу изменить продукт, а лишь инструкцию для обработчика. Пользователь не просит добавить функцию, а даёт инструкцию, как обрабатывать текст.",
+          "evidence_quote": null
+        },
+        "requires_blocking": true,
+        "blocking_respected": true,
+        "assignment_status": "needs_review",
+        "topic_id": null,
+        "matching_call": null
+      }
+    ]
+  }
+}
