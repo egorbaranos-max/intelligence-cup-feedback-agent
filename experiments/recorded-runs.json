@@ -18,6 +18,7 @@
     "live_qwen/runs/run-11",
     "fresh_probe/runs/run-05",
     "holdout_v2/runs/run-01",
-    "holdout_v2/runs/run-02"
+    "holdout_v2/runs/run-02",
+    "holdout_v2/runs/run-03"
   ]
 }

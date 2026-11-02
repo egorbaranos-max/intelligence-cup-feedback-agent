@@ -82,6 +82,7 @@ def main():
         ("Pipeline, evaluation, finance, metrics and human-label safeguards", ["-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"]),
         ("Saved real model evidence", ["scripts/check_live_runs.py"]),
         ("Saved auxiliary smoke evidence and historical source snapshots", ["scripts/verify_auxiliary_evidence.py"]),
+        ("Frozen 48-source comparison protocol", ["scripts/verify_holdout_protocol.py"]),
         ("Submission files and character limit", ["scripts/check_submission.py", "--require-file", "submission/solution.docx", "--require-file", "submission/solution.pdf", "--require-file", "submission/presentation.pptx", "--require-file", "submission/metrics.md"]),
     ]
     report = {"schema": "delivery-audit-v2", "started_at": datetime.now(timezone.utc).isoformat(), "checks": [],

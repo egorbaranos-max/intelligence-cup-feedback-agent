@@ -27,6 +27,8 @@ class ProtocolTests(unittest.TestCase):
             path.write_text("# synthetic protocol-test source\n")
         code = {name: digest(self.root / name) for name in files}
         self.models = {name: {"model_id": "TEST_ONLY_" + name, "revision": "a" * 40,
+            "decoding": {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "seed": 42,
+                         "per_call_seed": "seed + zero-based call index", "enable_thinking": False},
             "files": {"fixture.json": {"sha256": "b" * 64, "bytes": 1}}} for name in ("4B", "8B")}
         self.baseline = {"agent/pipeline.py": "c" * 64, "demo/case_contract_demo.py": "d" * 64}
         self.write(self.root / "experiments/live_qwen/runs/run-03/manifest.json",
@@ -75,6 +77,8 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual(report["status"], "verified")
         self.assertEqual(len(report["runs"]), 3)
         self.assertEqual(report["git_evidence"]["status"], "not_available")
+        self.assertTrue(all(row["source_order_matches"] for row in report["runs"]))
+        self.assertTrue(all(row["recorded_generation_matches_prior_reference"] for row in report["runs"]))
 
     def test_cli_creates_output_directory_and_never_overwrites_report(self):
         target = self.root / 'new-artifacts/protocol.json'
@@ -142,6 +146,27 @@ class ProtocolTests(unittest.TestCase):
             self.audit()
         (self.folder / "runs/run-03/manifest.json").unlink()
         with self.assertRaises(FileNotFoundError):
+            self.audit()
+
+    def test_permuted_source_order_fails_even_with_updated_output_hash(self):
+        path = self.folder / "runs/run-02/results.jsonl"
+        rows = path.read_text().splitlines()
+        rows[0], rows[1] = rows[1], rows[0]
+        path.write_text("\n".join(rows) + "\n")
+        self.manifests[1]["output_sha256"]["results.jsonl"] = digest(path)
+        self.save_run(1)
+        with self.assertRaisesRegex(ValueError, "source order"):
+            self.audit()
+
+    def test_common_generation_is_compared_with_prior_recorded_settings(self):
+        self.manifests[1]["model"] = {**self.models["4B"],
+            "decoding": {**self.models["4B"]["decoding"], "seed": 99}}
+        self.save_run(1)
+        with self.assertRaisesRegex(ValueError, "generation settings"):
+            self.audit()
+        self.manifests[1]["model"]["decoding"].pop("seed")
+        self.save_run(1)
+        with self.assertRaisesRegex(ValueError, "generation settings"):
             self.audit()
 
     def test_naive_timestamp_cannot_be_assumed_utc(self):

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "topic_2daa69320cc14cc989812850",
+    "product_id": "sd-alpha",
+    "statement": "Автоматическая отправка отчета на email"
+  },
+  {
+    "id": "topic_783df10f264d9eb478101124",
+    "product_id": "sd-alpha",
+    "statement": "Добавить кнопку для скачивания всех вложений обращения в ZIP-архив"
+  },
+  {
+    "id": "topic_44d9675798f590f72fb4f3f3",
+    "product_id": "sd-alpha",
+    "statement": "Добавить журнал изменений ролей сотрудников"
+  },
+  {
+    "id": "topic_239aab5e2bb78ccca93c5a79",
+    "product_id": "sd-alpha",
+    "statement": "Автоматическая пауза SLA при статусе «Ждем клиента»"
+  },
+  {
+    "id": "topic_8ae10b268768313cd8ce58fd",
+    "product_id": "sd-alpha",
+    "statement": "Добавить темную тему интерфейса"
+  },
+  {
+    "id": "topic_cfe26f16dc5894ea2988be03",
+    "product_id": "sd-alpha",
+    "statement": "Добавить отдельную громкость звонка и отдельную громкость звука нового сообщения чата"
+  },
+  {
+    "id": "topic_3b1b413fa3800146cbfe96fc",
+    "product_id": "sd-alpha",
+    "statement": "Добавить отложенную отправку ответа клиенту"
+  },
+  {
+    "id": "topic_dc1e6d69174843e366778086",
+    "product_id": "sd-alpha",
+    "statement": "Автоматическая выгрузка отчета по очередям на SFTP каждую ночь"
+  },
+  {
+    "id": "topic_d5ae6604daee890ca4fc233a",
+    "product_id": "sd-alpha",
+    "statement": "Добавить журнал входов сотрудников с информацией о времени, IP и успешности входа"
+  },
+  {
+    "id": "topic_ceb02cfd00d74fbb14524724",
+    "product_id": "sd-alpha",
+    "statement": "Добавить календарь выходных для SLA"
+  },
+  {
+    "id": "topic_abfae825ff00b19059d3802a",
+    "product_id": "sd-alpha",
+    "statement": "Добавить возврат удаленной очереди из корзины в течение 7 дней"
+  },
+  {
+    "id": "topic_73e0d42b4862ba48a1a1a89e",
+    "product_id": "sd-alpha",
+    "statement": "Добавьте импорт клиентов из XLSX"
+  },
+  {
+    "id": "topic_8006c7b7d4dcc0faebcb080a",
+    "product_id": "sd-alpha",
+    "statement": "Добавить возможность переименовывать сохраненные фильтры без их пересоздания"
+  },
+  {
+    "id": "topic_d306f45fa7ddc2b06a13da20",
+    "product_id": "sd-alpha",
+    "statement": "Включить SSO через OIDC"
+  },
+  {
+    "id": "topic_989000e28800a996e4030014",
+    "product_id": "sd-alpha",
+    "statement": "Добавить новый способ входа SSO по SAML 2.0"
+  },
+  {
+    "id": "topic_c222e5935bf7f97562515318",
+    "product_id": "sd-alpha",
+    "statement": "Добавить событие смены очереди для webhook"
+  }
+]

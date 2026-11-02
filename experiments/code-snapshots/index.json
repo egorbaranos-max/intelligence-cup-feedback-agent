@@ -58,7 +58,8 @@
         "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
       },
       "runs": [
-        "fresh_probe/runs/run-05"
+        "fresh_probe/runs/run-05",
+        "holdout_v2/runs/run-03"
       ]
     },
     {

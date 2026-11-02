@@ -1,0 +1,96 @@
+{
+  "status": "verified",
+  "kind": "offline protocol and recorded evidence consistency",
+  "protocol_sha256": "90151b4278a8bbf125897d72e58916262ec66158f0d769a7a62a599b0b8d7189",
+  "candidate_commit": "ca055d170d674a44109aa456a358a13e825f1532",
+  "baseline_commit": "a76c2753569185588eda8be50c8f9433374e7ca1",
+  "protocol_recorded_at": "2026-11-02T22:06:18.430589+00:00",
+  "frozen_source_files_verified": 20,
+  "runs": [
+    {
+      "path": "runs/run-01",
+      "role": "primary comparator",
+      "model_id": "Qwen/Qwen3-4B-MLX-4bit",
+      "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+      "manifest_sha256": "14cdc35860b9d15f5a82e2f9c8f8a1ecfc304b767c5bd43e26e35758d83b5a8c",
+      "started_at": "2026-11-02T22:06:44.734450+00:00",
+      "finished_at": "2026-11-02T22:17:29.953367+00:00",
+      "input_and_expectation_hashes_match": true,
+      "runtime_code_inventory_matches": true,
+      "recorded_model_file_inventory_matches": true,
+      "output_hashes_match": true,
+      "all_48_source_ids_present": true,
+      "source_order_matches": true,
+      "recorded_generation_matches_prior_reference": true,
+      "recorded_common_generation_settings": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "seed": 42,
+        "per_call_seed": "seed + zero-based call index",
+        "enable_thinking": false
+      }
+    },
+    {
+      "path": "runs/run-02",
+      "role": "primary candidate",
+      "model_id": "Qwen/Qwen3-4B-MLX-4bit",
+      "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+      "manifest_sha256": "807d0c74dca51bedbe071ff21b06f47835bf46f2c6958a6043d421062100b265",
+      "started_at": "2026-11-02T22:17:50.900270+00:00",
+      "finished_at": "2026-11-02T22:39:18.326581+00:00",
+      "input_and_expectation_hashes_match": true,
+      "runtime_code_inventory_matches": true,
+      "recorded_model_file_inventory_matches": true,
+      "output_hashes_match": true,
+      "all_48_source_ids_present": true,
+      "source_order_matches": true,
+      "recorded_generation_matches_prior_reference": true,
+      "recorded_common_generation_settings": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "seed": 42,
+        "per_call_seed": "seed + zero-based call index",
+        "enable_thinking": false
+      }
+    },
+    {
+      "path": "runs/run-03",
+      "role": "secondary exploratory model comparison",
+      "model_id": "Qwen/Qwen3-8B-MLX-4bit",
+      "revision": "383413e909f3bc5303ce195ebbdf0339c5a1a2a3",
+      "manifest_sha256": "43dc35a8c92688e967439c1eeb379e9d1dc1866403e433e3198a7da492f96577",
+      "started_at": "2026-11-02T22:39:44.677638+00:00",
+      "finished_at": "2026-11-02T23:14:13.185078+00:00",
+      "input_and_expectation_hashes_match": true,
+      "runtime_code_inventory_matches": true,
+      "recorded_model_file_inventory_matches": true,
+      "output_hashes_match": true,
+      "all_48_source_ids_present": true,
+      "source_order_matches": true,
+      "recorded_generation_matches_prior_reference": true,
+      "recorded_common_generation_settings": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "seed": 42,
+        "per_call_seed": "seed + zero-based call index",
+        "enable_thinking": false
+      }
+    }
+  ],
+  "git_evidence": {
+    "status": "verified",
+    "commit": "fde343c0f11445236d3c51467dba792c7a078fb1",
+    "blob_sha256": "90151b4278a8bbf125897d72e58916262ec66158f0d769a7a62a599b0b8d7189"
+  },
+  "limitations": [
+    "Timestamps are recorded claims, not independent time attestation.",
+    "Hashes establish consistency, not who operated the model or semantic correctness.",
+    "Model binaries are not downloaded or rehashed here; pinned metadata and prior recorded file inventories are compared.",
+    "Common generation settings are compared post hoc with pre-freeze recorded manifests; these values were not separately predeclared in protocol.json.",
+    "Exact runtime source ZIPs and saved evaluation equality are audited separately by check_live_runs.py.",
+    "Optional Git availability can differ between a checkout and an extracted ZIP; it does not affect offline checks."
+  ]
+}

@@ -14,6 +14,7 @@ PROTOCOL_SHA256 = "90151b4278a8bbf125897d72e58916262ec66158f0d769a7a62a599b0b8d7
 PROTOCOL_COMMIT = "fde343c0f11445236d3c51467dba792c7a078fb1"
 MODEL_KEYS = {"4B": "live-qwen-model.json", "8B": "live-qwen-8b-model.json"}
 MODEL_REFERENCES = {"4B": "live_qwen/runs/run-03", "8B": "fresh_probe/runs/run-05"}
+COMMON_GENERATION_KEYS = ("temperature", "top_p", "top_k", "seed", "per_call_seed", "enable_thinking")
 
 
 def digest(path):
@@ -104,6 +105,10 @@ def verify(root, *, expected_protocol_sha=PROTOCOL_SHA256):
         reference = read(root / "experiments" / MODEL_REFERENCES[model_name] / "manifest.json")
         if not model.get("files") or model["files"] != reference["model"]["files"]:
             raise ValueError("Recorded model-file inventory differs from the pre-freeze reference")
+        decoding, prior_decoding = model.get("decoding", {}), reference["model"].get("decoding", {})
+        if any(key not in decoding or key not in prior_decoding
+               or decoding[key] != prior_decoding[key] for key in COMMON_GENERATION_KEYS):
+            raise ValueError("Recorded generation settings differ from the pre-freeze reference")
         start, end = utc_stamp(manifest["started_at"]), utc_stamp(manifest["finished_at"])
         if not frozen_at < start <= end or start < previous_end:
             raise ValueError("Run chronology contradicts the frozen sequential protocol")
@@ -117,13 +122,17 @@ def verify(root, *, expected_protocol_sha=PROTOCOL_SHA256):
         result_rows = [json.loads(line) for line in (run / "results.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
         if len(result_rows) != 48 or {r["source_id"] for r in result_rows} != {s["id"] for s in sources}:
             raise ValueError("Completed run does not account for all frozen source IDs")
+        if [r["source_id"] for r in result_rows] != [s["id"] for s in sources]:
+            raise ValueError("Completed run source order differs from the frozen input order")
         rows.append({"path": str(relative), "role": specification["role"],
             "model_id": model["model_id"], "revision": model["revision"],
             "manifest_sha256": digest(run / "manifest.json"),
             "started_at": manifest["started_at"], "finished_at": manifest["finished_at"],
             "input_and_expectation_hashes_match": True, "runtime_code_inventory_matches": True,
             "recorded_model_file_inventory_matches": True, "output_hashes_match": True,
-            "all_48_source_ids_present": True})
+            "all_48_source_ids_present": True, "source_order_matches": True,
+            "recorded_generation_matches_prior_reference": True,
+            "recorded_common_generation_settings": {key: decoding[key] for key in COMMON_GENERATION_KEYS}})
     return {"status": "verified", "kind": "offline protocol and recorded evidence consistency",
         "protocol_sha256": expected_protocol_sha, "candidate_commit": protocol["candidate_commit"],
         "baseline_commit": protocol["baseline_commit"], "protocol_recorded_at": protocol["recorded_before_inference_at_utc"],
@@ -132,6 +141,7 @@ def verify(root, *, expected_protocol_sha=PROTOCOL_SHA256):
         "limitations": ["Timestamps are recorded claims, not independent time attestation.",
             "Hashes establish consistency, not who operated the model or semantic correctness.",
             "Model binaries are not downloaded or rehashed here; pinned metadata and prior recorded file inventories are compared.",
+            "Common generation settings are compared post hoc with pre-freeze recorded manifests; these values were not separately predeclared in protocol.json.",
             "Exact runtime source ZIPs and saved evaluation equality are audited separately by check_live_runs.py.",
             "Optional Git availability can differ between a checkout and an extracted ZIP; it does not affect offline checks."]}
 
