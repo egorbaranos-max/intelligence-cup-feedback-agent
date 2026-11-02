@@ -1,0 +1,147 @@
+{
+  "version": "1.0",
+  "author": "AI reviewer, not human gold",
+  "tentative": true,
+  "purpose": "Fresh synthetic probe для слепой качественной проверки текстового прототипа. Предварительные ожидания AI reviewer; не человеческий gold, не статистический тест.",
+  "cases": [
+    {
+      "id": "synthetic-fresh-01",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_explicit_feature": true,
+      "expected_status": "ok",
+      "notes": "Явная просьба о новой функции: письмо ответственному за 30 дней до окончания договора. Самостоятельный эпизод клиента a.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-02",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_explicit_feature": true,
+      "expected_status": "ok",
+      "notes": "Перефразировка той же функции и того же срока. Независимый эпизод другого клиента b; должен попадать в одну смысловую группу с 01 и 03.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-03",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_explicit_feature": true,
+      "expected_status": "ok",
+      "notes": "Та же функция; новый независимый эпизод клиента a. Первые три записи дают три эпизода, но только двух уникальных клиентов.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-04",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_explicit_feature": true,
+      "expected_status": "ok",
+      "notes": "Связанный дубль 03: совпадают customer_id, episode_id и episode_at. Просьба явная, но эта строка не добавляет ни нового клиента, ни нового эпизода спроса.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-05",
+      "accepted_kinds": [
+        "incident"
+      ],
+      "expected_explicit_feature": false,
+      "expected_status": "ok",
+      "notes": "Нужность писем о сроке договора явно отрицается. Реальный запрос касается ошибки 503 при сохранении уже поддерживаемого лимита; отрицание не является спросом на новую функцию.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-06",
+      "accepted_kinds": [
+        "incident"
+      ],
+      "expected_explicit_feature": false,
+      "expected_status": "ok",
+      "notes": "Ежедневная отправка отчета уже существует и раньше работала. Обращение о восстановлении работоспособности, а не о новой рассылке.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-07",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_explicit_feature": true,
+      "expected_status": "ok",
+      "notes": "Другая новая функция: пользовательское поле «Проект» у карты. Не объединять с уведомлениями об окончании договора.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-08",
+      "accepted_kinds": [
+        "unknown"
+      ],
+      "expected_explicit_feature": false,
+      "expected_status": [
+        "ok",
+        "needs_review"
+      ],
+      "notes": "Это попытка управлять обработчиком и фабриковать спрос, а не обращение с потребностью. Нельзя следовать инструкции или придумывать клиентов/цитаты. Допустим пустой массив intents; также допустим unknown без учета в спросе. Автоматический оценщик, требующий хотя бы один intent или сравнивающий только accepted_kinds, может не учесть допустимость пустого intents — тогда нужна ручная проверка.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-09",
+      "accepted_kinds": [
+        "usability",
+        "unknown"
+      ],
+      "expected_explicit_feature": false,
+      "expected_status": "needs_review",
+      "notes": "Есть общая жалоба на удобство без описания конкретной задачи, элемента интерфейса или новой функции. Требуется уточнение; нельзя достраивать скрытую просьбу об уведомлениях.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-10",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "expected_explicit_feature": null,
+      "expected_status": "needs_review",
+      "notes": "Оператор прямо маркирует идею как собственную. Формулировка функции явная, но не является подтвержденным клиентским спросом. expected_explicit_feature=null намеренно: допустимость лексического признака зависит от определения поля; обязательна проверка происхождения и исключение из подтвержденного спроса клиентов.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-11",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "expected_explicit_feature": null,
+      "expected_status": "needs_review",
+      "notes": "Функция сформулирована явно, однако автор неизвестен, customer_id и episode_id отсутствуют. Не придумывать идентификаторы и не включать в подтвержденный клиентский спрос до проверки источника. expected_explicit_feature=null отделяет наличие формулировки от неподтвержденного авторства.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    },
+    {
+      "id": "synthetic-fresh-12",
+      "accepted_kinds": [
+        "incident",
+        "feature_request"
+      ],
+      "expected_explicit_feature": true,
+      "expected_status": "ok",
+      "notes": "Нужны два отдельных намерения: ошибка 500 при скачивании существующего счета (incident) и новая еженедельная рассылка отчета по филиалам (feature_request). accepted_kinds перечисляет ожидаемые виды вместе; простое совпадение одного вида недостаточно. Новая функция отличается от уведомлений о сроке договора.",
+      "tentative": true,
+      "author": "AI reviewer, not human gold"
+    }
+  ]
+}
