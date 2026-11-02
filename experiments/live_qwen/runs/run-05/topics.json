@@ -1,0 +1,17 @@
+[
+  {
+    "id": "topic_741ed1fb0c5157c7a6db155e",
+    "product_id": "webneft",
+    "statement": "Просьба добавить возможность выгрузки списка заказов в CSV"
+  },
+  {
+    "id": "topic_754a05dbc06ea9ab517423ed",
+    "product_id": "webneft",
+    "statement": "Неудобство вручную переписывать номера и суммы"
+  },
+  {
+    "id": "topic_e01c7f5439ff1816856ac4d5",
+    "product_id": "webneft",
+    "statement": "Добавить уведомление за сутки до окончания срока действия договора"
+  }
+]

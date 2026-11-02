@@ -95,11 +95,16 @@ def evaluate_verification(calls, results, source_map, validated, manifest):
         return None
     # New verification runs must bind the verifier contract to recorded source.
     # Old runs without this stage keep exactly their original report structure.
-    recorded = manifest.get("code_sha256", {}).get("agent/verifier.py",
-        manifest.get("code_sha256", {}).get("verifier.py"))
-    if not recorded or recorded != sha(ROOT / "agent" / "verifier.py"):
-        raise ValueError("Missing or changed verifier source after run: verifier.py")
-    from agent.verifier import verification_messages, validate_verification
+    v2 = manifest.get("contract_version") == "text-spans-v2"
+    filename = "verifier_v2.py" if v2 else "verifier.py"
+    recorded = manifest.get("code_sha256", {}).get("agent/" + filename,
+        manifest.get("code_sha256", {}).get(filename))
+    if not recorded or recorded != sha(ROOT / "agent" / filename):
+        raise ValueError(f"Missing or changed verifier source after run: {filename}")
+    if v2:
+        from agent.verifier_v2 import verification_messages, validate_verification
+    else:
+        from agent.verifier import verification_messages, validate_verification
 
     counts = {name: 0 for name in ("supported", "unsupported", "unclear", "invalid")}
     details, seen = [], set()
@@ -154,6 +159,14 @@ def evaluate(run_path, inputs_path, expectations_path):
     """Pure post-run read and deterministic comparisons; write nothing here."""
     run_path, inputs_path, expectations_path = map(Path, (run_path, inputs_path, expectations_path))
     manifest = load(run_path / "manifest.json")
+    version = manifest.get("contract_version")
+    if version not in {None, "text-spans-v2"}:
+        raise ValueError(f"Unsupported saved contract version: {version}")
+    v2 = version == "text-spans-v2"
+    if v2:
+        from agent.pipeline import validate_extraction, validate_matching
+    else:
+        from agent.pipeline_v1 import validate_extraction, validate_matching
     if manifest.get("status") not in {"complete", "failed"}:
         raise ValueError("Only a finished or failed saved run may be evaluated")
     if manifest.get("inputs_sha256") != sha(inputs_path):
@@ -169,8 +182,18 @@ def evaluate(run_path, inputs_path, expectations_path):
     name = "pipeline.py"
     recorded = manifest.get("code_sha256", {}).get("agent/" + name,
         manifest.get("code_sha256", {}).get(name))
-    if recorded and recorded != sha(ROOT / "agent" / name):
+    # Historical source is preserved byte-for-byte in pipeline_v1.py. Its
+    # original manifest still names pipeline.py; never rewrite that evidence.
+    local_name = name if v2 else "pipeline_v1.py"
+    if recorded and recorded != sha(ROOT / "agent" / local_name):
         raise ValueError(f"Validator source changed after run: {name}")
+    if v2:
+        for name in ("pipeline.py", "spans.py", "verifier_v2.py"):
+            if manifest.get("code_sha256", {}).get("agent/" + name) != sha(ROOT / "agent" / name):
+                raise ValueError(f"Missing or changed v2 validator source after run: {name}")
+        for filename, digest in manifest.get("output_sha256", {}).items():
+            if Path(filename).name != filename or sha(run_path / filename) != digest:
+                raise ValueError(f"Saved output SHA-256 differs: {filename}")
 
     sources = lines(inputs_path)
     source_map = indexed(sources, "id", "inputs")
@@ -300,7 +323,8 @@ def evaluate(run_path, inputs_path, expectations_path):
             authorship_violations.append(identifier)
         for intent in model_intents(raw):
             refs = intent.get("evidence_refs", [])
-            if isinstance(refs, list) and any(not isinstance(r, dict) or r.get("id") != identifier for r in refs):
+            if isinstance(refs, list) and any(not isinstance(r, dict) or
+                    (r.get("id") != identifier and not (v2 and set(r) == {"span_id"})) for r in refs):
                 invention_violations.append(identifier)
         def walk(value):
             if isinstance(value, dict):
@@ -354,6 +378,11 @@ def evaluate(run_path, inputs_path, expectations_path):
         "disagreements": [d for d in details if not d["matched_preliminary_expectation"]]}
     if verification is not None:
         report["verification_contracts"] = verification
+    if v2:
+        from scripts.evaluate_semantics import evaluate_semantics
+        report["contract_version"] = version
+        report["provisional_semantics"] = evaluate_semantics(
+            run_path, source_map, expected, expectations.get("themes"), results, validated, manifest)
     return report
 
 
@@ -363,6 +392,27 @@ def markdown(report):
            "|---|---:|---:|---:|---:|"]
     for label, s in report["summary"].items():
         out.append(f"| {label} | {s['sources']} | {s['processed']} | {s['valid_extraction_contracts']} | {s['matched_preliminary_expectations']} |")
+    if "provisional_semantics" in report:
+        semantic = report["provisional_semantics"]
+        s = semantic["summary"]
+        out += ["", "## Что показывает этот запуск", "",
+            "Проверка формата и цитат отделена от сравнения смысла. Метки составлены ИИ и требуют независимой проверки людьми; это не оценка точности на рабочих данных.", "",
+            "| Проверка | Результат |", "|---|---:|",
+            f"| Обращений; формат и ссылки на цитаты приняты | {s['sources']}; {s['valid_extraction_contracts']} |",
+            f"| Обращений в очереди ручного разбора | {s['review_queue_sources']} |",
+            f"| Карточек передано в локальную очередь | {s['delivered_local_cards']} |",
+            f"| Из них согласуются с предварительными метками | {s['delivered_cards_supported_by_provisional_labels']} |",
+            f"| Из них противоречат предварительным меткам | {s['delivered_cards_contradicting_provisional_labels']} |",
+            f"| Из них пока нельзя оценить | {s['delivered_cards_unscored']} |",
+            f"| Ожидалось повторяющихся тем; пропущены или не подтверждены | {s['expected_recurring_themes']}; {s['recurring_themes_missed_or_unconfirmed']} |", "",
+            "Отсутствие отправленных карточек не считается успехом: агент может пропустить все настоящие пожелания. Совпадение цитаты и класса также не проверяет точность пересказа модели.", "",
+            f"Подробные метки намерений доступны для {s['sources_with_intent_labels']} из {s['sources']} обращений. Совпали по цитате и классу {s['expected_intents_evidence_and_class_matched']} из {s['expected_intents']} размеченных намерений. Не имеющие такой разметки примеры не включаются в этот показатель.", "",
+            "[Все обращения и ответы](report.html) · [Полный машинный отчёт](evaluation.json) · [Исходные ответы модели](calls.jsonl) · [Очередь разбора](review-queue.json)", ""]
+        for card in semantic["cards"]:
+            out.append(f"- Карточка `{card['actual_topic_id']}`: {card['assessment']}; доставлена: {card['delivered']}; тема по меткам: `{card['provisional_theme_id']}`.")
+        for theme in semantic["themes"]:
+            if theme["missed_or_unconfirmed"]:
+                out.append(f"- Пропущена или не подтверждена повторяющаяся тема `{theme['topic_id']}`: {theme['independent_episodes']} эпизодов, {theme['known_customers']} клиентов.")
     out += ["", "Model statuses and classes:", ""]
     for label, s in report["summary"].items():
         out.append(f"- {label}: statuses `{json.dumps(s['model_statuses'], ensure_ascii=False)}`; class presence `{json.dumps(s['model_kind_presence'], ensure_ascii=False)}`.")

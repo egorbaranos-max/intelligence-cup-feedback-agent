@@ -1,0 +1,22 @@
+[
+  {
+    "id": "topic_741ed1fb0c5157c7a6db155e",
+    "product_id": "webneft",
+    "statement": "Просьба добавить возможность выгрузки списка заказов в CSV"
+  },
+  {
+    "id": "topic_3839e39bd1e51bcb8ba0cd03",
+    "product_id": "webneft",
+    "statement": "Добавление функции скачивания счетов на оплату в CSV"
+  },
+  {
+    "id": "topic_159b92babf5e23e2f3c0b36e",
+    "product_id": "webneft",
+    "statement": "Не требуется реестр заказов"
+  },
+  {
+    "id": "topic_5d935de50fb483b68ef937bd",
+    "product_id": "webneft",
+    "statement": "Потеря информации о просмотренных заказах"
+  }
+]

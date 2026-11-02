@@ -11,13 +11,16 @@ def main():
     parser.add_argument("--cache", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--revision", help="Commit SHA; omit only to resolve the first experiment")
+    parser.add_argument("--model-id", default="Qwen/Qwen3-4B-MLX-4bit",
+                        choices=["Qwen/Qwen3-4B-MLX-4bit", "Qwen/Qwen3-8B-MLX-4bit"],
+                        help="Official public Qwen snapshot; no case data is sent")
     args = parser.parse_args()
     os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
     os.environ["HF_HUB_DISABLE_IMPLICIT_TOKEN"] = "1"
     os.environ["HF_HOME"] = str(args.cache.resolve() / "hf-home")
     os.environ["HF_HUB_DISABLE_XET"] = "1"
     from huggingface_hub import HfApi, snapshot_download
-    model_id = "Qwen/Qwen3-4B-MLX-4bit"
+    model_id = args.model_id
     info = HfApi().model_info(model_id, revision=args.revision, token=False)
     revision = info.sha
     print(json.dumps({"model_id": model_id, "revision": revision}), flush=True)

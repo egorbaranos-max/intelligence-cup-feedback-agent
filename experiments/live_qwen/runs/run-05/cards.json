@@ -1,0 +1,116 @@
+[
+  {
+    "topic_id": "topic_741ed1fb0c5157c7a6db155e",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Просьба добавить возможность выгрузки списка заказов в CSV",
+    "decision": "new",
+    "raw_sources": 4,
+    "independent_episodes": 3,
+    "known_customers": 2,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 65,
+        "quote": "Добавьте, пожалуйста, возможность выгружать список заказов в CSV.",
+        "source_id": "syn-01",
+        "source_version": 1,
+        "digest": "34b36ad381e7be8100eb91327ac52695cc1a4853b841661c38ac7a19e105c236",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 105,
+        "quote": "Хочу скачивать реестр заказов в формате CSV: номер заказа, дата и сумма должны быть в отдельных колонках.",
+        "source_id": "syn-03",
+        "source_version": 1,
+        "digest": "0f17d41113ae7d2f399816a84b484cfc1aa41b30c553708547ae214f56e3ffa5",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 80,
+        "quote": "Еще раз пишу по тому же обращению: прошу добавить выгрузку списка заказов в CSV.",
+        "source_id": "syn-04",
+        "source_version": 1,
+        "digest": "990bb4f5e6d6cd9aad13a41dfedbc357fda44f9207a5e988890fc9197c561a56",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 44,
+        "quote": "Прошу добавить экспорт списка заказов в CSV.",
+        "source_id": "syn-08",
+        "source_version": 1,
+        "digest": "d2e7f20c63a5a393058d5eede87dd14befb5eac6a937015b52799064f5ed6002",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_754a05dbc06ea9ab517423ed",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Неудобство вручную переписывать номера и суммы",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 66,
+        "end": 110,
+        "quote": "Сейчас я переписываю номера и суммы вручную.",
+        "source_id": "syn-01",
+        "source_version": 1,
+        "digest": "34b36ad381e7be8100eb91327ac52695cc1a4853b841661c38ac7a19e105c236",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_e01c7f5439ff1816856ac4d5",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Добавить уведомление за сутки до окончания срока действия договора",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 0,
+    "known_customers": 0,
+    "sources_with_unknown_customer": 1,
+    "sources_with_unknown_episode": 1,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 67,
+        "quote": "Добавьте уведомление за сутки до окончания срока действия договора.",
+        "source_id": "syn-16",
+        "source_version": 1,
+        "digest": "991da23ddca43c204af89443803f2cd14239702c2dfe3b90da2e13877904beb7",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

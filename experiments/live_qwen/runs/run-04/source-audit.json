@@ -1,0 +1,322 @@
+[
+  {
+    "source_id": "case-01",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-02",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-03",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-04",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-05",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-06",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-07",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-01",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "new"
+    ],
+    "topic_ids": [
+      "topic_741ed1fb0c5157c7a6db155e"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-02",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "not_eligible"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-03",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-04",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-05",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "not_eligible",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-06",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "not_eligible",
+      "not_eligible"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-07",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-08",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "matched"
+    ],
+    "topic_ids": [
+      "topic_741ed1fb0c5157c7a6db155e"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-09",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-10",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "new",
+      "new"
+    ],
+    "topic_ids": [
+      "topic_159b92babf5e23e2f3c0b36e",
+      "topic_3839e39bd1e51bcb8ba0cd03"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-11",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "not_eligible",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-12",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-13",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-14",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-15",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "matched",
+      "new"
+    ],
+    "topic_ids": [
+      "topic_5d935de50fb483b68ef937bd",
+      "topic_741ed1fb0c5157c7a6db155e"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-16",
+    "review_required": true,
+    "review_reasons": [
+      "invalid_extraction_contract"
+    ],
+    "extraction_status": "invalid",
+    "intent_count": null,
+    "assignment_statuses": [],
+    "topic_ids": [],
+    "counting": "blocked: invalid model response",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  }
+]

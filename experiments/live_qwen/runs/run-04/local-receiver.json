@@ -1,0 +1,51 @@
+[
+  {
+    "topic_id": "topic_741ed1fb0c5157c7a6db155e",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Просьба добавить возможность выгрузки списка заказов в CSV",
+    "decision": "new",
+    "raw_sources": 3,
+    "independent_episodes": 3,
+    "known_customers": 3,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 65,
+        "quote": "Добавьте, пожалуйста, возможность выгружать список заказов в CSV.",
+        "source_id": "syn-01",
+        "source_version": 1,
+        "digest": "34b36ad381e7be8100eb91327ac52695cc1a4853b841661c38ac7a19e105c236",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 44,
+        "quote": "Прошу добавить экспорт списка заказов в CSV.",
+        "source_id": "syn-08",
+        "source_version": 1,
+        "digest": "d2e7f20c63a5a393058d5eede87dd14befb5eac6a937015b52799064f5ed6002",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 70,
+        "quote": "Чтобы найти номер заказа, приходится открывать каждую строку отдельно.",
+        "source_id": "syn-15",
+        "source_version": 1,
+        "digest": "db4f4ee22b50864a48083c4c8733610c4cf05d489cbf8c521534d10aa8de15b9",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

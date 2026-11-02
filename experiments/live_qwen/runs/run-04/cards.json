@@ -1,0 +1,132 @@
+[
+  {
+    "topic_id": "topic_741ed1fb0c5157c7a6db155e",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Просьба добавить возможность выгрузки списка заказов в CSV",
+    "decision": "new",
+    "raw_sources": 3,
+    "independent_episodes": 3,
+    "known_customers": 3,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 65,
+        "quote": "Добавьте, пожалуйста, возможность выгружать список заказов в CSV.",
+        "source_id": "syn-01",
+        "source_version": 1,
+        "digest": "34b36ad381e7be8100eb91327ac52695cc1a4853b841661c38ac7a19e105c236",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 44,
+        "quote": "Прошу добавить экспорт списка заказов в CSV.",
+        "source_id": "syn-08",
+        "source_version": 1,
+        "digest": "d2e7f20c63a5a393058d5eede87dd14befb5eac6a937015b52799064f5ed6002",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 70,
+        "quote": "Чтобы найти номер заказа, приходится открывать каждую строку отдельно.",
+        "source_id": "syn-15",
+        "source_version": 1,
+        "digest": "db4f4ee22b50864a48083c4c8733610c4cf05d489cbf8c521534d10aa8de15b9",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_3839e39bd1e51bcb8ba0cd03",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Добавление функции скачивания счетов на оплату в CSV",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 76,
+        "quote": "Добавьте скачивание счетов на оплату в CSV, с номером счета и сроком оплаты.",
+        "source_id": "syn-10",
+        "source_version": 1,
+        "digest": "b68ba19231c7e098c678078deb15f2f7ef7bdd6f84c48b45163ce75d2591626f",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_159b92babf5e23e2f3c0b36e",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Не требуется реестр заказов",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 77,
+        "end": 105,
+        "quote": "Реестр заказов мне не нужен.",
+        "source_id": "syn-10",
+        "source_version": 1,
+        "digest": "b68ba19231c7e098c678078deb15f2f7ef7bdd6f84c48b45163ce75d2591626f",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_5d935de50fb483b68ef937bd",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Потеря информации о просмотренных заказах",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 71,
+        "end": 114,
+        "quote": "Я постоянно теряю, какой заказ уже смотрел.",
+        "source_id": "syn-15",
+        "source_version": 1,
+        "digest": "db4f4ee22b50864a48083c4c8733610c4cf05d489cbf8c521534d10aa8de15b9",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

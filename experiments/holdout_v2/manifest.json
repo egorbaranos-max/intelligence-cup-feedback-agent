@@ -1,0 +1,107 @@
+{
+  "schema_version": "holdout-manifest-v2.0",
+  "frozen_at_utc": "2026-11-02T20:51:22.087665+00:00",
+  "as_of": "2026-11-02T12:00:00Z",
+  "annotation_status": "AI-authored provisional expectations; not human gold",
+  "author": "AI reviewer, not human gold",
+  "tentative": true,
+  "record_count": 48,
+  "intent_count": 54,
+  "positive_record_count": 35,
+  "nonpositive_record_count": 13,
+  "recurring_theme_count": 4,
+  "distinct_candidate_theme_count": 18,
+  "linked_duplicate_groups": 5,
+  "unknown_customer_records": 1,
+  "unknown_episode_records": 1,
+  "unknown_speaker_records": 1,
+  "operator_records": 2,
+  "product_ids": [
+    "sd-alpha",
+    "sd-beta"
+  ],
+  "input_schema": {
+    "required": [
+      "id",
+      "product_id",
+      "text",
+      "speaker"
+    ],
+    "optional": [
+      "customer_id",
+      "episode_id",
+      "episode_at",
+      "product_context",
+      "origin"
+    ],
+    "speaker_values": [
+      "user",
+      "operator",
+      "unknown"
+    ],
+    "date_format": "UTC ISO8601"
+  },
+  "lineage": {
+    "data_type": "Entirely synthetic fictional short Russian support feedback, with limited English code-switching.",
+    "personal_data": "No real people, customers, contacts or personal data used.",
+    "authored_from": "Parent-supplied input schema, task policy and independently designed test scenarios only.",
+    "excluded_sources": [
+      "model implementation",
+      "model prompts",
+      "old datasets",
+      "old expected answers",
+      "model results",
+      "real customer records"
+    ],
+    "implementation_access": "No implementation, prompts, previous datasets or results read during holdout construction.",
+    "label_source": "AI-authored provisional judgments; no human has annotated or approved these labels.",
+    "contamination_boundary": "Before implementation freeze, only paths, counts, hashes and schema are shared with implementation/evaluation coordinator; no case texts or topic answers.",
+    "chronology_note": "Dataset freeze time alone does not prove implementation freeze or blind execution. Coordinator must record code commit/hash and run timestamps separately.",
+    "generating_script": "build_frozen_dataset.py; no model execution or external data retrieval"
+  },
+  "evaluation_caveats": [
+    "Small designed synthetic holdout, not an estimate of real production prevalence or quality.",
+    "Provisional expectations require independent human review before any human-quality or ground-truth claim.",
+    "A first clean run may be used as a holdout result; subsequent tuning on inspected cases converts it into development data.",
+    "Identity ambiguity is kept explicit. No invented identities may satisfy recurrence thresholds.",
+    "All records lie inside the evaluation window; separate boundary-date tests are needed to claim time-window edge coverage."
+  ],
+  "files": {
+    "inputs.jsonl": {
+      "sha256": "93f3551878146ee40aa81df15bc3cb24edb3e637beb7f2754b0fcdfe690223e7",
+      "bytes": 31609
+    },
+    "expectations.json": {
+      "sha256": "fb98601b7221d99eeb7085989d266bb6193091b604747d9c4979a1808f3768d0",
+      "bytes": 63026
+    },
+    "build_frozen_dataset.py": {
+      "sha256": "30a1912b7711c2b6ca2fc222127abe25b7c4ee647082673659b4a40ace2971b1",
+      "bytes": 41760
+    },
+    "ANNOTATION_INSTRUCTIONS.md": {
+      "sha256": "5f47964118be99b874447bb033084105b97788252ca6e6c7b75951341edb4884",
+      "bytes": 13103
+    },
+    "reviewer_a.jsonl": {
+      "sha256": "434896a7b698254b0faf2b4a1a379786a9d78912addcd3a97538caf44f4669e3",
+      "bytes": 12720
+    },
+    "reviewer_b.jsonl": {
+      "sha256": "434896a7b698254b0faf2b4a1a379786a9d78912addcd3a97538caf44f4669e3",
+      "bytes": 12720
+    },
+    "reviewer_a_themes.json": {
+      "sha256": "7613b91dcbec3fdd46cf4986c2513f38cdf4ff27fe408172f7cfbd100b443136",
+      "bytes": 127
+    },
+    "reviewer_b_themes.json": {
+      "sha256": "7613b91dcbec3fdd46cf4986c2513f38cdf4ff27fe408172f7cfbd100b443136",
+      "bytes": 127
+    },
+    "adjudication.jsonl": {
+      "sha256": "c417851e34ae6e7db97a1a236c82f1edcac627a52fc93376d085d6b2701659d9",
+      "bytes": 11280
+    }
+  }
+}

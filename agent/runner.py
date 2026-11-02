@@ -17,7 +17,7 @@ import time
 from demo.case_contract_demo import ContractDemo, Fragment, Source
 from .pipeline import (extraction_messages, validate_extraction, matching_messages,
                        validate_matching, resolve_topic, prepared_contract_payload)
-from .verifier import verification_messages, validate_verification
+from .verifier_v2 import verification_messages, validate_verification
 
 
 def sha(path):
@@ -56,12 +56,15 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
         if source.get("episode_at") and stamp(source["episode_at"]) > stamp(as_of):
             raise ValueError("Source episode is later than replay clock")
     now, begin = stamp(as_of), time.perf_counter()
-    manifest = {"status": "running", "started_at": datetime.now(timezone.utc).isoformat(),
+    manifest = {"status": "running", "contract_version": "text-spans-v2",
+        "started_at": datetime.now(timezone.utc).isoformat(),
         "as_of": as_of, "inputs_sha256": sha(inputs_path), "source_count": len(sources),
         "model": backend.provenance, "pre_run_artifact_sha256": before_run_hashes or {},
         "code_sha256": {"agent/" + p.name: sha(p) for p in sorted(Path(__file__).parent.glob("*.py"))},
         "limits": ["text only", "no corporate API", "mock local receiver", "no financial validation",
-                   "no human gold", "single ordered batch; matching can depend on input order"]}
+                   "no human gold", "single ordered batch; matching can depend on input order",
+                   "model verification is not human approval",
+                   "source-level review conservatively holds all intents in that source"]}
     contract_code = Path(__file__).resolve().parents[1] / "demo" / "case_contract_demo.py"
     manifest["code_sha256"]["demo/case_contract_demo.py"] = sha(contract_code)
     version_seed = json.dumps({"code": manifest["code_sha256"], "model": backend.provenance}, sort_keys=True)
@@ -70,6 +73,7 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
     demo = ContractDemo(now=now)
     demo.grant("local-reviewer", {s["product_id"] for s in sources})
     topics, results, call_count = [], [], 0
+    review_queue, source_audit = [], []
 
     def invoke(stage, source_id, messages, limit, intent_id=None):
         nonlocal call_count
@@ -152,6 +156,40 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
                     result["counting"] = "held for review or no intents"
             else:
                 result["counting"] = "blocked: invalid model response"
+            # Keep all nonautomatic outcomes visible. The audit includes even
+            # apparently ordinary incidents/operations so false negatives can
+            # be sampled; the review queue is not an estimate of model quality.
+            review_reasons = []
+            if not extracted.ok:
+                review_reasons.append("invalid_extraction_contract")
+            elif extracted.value["status"] == "needs_review":
+                review_reasons.append("source_requires_review")
+            if any(a["status"] == "needs_review" for a in result["assignments"]):
+                review_reasons.append("intent_requires_review")
+            if any(a["topic_id"] for a in result["assignments"]):
+                if source.get("episode_at") is None:
+                    review_reasons.append("missing_episode_time")
+                if source.get("episode_id") is None or source.get("customer_id") is None:
+                    review_reasons.append("missing_recurrence_identity")
+            audit = {"source_id": source["id"], "review_required": bool(review_reasons),
+                     "review_reasons": review_reasons,
+                     "extraction_status": extracted.value["status"] if extracted.ok else "invalid",
+                     "intent_count": len(extracted.value["intents"]) if extracted.ok else None,
+                     "assignment_statuses": [a["status"] for a in result["assignments"]],
+                     "topic_ids": sorted({a["topic_id"] for a in result["assignments"] if a["topic_id"]}),
+                     "counting": result["counting"],
+                     "audit_note": "All categories need human sampling to discover missed wishes"}
+            source_audit.append(audit)
+            result["review_required"] = bool(review_reasons)
+            result["review_reasons"] = review_reasons
+            if review_reasons:
+                review_queue.append({**audit, "source_text": source["text"],
+                    "product_id": source["product_id"], "extraction_call": result["extraction_call"],
+                    "errors": extracted.errors})
+            # Save incrementally: a later backend failure must not erase the
+            # manual-review backlog or already-completed source dispositions.
+            dump(output_path / "review-queue.json", review_queue)
+            dump(output_path / "source-audit.json", source_audit)
             result["cards_after_source"] = [demo.card("local-reviewer", t["id"]) for t in topics]
             results.append(result)
             with (output_path / "results.jsonl").open("a") as f:
@@ -167,6 +205,8 @@ def run(inputs_path, output_path, backend, as_of, before_run_hashes=None):
         dump(output_path / "local-receiver.json", list(demo.receiver.values()))
         manifest.update(status="complete", call_count=call_count,
             valid_extractions=sum(r["extraction"]["ok"] for r in results),
+            review_required_sources=len(review_queue),
+            audited_sources=len(source_audit),
             delivered_local_cards=len(demo.receiver))
     except Exception as exc:
         manifest.update(status="failed", error_type=type(exc).__name__, error=str(exc), call_count=call_count)

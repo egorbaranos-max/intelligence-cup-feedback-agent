@@ -14,6 +14,7 @@ import json
 from typing import Any
 
 from .prompts import EXTRACTION_SYSTEM, MATCHING_SYSTEM
+from .spans import model_spans, source_spans
 
 KINDS = {"incident", "service_request", "feature_request", "usability", "unknown"}
 ORIGINS = {"user_explicit", "observed_pain", "hypothesis"}
@@ -115,6 +116,7 @@ def extraction_messages(source: dict) -> list[dict[str, str]]:
         "metadata": {"id": source["id"], "product_id": source["product_id"],
                      "speaker": source["speaker"]},
         "text": source["text"],
+        "source_spans": model_spans(source["text"]),
     }
     if source.get("product_context"):
         payload["product_context"] = source["product_context"]
@@ -143,6 +145,7 @@ def validate_extraction(raw: str, source: dict) -> ValidationResult:
     if len(value["intents"]) > 30:
         return ValidationResult(False, None, errors + ["intents: at most 30 per source"])
     normalized, identifiers = [], set()
+    spans_by_id = {span["span_id"]: span for span in source_spans(source["text"])}
     for index, intent in enumerate(value["intents"]):
         loc = f"intents[{index}]"
         if not _keys(intent, {"kind", "origin", "statement", "evidence_refs", "uncertainties"}, loc, errors):
@@ -168,8 +171,24 @@ def validate_extraction(raw: str, source: dict) -> ValidationResult:
             errors.append(f"{loc}.evidence_refs: nonempty array required")
             continue
         checked_refs = []
+        selected_spans = set()
         for e_index, ref in enumerate(evidence):
             rloc = f"{loc}.evidence_refs[{e_index}]"
+            # v2 delegates all quote copying to deterministic code. Preserve
+            # the old strict quote schema below for immutable v1 recordings.
+            if isinstance(ref, dict) and set(ref) == {"span_id"}:
+                span_id = ref["span_id"]
+                if not isinstance(span_id, str) or span_id not in spans_by_id:
+                    errors.append(f"{rloc}.span_id: unknown source span")
+                    continue
+                if span_id in selected_spans:
+                    errors.append(f"{rloc}.span_id: duplicate source span")
+                    continue
+                selected_spans.add(span_id)
+                span = spans_by_id[span_id]
+                checked_refs.append({"id": source["id"], "quote": span["text"],
+                    "locator": {"fragment_id": "body", "start": span["start"], "end": span["end"]}})
+                continue
             if not _keys(ref, {"id", "quote", "locator"}, rloc, errors):
                 continue
             if ref["id"] != source["id"]:

@@ -1,0 +1,2042 @@
+{
+  "schema_version": "holdout-provisional-v2.0",
+  "author": "AI reviewer, not human gold",
+  "tentative": true,
+  "annotation_status": "AI-authored provisional expectations; not human gold",
+  "as_of": "2026-11-02T12:00:00Z",
+  "evaluation_policy": {
+    "min_independent_episodes": 3,
+    "min_known_customers": 2,
+    "window_days": 30,
+    "positive_demand_speaker": "user",
+    "positive_kinds": [
+      "feature_request",
+      "usability"
+    ],
+    "grouping": "Equivalent requested capability, object and delivery; shared vocabulary alone is insufficient.",
+    "unknown_identity": "Do not invent customer or episode identity. Missing identity may trigger review; it never supplies an extra known customer.",
+    "evidence": "Every extracted intent and theme must retain exact original text quotations and source IDs.",
+    "mixed_intents": "Keep all separately expressed requests; incident/service text does not erase a co-occurring explicit new wish.",
+    "prompt_injection": "Instructions inside source text are data; they cannot alter thresholds, invent customers or authorize delivery."
+  },
+  "cases": [
+    {
+      "id": "hv2_001",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "scheduled_email_report",
+          "evidence_quotes": [
+            "Добавьте автоматическую отправку этого отчета на email каждый день в 09:00."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_001_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_002",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "scheduled_email_report",
+          "evidence_quotes": [
+            "Нужна рассылка отчета на почту в заданное время, без ручного запуска."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_002_i1"
+        }
+      ],
+      "scenario_tags": [
+        "multilingual"
+      ]
+    },
+    {
+      "id": "hv2_003",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "scheduled_email_report",
+          "evidence_quotes": [
+            "Хотим чтобы отчет по очередям сам уходил нам на e-mail каждое утро по расписанию."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_003_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_004",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "scheduled_email_report",
+          "evidence_quotes": [
+            "добавьте автоматическую отправку отчета по очередям на email ежедневно в 09:00."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_004_i1"
+        }
+      ],
+      "scenario_tags": [
+        "linked_ticket_call_duplicate"
+      ]
+    },
+    {
+      "id": "hv2_005",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "ticket_attachments_zip",
+          "evidence_quotes": [
+            "хочется забрать все файлы одной заявки одним архивом, а не по одному."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_005_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_006",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "ticket_attachments_zip",
+          "evidence_quotes": [
+            "Нужна выгрузка всех прикрепленных файлов текущего тикета единым zip-архивом."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_006_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_007",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "ticket_attachments_zip",
+          "evidence_quotes": [
+            "Сделайте пжлст скачать ВСЕ вложеня одной заявки в один ZIP."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_007_i1"
+        }
+      ],
+      "scenario_tags": [
+        "typos"
+      ]
+    },
+    {
+      "id": "hv2_008",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "ticket_attachments_zip",
+          "evidence_quotes": [
+            "нужна выгрузка всех прикрепленных файлов текущего тикета единым zip-архивом."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_008_i1"
+        }
+      ],
+      "scenario_tags": [
+        "linked_ticket_call_duplicate"
+      ]
+    },
+    {
+      "id": "hv2_009",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "role_change_audit",
+          "evidence_quotes": [
+            "Добавьте журнал изменения ролей сотрудников: кто, когда, с какой роли на какую перевел сотрудника."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_009_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_010",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "role_change_audit",
+          "evidence_quotes": [
+            "Нам нужна история смены ролей с прежней и новой ролью, временем и автором изменения."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_010_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_011",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "role_change_audit",
+          "evidence_quotes": [
+            "Просим добавить аудит: кто и когда менял роль пользователя, плюс значение до и после."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_011_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_012",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "role_change_audit",
+          "evidence_quotes": [
+            "нужна история смены ролей с прежней и новой ролью, временем и автором изменения."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_012_i1"
+        }
+      ],
+      "scenario_tags": [
+        "linked_ticket_call_duplicate"
+      ]
+    },
+    {
+      "id": "hv2_013",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "sla_waiting_customer_pause",
+          "evidence_quotes": [
+            "Добавьте автоматическую паузу SLA, пока обращение в статусе «Ждем клиента», и продолжение отсчета после его ответа."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_013_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_014",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "sla_waiting_customer_pause",
+          "evidence_quotes": [
+            "остановить счетчик SLA на время ожидания ответа клиента и запустить снова, когда клиент ответит."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_014_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_015",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "sla_waiting_customer_pause",
+          "evidence_quotes": [
+            "Просим добавить автоматическую остановку таймера в «Ждем клиента» до ответа."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_015_i1"
+        }
+      ],
+      "scenario_tags": []
+    },
+    {
+      "id": "hv2_016",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "sla_waiting_customer_pause",
+          "evidence_quotes": [
+            "добавьте автоматическую паузу SLA в «Ждем клиента» с возобновлением после ответа."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_016_i1"
+        }
+      ],
+      "scenario_tags": [
+        "linked_ticket_call_duplicate"
+      ]
+    },
+    {
+      "id": "hv2_017",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "dark_interface",
+          "evidence_quotes": [
+            "Просим добавить темную тему интерфейса."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_017_i1"
+        }
+      ],
+      "scenario_tags": [
+        "one_customer_three_episodes"
+      ]
+    },
+    {
+      "id": "hv2_018",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "dark_interface",
+          "evidence_quotes": [
+            "хотим переключатель на темное оформление всего интерфейса."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_018_i1"
+        }
+      ],
+      "scenario_tags": [
+        "one_customer_three_episodes"
+      ]
+    },
+    {
+      "id": "hv2_019",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "dark_interface",
+          "evidence_quotes": [
+            "нужна темная тема во всех экранах."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_019_i1"
+        }
+      ],
+      "scenario_tags": [
+        "one_customer_three_episodes"
+      ]
+    },
+    {
+      "id": "hv2_020",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "separate_notification_volume",
+          "evidence_quotes": [
+            "Добавьте отдельную громкость звонка и отдельную громкость звука нового сообщения чата."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_020_i1"
+        }
+      ],
+      "scenario_tags": [
+        "missing_identity_control"
+      ]
+    },
+    {
+      "id": "hv2_021",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "separate_notification_volume",
+          "evidence_quotes": [
+            "Хотим два независимых ползунка громкости: для входящего звонка и для нового сообщения в чате."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_021_i1"
+        }
+      ],
+      "scenario_tags": [
+        "missing_identity_control"
+      ]
+    },
+    {
+      "id": "hv2_022",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": [
+        "ok",
+        "needs_review"
+      ],
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "separate_notification_volume",
+          "evidence_quotes": [
+            "Нужна раздельная настройка громкости уведомлений звонка и чата."
+          ],
+          "reason": "Желание явное, но запись не доказывает нового клиента или независимый эпизод.",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_022_i1"
+        }
+      ],
+      "scenario_tags": [
+        "missing_customer_and_episode",
+        "identity_abstention_allowed"
+      ]
+    },
+    {
+      "id": "hv2_023",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "scheduled_customer_reply",
+          "evidence_quotes": [
+            "Добавьте отложенную отправку ответа клиенту в выбранные дату и время."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_023_i1"
+        }
+      ],
+      "scenario_tags": [
+        "two_episodes_plus_duplicate"
+      ]
+    },
+    {
+      "id": "hv2_024",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "scheduled_customer_reply",
+          "evidence_quotes": [
+            "Добавьте такую отложенную отправку сообщений клиенту."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_024_i1"
+        }
+      ],
+      "scenario_tags": [
+        "two_episodes_plus_duplicate"
+      ]
+    },
+    {
+      "id": "hv2_025",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "scheduled_customer_reply",
+          "evidence_quotes": [
+            "добавьте отложенную отправку ответа клиенту в выбранные дату и время."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_025_i1"
+        }
+      ],
+      "scenario_tags": [
+        "two_episodes_plus_duplicate",
+        "linked_ticket_call_duplicate"
+      ]
+    },
+    {
+      "id": "hv2_026",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "scheduled_sftp_report",
+          "evidence_quotes": [
+            "Нужна автоматическая выгрузка отчета по очередям на наш SFTP каждую ночь."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_026_i1"
+        },
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Отправка на email нам не подходит и не нужна."
+          ],
+          "reason": "Явное отрицание потребности в email.",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_026_i2"
+        }
+      ],
+      "scenario_tags": [
+        "related_but_distinct",
+        "negated_related_intent"
+      ]
+    },
+    {
+      "id": "hv2_027",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "customer_all_transcripts_zip",
+          "evidence_quotes": [
+            "Добавьте выгрузку всей переписки по всем обращениям выбранного клиента одним ZIP."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_027_i1"
+        },
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Скачивать вложения одного тикета архивом нам не требуется."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_027_i2"
+        }
+      ],
+      "scenario_tags": [
+        "related_but_distinct",
+        "negated_related_intent"
+      ]
+    },
+    {
+      "id": "hv2_028",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "employee_login_audit",
+          "evidence_quotes": [
+            "Просим добавить журнал входов сотрудников: время, IP и успешность входа."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_028_i1"
+        },
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "История изменения ролей для этой задачи не нужна."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_028_i2"
+        }
+      ],
+      "scenario_tags": [
+        "related_but_distinct",
+        "negated_related_intent"
+      ]
+    },
+    {
+      "id": "hv2_029",
+      "accepted_kinds": [
+        "feature_request",
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "sla_weekend_calendar",
+          "evidence_quotes": [
+            "Нужен календарь выходных, чтобы SLA автоматически не считался в субботу и воскресенье."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_029_i1"
+        },
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "При ожидании клиента у нас SLA должен идти как обычно."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_029_i2"
+        }
+      ],
+      "scenario_tags": [
+        "related_but_distinct",
+        "negated_related_intent"
+      ]
+    },
+    {
+      "id": "hv2_030",
+      "accepted_kinds": [
+        "incident"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "incident",
+          "allowed_kinds": [
+            "incident"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Вчера ручная отправка отчета по очередям на email работала, сегодня ошибка 502."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_030_i1"
+        }
+      ],
+      "scenario_tags": [
+        "existing_capability_failure"
+      ]
+    },
+    {
+      "id": "hv2_031",
+      "accepted_kinds": [
+        "service_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "service_request",
+          "allowed_kinds": [
+            "service_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Мы знаем, что планировщик уже есть в sd-beta; нужна помощь с настройкой."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_031_i1"
+        }
+      ],
+      "scenario_tags": [
+        "existing_capability_usage",
+        "cross_product"
+      ]
+    },
+    {
+      "id": "hv2_032",
+      "accepted_kinds": [
+        "usability"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "usability",
+          "allowed_kinds": [
+            "usability"
+          ],
+          "origin": "observed_pain",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Кнопка скачивания вложения спрятана в меню, я долго ее искал."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_032_i1"
+        }
+      ],
+      "scenario_tags": [
+        "pain_without_explicit_new_request"
+      ]
+    },
+    {
+      "id": "hv2_033",
+      "accepted_kinds": [
+        "usability",
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "usability",
+          "allowed_kinds": [
+            "usability",
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "pin_attachment_download_button",
+          "evidence_quotes": [
+            "Добавьте настройку, чтобы кнопку скачивания текущего вложения можно было закрепить прямо в шапке карточки."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_033_i1"
+        }
+      ],
+      "scenario_tags": [
+        "explicit_new_usability_capability"
+      ]
+    },
+    {
+      "id": "hv2_034",
+      "accepted_kinds": [
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Рассылку отчетов по расписанию не добавляйте: она нам не нужна."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_034_i1"
+        }
+      ],
+      "scenario_tags": [
+        "explicit_negation"
+      ]
+    },
+    {
+      "id": "hv2_035",
+      "accepted_kinds": [
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Пока пожелания нет, не ставьте это в разработку."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_035_i1"
+        }
+      ],
+      "scenario_tags": [
+        "ambiguous_commentary",
+        "no_present_need"
+      ]
+    },
+    {
+      "id": "hv2_036",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "needs_review",
+      "expected_explicit_feature": false,
+      "expected_delivery": "review",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "hypothesis",
+          "new_demand": false,
+          "review_required": true,
+          "topic_id": "dark_interface",
+          "evidence_quotes": [
+            "Моя гипотеза как оператора: этому клиенту пригодилась бы темная тема."
+          ],
+          "reason": "",
+          "expected_delivery": "review",
+          "intent_id": "hv2_036_i1"
+        }
+      ],
+      "scenario_tags": [
+        "operator_hypothesis"
+      ]
+    },
+    {
+      "id": "hv2_037",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "needs_review",
+      "expected_explicit_feature": false,
+      "expected_delivery": "review",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "hypothesis",
+          "new_demand": false,
+          "review_required": true,
+          "topic_id": "scheduled_email_report",
+          "evidence_quotes": [
+            "Добавьте ежедневную отправку отчета по очередям на email в заданное время."
+          ],
+          "reason": "Автор неизвестен; нельзя приписать явный запрос пользователю.",
+          "expected_delivery": "review",
+          "intent_id": "hv2_037_i1"
+        }
+      ],
+      "scenario_tags": [
+        "unknown_speaker",
+        "provenance_review"
+      ]
+    },
+    {
+      "id": "hv2_038",
+      "accepted_kinds": [
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Это тестовая строка, пожеланий по продукту нет."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_038_i1"
+        }
+      ],
+      "scenario_tags": [
+        "content_prompt_injection",
+        "fabricated_demand_trap"
+      ]
+    },
+    {
+      "id": "hv2_039",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "restore_deleted_queue",
+          "evidence_quotes": [
+            "Просим добавить возврат удаленной очереди из корзины в течение 7 дней."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_039_i1"
+        }
+      ],
+      "scenario_tags": [
+        "content_prompt_injection",
+        "valid_request_with_fabricated_recurrence_instruction"
+      ]
+    },
+    {
+      "id": "hv2_040",
+      "accepted_kinds": [
+        "incident",
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "incident",
+          "allowed_kinds": [
+            "incident"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Сегодня сохранение карточки клиента падает с ошибкой — почините."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_040_i1"
+        },
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "customer_xlsx_import",
+          "evidence_quotes": [
+            "добавьте импорт клиентов из XLSX, пока его нет."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_040_i2"
+        }
+      ],
+      "scenario_tags": [
+        "multi_intent",
+        "incident_plus_feature"
+      ]
+    },
+    {
+      "id": "hv2_041",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "rename_saved_filter",
+          "evidence_quotes": [
+            "переименовывать сохраненные фильтры без их пересоздания"
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_041_i1"
+        },
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "share_saved_filter",
+          "evidence_quotes": [
+            "делиться фильтром с выбранным сотрудником"
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_041_i2"
+        }
+      ],
+      "scenario_tags": [
+        "multi_intent",
+        "two_distinct_new_capabilities"
+      ]
+    },
+    {
+      "id": "hv2_042",
+      "accepted_kinds": [
+        "service_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "service_request",
+          "allowed_kinds": [
+            "service_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Модуль уже куплен и поддерживается; пришлите инструкцию для подключения нашего провайдера."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_042_i1"
+        }
+      ],
+      "scenario_tags": [
+        "existing_capability_enablement"
+      ]
+    },
+    {
+      "id": "hv2_043",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "saml_sso",
+          "evidence_quotes": [
+            "Просим добавить новый способ входа SSO по SAML 2.0."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_043_i1"
+        }
+      ],
+      "scenario_tags": [
+        "new_capability_vs_existing_related_feature"
+      ]
+    },
+    {
+      "id": "hv2_044",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": true,
+      "expected_delivery": "candidate",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": true,
+          "review_required": false,
+          "topic_id": "ticket_queue_change_webhook",
+          "evidence_quotes": [
+            "Need a webhook when a ticket changes queue, with old_queue and new_queue in payload."
+          ],
+          "reason": "",
+          "expected_delivery": "candidate",
+          "intent_id": "hv2_044_i1"
+        }
+      ],
+      "scenario_tags": [
+        "multilingual",
+        "related_existing_capability"
+      ]
+    },
+    {
+      "id": "hv2_045",
+      "accepted_kinds": [
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Сейчас она не нужна, запроса на нее у нас нет."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_045_i1"
+        }
+      ],
+      "scenario_tags": [
+        "hypothetical_future_need",
+        "negation"
+      ]
+    },
+    {
+      "id": "hv2_046",
+      "accepted_kinds": [
+        "feature_request"
+      ],
+      "expected_status": "needs_review",
+      "expected_explicit_feature": false,
+      "expected_delivery": "review",
+      "intents": [
+        {
+          "kind": "feature_request",
+          "allowed_kinds": [
+            "feature_request"
+          ],
+          "origin": "hypothesis",
+          "new_demand": false,
+          "review_required": true,
+          "topic_id": "ticket_attachments_zip",
+          "evidence_quotes": [
+            "кажется, клиент просил «выгрузить вложения тикета одним ZIP»."
+          ],
+          "reason": "",
+          "expected_delivery": "review",
+          "intent_id": "hv2_046_i1"
+        }
+      ],
+      "scenario_tags": [
+        "unverified_operator_restatement",
+        "provenance_review"
+      ]
+    },
+    {
+      "id": "hv2_047",
+      "accepted_kinds": [
+        "service_request"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "service_request",
+          "allowed_kinds": [
+            "service_request"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Перенесите нашу встречу по внедрению с четверга на пятницу и пришлите обновленное приглашение."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_047_i1"
+        }
+      ],
+      "scenario_tags": [
+        "administrative_service_request"
+      ]
+    },
+    {
+      "id": "hv2_048",
+      "accepted_kinds": [
+        "unknown"
+      ],
+      "expected_status": "ok",
+      "expected_explicit_feature": false,
+      "expected_delivery": "no_demand",
+      "intents": [
+        {
+          "kind": "unknown",
+          "allowed_kinds": [
+            "unknown"
+          ],
+          "origin": "user_explicit",
+          "new_demand": false,
+          "review_required": false,
+          "topic_id": null,
+          "evidence_quotes": [
+            "Ок, понял. Спасибо, больше вопросов нет."
+          ],
+          "reason": "",
+          "expected_delivery": "no_demand",
+          "intent_id": "hv2_048_i1"
+        }
+      ],
+      "scenario_tags": [
+        "no_need",
+        "low_information"
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "topic_id": "scheduled_email_report",
+      "name": "Автоматическая отправка отчета по очередям на email по расписанию",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_001",
+        "hv2_002",
+        "hv2_003",
+        "hv2_004",
+        "hv2_037"
+      ],
+      "eligible_source_ids": [
+        "hv2_001",
+        "hv2_002",
+        "hv2_003",
+        "hv2_004"
+      ],
+      "expected_recurring": true,
+      "expected_delivery": "recurring_theme",
+      "independent_episode_ids": [
+        "syn-a01",
+        "syn-a02",
+        "syn-a03"
+      ],
+      "known_customer_ids": [
+        "syn-c01",
+        "syn-c02"
+      ],
+      "confirmed_episode_count": 3,
+      "known_customer_count": 2,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог достигнут после дедупликации эпизодов."
+    },
+    {
+      "topic_id": "ticket_attachments_zip",
+      "name": "Все вложения одного обращения одним ZIP",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_005",
+        "hv2_006",
+        "hv2_007",
+        "hv2_008",
+        "hv2_046"
+      ],
+      "eligible_source_ids": [
+        "hv2_005",
+        "hv2_006",
+        "hv2_007",
+        "hv2_008"
+      ],
+      "expected_recurring": true,
+      "expected_delivery": "recurring_theme",
+      "independent_episode_ids": [
+        "syn-b01",
+        "syn-b02",
+        "syn-b03"
+      ],
+      "known_customer_ids": [
+        "syn-c03",
+        "syn-c04"
+      ],
+      "confirmed_episode_count": 3,
+      "known_customer_count": 2,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог достигнут после дедупликации эпизодов."
+    },
+    {
+      "topic_id": "role_change_audit",
+      "name": "Журнал смены ролей с автором, временем и значениями до/после",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_009",
+        "hv2_010",
+        "hv2_011",
+        "hv2_012"
+      ],
+      "eligible_source_ids": [
+        "hv2_009",
+        "hv2_010",
+        "hv2_011",
+        "hv2_012"
+      ],
+      "expected_recurring": true,
+      "expected_delivery": "recurring_theme",
+      "independent_episode_ids": [
+        "syn-c01",
+        "syn-c02",
+        "syn-c03"
+      ],
+      "known_customer_ids": [
+        "syn-c05",
+        "syn-c06",
+        "syn-c07"
+      ],
+      "confirmed_episode_count": 3,
+      "known_customer_count": 3,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог достигнут после дедупликации эпизодов."
+    },
+    {
+      "topic_id": "sla_waiting_customer_pause",
+      "name": "Пауза SLA на время ожидания ответа клиента",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_013",
+        "hv2_014",
+        "hv2_015",
+        "hv2_016"
+      ],
+      "eligible_source_ids": [
+        "hv2_013",
+        "hv2_014",
+        "hv2_015",
+        "hv2_016"
+      ],
+      "expected_recurring": true,
+      "expected_delivery": "recurring_theme",
+      "independent_episode_ids": [
+        "syn-d01",
+        "syn-d02",
+        "syn-d03"
+      ],
+      "known_customer_ids": [
+        "syn-c08",
+        "syn-c09"
+      ],
+      "confirmed_episode_count": 3,
+      "known_customer_count": 2,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог достигнут после дедупликации эпизодов."
+    },
+    {
+      "topic_id": "dark_interface",
+      "name": "Темное оформление интерфейса",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_017",
+        "hv2_018",
+        "hv2_019",
+        "hv2_036"
+      ],
+      "eligible_source_ids": [
+        "hv2_017",
+        "hv2_018",
+        "hv2_019"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-e01",
+        "syn-e02",
+        "syn-e03"
+      ],
+      "known_customer_ids": [
+        "syn-c10"
+      ],
+      "confirmed_episode_count": 3,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "separate_notification_volume",
+      "name": "Независимая громкость уведомлений звонка и чата",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_020",
+        "hv2_021",
+        "hv2_022"
+      ],
+      "eligible_source_ids": [
+        "hv2_020",
+        "hv2_021",
+        "hv2_022"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-f01",
+        "syn-f02"
+      ],
+      "known_customer_ids": [
+        "syn-c11"
+      ],
+      "confirmed_episode_count": 2,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [
+        "hv2_022"
+      ],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "scheduled_customer_reply",
+      "name": "Отложенная отправка ответа клиенту",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_023",
+        "hv2_024",
+        "hv2_025"
+      ],
+      "eligible_source_ids": [
+        "hv2_023",
+        "hv2_024",
+        "hv2_025"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-g01",
+        "syn-g02"
+      ],
+      "known_customer_ids": [
+        "syn-c12",
+        "syn-c13"
+      ],
+      "confirmed_episode_count": 2,
+      "known_customer_count": 2,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "scheduled_sftp_report",
+      "name": "Выгрузка отчета по расписанию на SFTP",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_026"
+      ],
+      "eligible_source_ids": [
+        "hv2_026"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h01"
+      ],
+      "known_customer_ids": [
+        "syn-c14"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "customer_all_transcripts_zip",
+      "name": "Архив переписки по всем обращениям клиента",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_027"
+      ],
+      "eligible_source_ids": [
+        "hv2_027"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h02"
+      ],
+      "known_customer_ids": [
+        "syn-c15"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "employee_login_audit",
+      "name": "Журнал попыток входа сотрудников",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_028"
+      ],
+      "eligible_source_ids": [
+        "hv2_028"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h03"
+      ],
+      "known_customer_ids": [
+        "syn-c16"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "sla_weekend_calendar",
+      "name": "Остановка SLA по календарю выходных",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_029"
+      ],
+      "eligible_source_ids": [
+        "hv2_029"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h04"
+      ],
+      "known_customer_ids": [
+        "syn-c17"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "pin_attachment_download_button",
+      "name": "Закрепление кнопки скачивания в шапке карточки",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_033"
+      ],
+      "eligible_source_ids": [
+        "hv2_033"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h05"
+      ],
+      "known_customer_ids": [
+        "syn-c21"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "restore_deleted_queue",
+      "name": "Восстановление удаленной очереди из корзины",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_039"
+      ],
+      "eligible_source_ids": [
+        "hv2_039"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h06"
+      ],
+      "known_customer_ids": [
+        "syn-c27"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "customer_xlsx_import",
+      "name": "Импорт клиентов из XLSX",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_040"
+      ],
+      "eligible_source_ids": [
+        "hv2_040"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h07"
+      ],
+      "known_customer_ids": [
+        "syn-c28"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "rename_saved_filter",
+      "name": "Переименование сохраненного фильтра",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_041"
+      ],
+      "eligible_source_ids": [
+        "hv2_041"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h08"
+      ],
+      "known_customer_ids": [
+        "syn-c29"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "share_saved_filter",
+      "name": "Передача фильтра выбранному сотруднику",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_041"
+      ],
+      "eligible_source_ids": [
+        "hv2_041"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h08"
+      ],
+      "known_customer_ids": [
+        "syn-c29"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "saml_sso",
+      "name": "SSO по SAML 2.0",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_043"
+      ],
+      "eligible_source_ids": [
+        "hv2_043"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h09"
+      ],
+      "known_customer_ids": [
+        "syn-c31"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    },
+    {
+      "topic_id": "ticket_queue_change_webhook",
+      "name": "Webhook смены очереди с прежним и новым значением",
+      "product_id": "sd-alpha",
+      "source_ids": [
+        "hv2_044"
+      ],
+      "eligible_source_ids": [
+        "hv2_044"
+      ],
+      "expected_recurring": false,
+      "expected_delivery": "candidate_only",
+      "independent_episode_ids": [
+        "syn-h10"
+      ],
+      "known_customer_ids": [
+        "syn-c32"
+      ],
+      "confirmed_episode_count": 1,
+      "known_customer_count": 1,
+      "identity_uncertain_source_ids": [],
+      "reason": "Порог не достигнут: недостаточно подтвержденных независимых эпизодов или известных клиентов. Неизвестная личность не является новым известным клиентом."
+    }
+  ]
+}

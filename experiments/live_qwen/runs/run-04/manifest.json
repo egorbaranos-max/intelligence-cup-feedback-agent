@@ -1,0 +1,109 @@
+{
+  "status": "complete",
+  "contract_version": "text-spans-v2",
+  "started_at": "2026-11-02T20:48:38.067409+00:00",
+  "as_of": "2026-11-02T12:00:00Z",
+  "inputs_sha256": "cc55b4558832fdd7bf77f9af1561b24494e53cd92bf60ed1796e25b2f91e2992",
+  "source_count": 23,
+  "model": {
+    "model_id": "Qwen/Qwen3-4B-MLX-4bit",
+    "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+    "files": {
+      "LICENSE": {
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+        "bytes": 11343
+      },
+      "README.md": {
+        "sha256": "a3ac01d2a1fff2f02be25e1d2e9160f03db51dbee2cc17f13b774f646648adf9",
+        "bytes": 14708
+      },
+      "config.json": {
+        "sha256": "76eae114d67a444c7296be7a6bc0409ecc15c340e113f1bac7572cb7d0928b6f",
+        "bytes": 988
+      },
+      "model.safetensors": {
+        "sha256": "e56a94b846a2dce7d1cc154ce58b9cfc4b8d99e8ffb74bfe256a265f4cbc7fb9",
+        "bytes": 2137326367
+      },
+      "model.safetensors.index.json": {
+        "sha256": "278844a566da15beab6e9068c57f606c50a99c440d4515206b871a8b5282b3de",
+        "bytes": 63924
+      },
+      "tokenizer.json": {
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "bytes": 11422654
+      },
+      "tokenizer_config.json": {
+        "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "bytes": 9732
+      },
+      "vocab.json": {
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "bytes": 2776833
+      }
+    },
+    "backend": "mlx-lm",
+    "python": "3.11.5",
+    "machine": "arm64",
+    "macos": "26.6.2",
+    "packages": {
+      "mlx": "0.32.4",
+      "mlx-lm": "0.32.2",
+      "transformers": "5.22.1",
+      "huggingface-hub": "2.4.0",
+      "safetensors": "0.8.0"
+    },
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "seed": 42,
+      "per_call_seed": "seed + zero-based call index",
+      "enable_thinking": false
+    },
+    "inference_network": "HF offline flags; local model directory; no network client in backend"
+  },
+  "pre_run_artifact_sha256": {
+    "expectations.json": "fab41c9313f09a89e2a798b1645d8a200a57cfc5a17e35de30c916ded879e973"
+  },
+  "code_sha256": {
+    "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+    "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+    "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+    "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+    "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+    "agent/prompts.py": "28516266557b31e45b6044b2554a44bffe9d83850886d097d30786f762781df1",
+    "agent/runner.py": "b05c177958172326086016ebeb9332e6ef3835cf9fba74889aae5badbb1f9473",
+    "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+    "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+    "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+    "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+  },
+  "limits": [
+    "text only",
+    "no corporate API",
+    "mock local receiver",
+    "no financial validation",
+    "no human gold",
+    "single ordered batch; matching can depend on input order",
+    "model verification is not human approval",
+    "source-level review conservatively holds all intents in that source"
+  ],
+  "pipeline_version": "text-9aea150bdb0b12bd79a4a0e2",
+  "call_count": 38,
+  "valid_extractions": 9,
+  "review_required_sources": 17,
+  "audited_sources": 23,
+  "delivered_local_cards": 1,
+  "finished_at": "2026-11-02T20:51:14.641491+00:00",
+  "elapsed_seconds": 156.573,
+  "output_sha256": {
+    "calls.jsonl": "062ab05da7e97d33d5a643a3146bcb36d0d5edda062be1084a58d192ad96f3f4",
+    "cards.json": "a7bb2c9f64955dd7d9efbac01244decc17e7979e57e44d8104f78eed4e93e00c",
+    "local-receiver.json": "33e3c80134c5fae8908354c22d70ad8d5cef02520df41699383e0cad20e3d06f",
+    "results.jsonl": "6429a4db5a70634323fc91dea58338695d8d8b2cb08486eb4ec3d1a38522fbbf",
+    "review-queue.json": "ea7186a41e7cc3faf8c7038a011c1671c66366afa6f07947aed84378fefb1817",
+    "source-audit.json": "e90c8340d77318b55e790e98bceb736564ff1250c9b60e411ce1e5084fbe14c5",
+    "topics.json": "60d12998c271e9128f3c7b8cb13182d1c489e5ea355f7226955a579397e9f1b9"
+  }
+}

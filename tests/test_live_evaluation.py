@@ -142,7 +142,7 @@ class EvaluationTests(unittest.TestCase):
         fixture.manifest["code_sha256"] = {
             "agent/pipeline.py": "0" * 64,
             # A valid legacy entry must not hide a wrong current-format entry.
-            "pipeline.py": sha(ROOT / "agent" / "pipeline.py"),
+            "pipeline.py": sha(ROOT / "agent" / "pipeline_v1.py"),
         }
         fixture.save()
         with self.assertRaisesRegex(ValueError, "Validator source changed"):
@@ -162,7 +162,7 @@ class EvaluationTests(unittest.TestCase):
         for prefix in ("agent/", ""):
             with self.subTest(prefix=prefix):
                 fixture.manifest["code_sha256"] = {
-                    prefix + "pipeline.py": sha(ROOT / "agent" / "pipeline.py"),
+                    prefix + "pipeline.py": sha(ROOT / "agent" / "pipeline_v1.py"),
                     # Deliberately differs from the currently installed prompt.
                     prefix + "prompts.py": "0" * 64,
                 }

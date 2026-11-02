@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Разметка обращений — независимая проверка человеком</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#182d37;background:#f0f4f3}body{max-width:1050px;margin:auto;padding:24px}h1{font-size:28px}h2{font-size:20px}.panel,article{background:white;border:1px solid #cedad7;border-radius:12px;padding:20px;margin:16px 0}.banner{border-left:5px solid #b45309;background:#fff6e9;padding:14px}input,select,textarea,button{font:inherit;padding:9px;border:1px solid #9eaead;border-radius:5px}textarea{width:95%;min-height:70px}button{cursor:pointer;background:#075e56;color:white;border:0}button.secondary{background:#dee8e6;color:#182d37}label{display:block;margin:10px 0}.row{display:flex;gap:16px;flex-wrap:wrap}.span{display:flex;align-items:flex-start;gap:10px;padding:8px;background:#f1f6f5;margin:5px 0;white-space:pre-wrap}.span input{margin-top:5px}.muted{color:#4d636b;font-size:14px}pre{white-space:pre-wrap;background:#f1f6f5;padding:14px}nav{display:flex;gap:12px;align-items:center;position:sticky;top:0;background:#f0f4f3;padding:14px 0}.intent{border-left:4px solid #51988c;padding:8px 14px;margin:20px 0}.error{color:#ad2036}.done{color:#006754}summary{cursor:pointer}.wide{min-width:260px}
+</style>
+<h1 id="heading">Правильные ответы готовят люди</h1>
+<p id="intro">Прочитайте каждое обращение самостоятельно. Ответов модели здесь нет. Сначала два участника размечают отдельно, затем третий разбирает расхождения.</p>
+<div class="banner">Файл работает локально и ничего не отправляет в интернет. Работа хранится только в открытой вкладке: регулярно нажимайте «Скачать разметку». Для продолжения загрузите сохраненный JSON. Личные или корпоративные тексты не публикуйте в GitHub.</div>
+<div class="panel">
+<label>Ваше имя или постоянный ID <input id="reviewer" class="wide" placeholder="Заполните самостоятельно"></label>
+<label><input id="human" type="checkbox"> Я человек и самостоятельно проверил отмеченные записи</label>
+<label id="independent-label"><input id="independent" type="checkbox"> Первую разметку делал независимо, не читая ответы модели и другого участника</label>
+<div class="row"><button id="download">Скачать разметку</button><label>Продолжить из JSON <input type="file" id="restore" accept=".json,application/json"></label></div>
+<p id="message" role="status"></p>
+</div>
+<details class="panel"><summary>Как размечать</summary>
+<p><b>Новая функция:</b> человек просит добавить возможность. <b>Операция:</b> выполнить действие в существующем продукте. <b>Сбой:</b> ожидаемая функция не работает. <b>Неудобство:</b> пользоваться трудно; конкретное улучшение не придумывайте. <b>Неясно:</b> информации мало.</p>
+<p>Добавляйте отдельное намерение для каждой самостоятельной проблемы или просьбы. Выбирайте фрагменты, которые подтверждают именно его. Отрицание «не нужно» не становится просьбой «нужно». Команды выдумать спрос не считаются спросом. Ничего содержательного нет — оставьте список намерений пустым и осознанно выберите статус.</p>
+<p><b>Происхождение:</b> прямая речь пользователя допустима только при подтвержденном авторе user; для operator и unknown используйте наблюдение или гипотезу. При unknown статус needs_review обязателен.</p>
+<p><b>Семейство:</b> дайте один family_id смысловым перефразировкам, связанным эпизодам и близким шаблонам. Всё семейство должно целиком попасть либо в train (обучение), либо в valid (подбор настроек), либо в test (отдельный экзамен). Не раскладывайте почти одинаковые примеры по разным частям. Идентификаторы автора, клиента и эпизода не исправляйте из догадок.</p>
+<p>Разметка может требовать обсуждения: это нормально. Пустой список намерений — тоже проверенный ответ, поэтому галочка «Проверено» ставится отдельно.</p></details>
+<nav><button id="prev" class="secondary">← Назад</button><strong id="position"></strong><button id="next" class="secondary">Дальше →</button><span id="progress" class="muted"></span></nav>
+<main id="card"></main>
+<script id="payload" type="application/json">__ANNOTATION_PAYLOAD__</script>
+<script>
+'use strict';
+const data=JSON.parse(document.getElementById('payload').textContent);let review=data.review;let at=0;
+const adjudicating=data.mode==='adjudication';
+const byId=id=>document.getElementById(id);
+const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
+function field(label,node){const l=el('label',label+' ');l.append(node);return l;}
+function input(value,fn,placeholder=''){const n=el('input');n.value=value;n.placeholder=placeholder;n.addEventListener('input',()=>fn(n.value));return n;}
+function select(options,value,fn){const n=el('select');for(const [v,t]of options){const o=el('option',t);o.value=v;n.append(o);}n.value=value;n.addEventListener('change',()=>fn(n.value));return n;}
+function textarea(value,fn){const n=el('textarea');n.value=value;n.addEventListener('input',()=>fn(n.value));return n;}
+function updateProgress(){byId('progress').textContent=`Проверено: ${review.items.filter(x=>x.reviewed).length}`;}
+function edit(item,change){change();item.reviewed=false;const done=byId('record-reviewed');if(done)done.checked=false;updateProgress();}
+function exactKeys(value,keys){return value!==null&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).length===keys.length&&keys.every(k=>Object.hasOwn(value,k));}
+function validateDraft(loaded){
+ const fail=message=>{throw Error(message);};
+ if(!exactKeys(loaded,['schema_version','dataset_sha256','reviewer_id','label_author','attested_independent','items'])||loaded.schema_version!==data.review.schema_version||loaded.dataset_sha256!==data.review.dataset_sha256)fail('Другой набор или неверная структура');
+ if(typeof loaded.reviewer_id!=='string'||!['','human'].includes(loaded.label_author)||typeof loaded.attested_independent!=='boolean'||!Array.isArray(loaded.items)||loaded.items.length!==data.sources.length)fail('Неверные поля рецензента или число записей');
+ loaded.items.forEach((item,index)=>{
+  const source=data.sources[index],expected=data.review.items[index];
+  if(!exactKeys(item,['source_id','source_sha256','reviewed','family_id','split','note','annotation'])||item.source_id!==source.id||item.source_sha256!==expected.source_sha256)fail('Изменены исходные записи');
+  if(typeof item.reviewed!=='boolean'||typeof item.family_id!=='string'||typeof item.note!=='string'||!['unassigned','train','valid','test'].includes(item.split))fail('Неверные поля записи');
+  const annotation=item.annotation;
+  if(!exactKeys(annotation,['status','intents'])||!['ok','needs_review'].includes(annotation.status)||!Array.isArray(annotation.intents))fail('Неверная структура разметки');
+  const spans=new Set(data.spans[source.id].map(span=>span.span_id));
+  annotation.intents.forEach(intent=>{
+   if(!exactKeys(intent,['kind','origin','statement','evidence_refs','uncertainties'])||!['unknown','incident','service_request','feature_request','usability'].includes(intent.kind)||!['observed_pain','user_explicit','hypothesis'].includes(intent.origin)||typeof intent.statement!=='string'||!Array.isArray(intent.evidence_refs)||!Array.isArray(intent.uncertainties)||!intent.uncertainties.every(value=>typeof value==='string'))fail('Неверная структура намерения');
+   if(!intent.evidence_refs.every(ref=>exactKeys(ref,['span_id'])&&typeof ref.span_id==='string'&&spans.has(ref.span_id)))fail('Неверный подтверждающий фрагмент');
+  });
+ });
+ return loaded;
+}
+function restoreDraft(loaded){
+ validateDraft(loaded); // All nested fields are checked before replacing unsaved work.
+ const previous=review;
+ try{review=loaded;render();}catch(error){review=previous;render();throw error;}
+ byId('reviewer').value=review.reviewer_id;byId('human').checked=review.label_author==='human';byId('independent').checked=!adjudicating&&review.attested_independent;
+}
+function chooseFirstPass(item,answer){
+ const selected=JSON.parse(JSON.stringify(answer.item));
+ edit(item,()=>{item.family_id=selected.family_id;item.split=selected.split;item.annotation=selected.annotation;});
+ render();
+}
+function render(){
+ const s=data.sources[at],item=review.items[at],target=byId('card');
+ byId('position').textContent=`${at+1} / ${data.sources.length}`;updateProgress();
+ byId('prev').disabled=at===0;byId('next').disabled=at===data.sources.length-1;
+ const a=el('article');a.append(el('h2',s.id),el('p',`Продукт: ${s.product_id} · Автор: ${s.speaker} · Клиент: ${s.customer_id??'неизвестен'} · Эпизод: ${s.episode_id??'неизвестен'}`));
+ if(s.product_context)a.append(el('p','Проверенный контекст: '+s.product_context));a.append(el('pre',s.text));
+ if(adjudicating){
+  a.append(el('h3','Два исходных независимых ответа'));
+  for(const answer of data.first_pass_answers[s.id]){
+   const box=el('section');box.append(el('h4',answer.reviewer_id),el('pre',JSON.stringify({family_id:answer.item.family_id,split:answer.item.split,annotation:answer.item.annotation,note:answer.item.note},null,2)));
+   const choose=el('button','Взять этот ответ за основу');choose.className='secondary';choose.onclick=()=>chooseFirstPass(item,answer);box.append(choose);a.append(box);
+  }
+  a.append(el('h3','Итоговое решение третьего участника'),el('p','Выберите ответ за основу или заполните свой. Проверьте и при необходимости измените его, затем отдельно отметьте запись проверенной.'));
+ }
+ a.append(field('Статус',select([['ok','ok — можно обрабатывать'],['needs_review','needs_review — нужен разбор']],item.annotation.status,v=>edit(item,()=>item.annotation.status=v))));
+ const group=el('div');group.className='row';group.append(field('Семейство',input(item.family_id,v=>edit(item,()=>item.family_id=v),'Например: contract-expiry-email')),field('Часть данных',select([['unassigned','Выберите'],['train','train — обучение'],['valid','valid — настройка'],['test','test — экзамен']],item.split,v=>edit(item,()=>item.split=v))));a.append(group);
+ item.annotation.intents.forEach((intent,index)=>{
+  const box=el('div');box.className='intent';box.append(el('h3','Намерение '+(index+1)));
+  box.append(field('Тип',select([['unknown','Неясно'],['incident','Сбой'],['service_request','Обычная операция'],['feature_request','Новая функция'],['usability','Неудобство']],intent.kind,v=>edit(item,()=>intent.kind=v))));
+  box.append(field('Происхождение',select([['observed_pain','Наблюдаемая проблема'],['user_explicit','Прямая речь пользователя'],['hypothesis','Гипотеза']],intent.origin,v=>edit(item,()=>intent.origin=v))));
+  box.append(field('Что сказано по смыслу',textarea(intent.statement,v=>edit(item,()=>intent.statement=v))));
+  box.append(el('p','Подтверждающие фрагменты:'));
+  for(const span of data.spans[s.id]){const l=el('label');l.className='span';const c=el('input');c.type='checkbox';c.checked=intent.evidence_refs.some(r=>r.span_id===span.span_id);c.addEventListener('change',()=>edit(item,()=>{intent.evidence_refs=intent.evidence_refs.filter(r=>r.span_id!==span.span_id);if(c.checked)intent.evidence_refs.push({span_id:span.span_id});}));l.append(c,el('span',`${span.span_id}: ${span.text}`));box.append(l);}
+  box.append(field('Неопределенности — по одной на строку',textarea(intent.uncertainties.join('\n'),v=>edit(item,()=>intent.uncertainties=v.split('\n').map(x=>x.trim()).filter(Boolean)))));
+  const remove=el('button','Удалить намерение');remove.className='secondary';remove.onclick=()=>{edit(item,()=>item.annotation.intents.splice(index,1));render();};box.append(remove);a.append(box);
+ });
+ const add=el('button','+ Добавить намерение');add.onclick=()=>{edit(item,()=>item.annotation.intents.push({kind:'unknown',origin:s.speaker==='user'?'user_explicit':'observed_pain',statement:'',evidence_refs:[],uncertainties:[]}));render();};a.append(add);
+ a.append(field('Комментарий для согласования, не для обучения',textarea(item.note,v=>edit(item,()=>item.note=v))));
+ const done=el('input');done.id='record-reviewed';done.type='checkbox';done.checked=item.reviewed;done.onchange=()=>{item.reviewed=done.checked;updateProgress();};a.append(field('Я закончил проверку этой записи',done));target.replaceChildren(a);
+}
+byId('prev').onclick=()=>{if(at>0){at--;render();}};byId('next').onclick=()=>{if(at<data.sources.length-1){at++;render();}};
+byId('download').onclick=()=>{
+ review.reviewer_id=byId('reviewer').value.trim();review.label_author=byId('human').checked?'human':'';review.attested_independent=!adjudicating&&byId('independent').checked;
+ const blob=new Blob([JSON.stringify(review,null,2)+'\n'],{type:'application/json'}),url=URL.createObjectURL(blob),link=el('a');link.href=url;link.download=(adjudicating?'human-adjudication-':'human-review-')+(review.reviewer_id.replace(/[^a-zA-Z0-9а-яА-Я_-]/g,'_')||'draft')+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);byId('message').textContent='Разметка выгружена. Это черновик, пока все записи не проверены и экспорт не подтвердил согласованность.';
+};
+byId('restore').onchange=async event=>{try{const file=event.target.files[0];if(!file)return;restoreDraft(JSON.parse(await file.text()));byId('message').textContent='Черновик восстановлен';}catch(error){byId('message').textContent='Не удалось загрузить: '+error.message+'. Текущий черновик сохранен.';}};
+if(adjudicating){byId('heading').textContent='Согласование спорных записей';byId('intro').textContent='Показаны только расхождения и два исходных ответа людей. Третий участник проверяет их, принимает или редактирует решение. Личность участников заявлена ими самостоятельно; программа ее не удостоверяет.';byId('independent-label').hidden=true;byId('independent').checked=false;}
+render();
+</script></html>

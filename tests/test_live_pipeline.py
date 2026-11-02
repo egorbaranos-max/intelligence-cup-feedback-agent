@@ -52,7 +52,7 @@ class ExtractionTests(unittest.TestCase):
         messages = extraction_messages(src)
         self.assertEqual([m["role"] for m in messages], ["system", "user"])
         payload = json.loads(messages[1]["content"])
-        self.assertEqual(set(payload), {"metadata", "text", "product_context"})
+        self.assertEqual(set(payload), {"metadata", "text", "source_spans", "product_context"})
         self.assertEqual(set(payload["metadata"]), {"id", "product_id", "speaker"})
         for private in ("secret-client", "secret-episode", '"gold"', '"synthetic"'):
             self.assertNotIn(private, messages[1]["content"])
