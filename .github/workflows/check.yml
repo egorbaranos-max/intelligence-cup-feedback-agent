@@ -17,7 +17,7 @@ jobs:
         run: python3 -m unittest discover -s demo -p 'test_*.py' -v
       - name: Run synthetic CLI
         run: python3 -m demo --compact
-      - name: Check independent finance and metric arithmetic
+      - name: Check arithmetic, text pipeline contracts and saved-run evaluation
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Exercise auditable metric example
         run: python3 tools/coverage_model.py --example | python3 tools/coverage_model.py -
