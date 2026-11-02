@@ -201,7 +201,7 @@ class V2SavedRunEvaluationTests(unittest.TestCase):
             with contextlib.redirect_stdout(io.StringIO()):
                 run(inputs, output, backend, AS_OF, {"expectations.json": sha(labels)})
             report = evaluate(output, inputs, labels)
-            self.assertEqual(report["contract_version"], "text-spans-v2")
+            self.assertEqual(report["contract_version"], "text-spans-v3-chunked-repair-v1")
             self.assertEqual(report["verification_contracts"]["valid_contracts"], 3)
             self.assertEqual(report["provisional_semantics"]["summary"]["delivered_local_cards"], 1)
             self.assertEqual(report["provisional_semantics"]["summary"]["delivered_cards_unscored"], 1)

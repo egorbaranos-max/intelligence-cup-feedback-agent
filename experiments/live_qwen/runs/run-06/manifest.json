@@ -1,0 +1,116 @@
+{
+  "status": "complete",
+  "contract_version": "text-spans-v2-repair-v1",
+  "started_at": "2026-11-02T21:01:17.129879+00:00",
+  "as_of": "2026-11-02T12:00:00Z",
+  "inputs_sha256": "cc55b4558832fdd7bf77f9af1561b24494e53cd92bf60ed1796e25b2f91e2992",
+  "source_count": 23,
+  "model": {
+    "model_id": "Qwen/Qwen3-4B-MLX-4bit",
+    "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+    "files": {
+      "LICENSE": {
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+        "bytes": 11343
+      },
+      "README.md": {
+        "sha256": "a3ac01d2a1fff2f02be25e1d2e9160f03db51dbee2cc17f13b774f646648adf9",
+        "bytes": 14708
+      },
+      "config.json": {
+        "sha256": "76eae114d67a444c7296be7a6bc0409ecc15c340e113f1bac7572cb7d0928b6f",
+        "bytes": 988
+      },
+      "model.safetensors": {
+        "sha256": "e56a94b846a2dce7d1cc154ce58b9cfc4b8d99e8ffb74bfe256a265f4cbc7fb9",
+        "bytes": 2137326367
+      },
+      "model.safetensors.index.json": {
+        "sha256": "278844a566da15beab6e9068c57f606c50a99c440d4515206b871a8b5282b3de",
+        "bytes": 63924
+      },
+      "tokenizer.json": {
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "bytes": 11422654
+      },
+      "tokenizer_config.json": {
+        "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "bytes": 9732
+      },
+      "vocab.json": {
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "bytes": 2776833
+      }
+    },
+    "backend": "mlx-lm",
+    "python": "3.11.5",
+    "machine": "arm64",
+    "macos": "26.6.2",
+    "packages": {
+      "mlx": "0.32.4",
+      "mlx-lm": "0.32.2",
+      "transformers": "5.22.1",
+      "huggingface-hub": "2.4.0",
+      "safetensors": "0.8.0"
+    },
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "seed": 42,
+      "per_call_seed": "seed + zero-based call index",
+      "enable_thinking": false
+    },
+    "inference_network": "HF offline flags; local model directory; no network client in backend"
+  },
+  "pre_run_artifact_sha256": {
+    "expectations.json": "fab41c9313f09a89e2a798b1645d8a200a57cfc5a17e35de30c916ded879e973"
+  },
+  "code_sha256": {
+    "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+    "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+    "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+    "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+    "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+    "agent/prompts.py": "4a4bbc23babb7134e820b8f808c3ede907d9fe152985dabfaadc023f6309f157",
+    "agent/repair.py": "2d88aedeb9e14608114279f47fa2c43c8a7c9b6980bc732f632843885c806b72",
+    "agent/runner.py": "51af4f804eb99dd76e83c5933afa387686ecd879de85e525a4222420fe444e1e",
+    "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+    "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+    "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+    "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+  },
+  "limits": [
+    "text only",
+    "no corporate API",
+    "mock local receiver",
+    "no financial validation",
+    "no human gold",
+    "single ordered batch; matching can depend on input order",
+    "model verification is not human approval",
+    "at most one extraction retry after failed mechanical validation; no semantic retry",
+    "usability observations require human review and never count as automatic wishes",
+    "source-level review conservatively holds all intents in that source"
+  ],
+  "extraction_repair_limit": 1,
+  "pipeline_version": "text-eec9c622b76882e7a3e86fad",
+  "call_count": 44,
+  "valid_extractions": 4,
+  "first_pass_valid_extractions": 3,
+  "extraction_repair_calls": 20,
+  "repaired_valid_extractions": 1,
+  "review_required_sources": 22,
+  "audited_sources": 23,
+  "delivered_local_cards": 0,
+  "finished_at": "2026-11-02T21:05:17.477670+00:00",
+  "elapsed_seconds": 240.345,
+  "output_sha256": {
+    "calls.jsonl": "b83ec5cc11dc385a46ab5baf219a942d225f3de5e2815e7ba33e71bb1dc6a23d",
+    "cards.json": "bb38e5ad4f251c697864629a94760d72c74876aba45d6bd4c519c77cd4ffe30d",
+    "local-receiver.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "results.jsonl": "a5e08813a3b4a97fac800217aa4a65c102883287addbd670451838905c0ae2ef",
+    "review-queue.json": "31249753f0f25952e2b1aabbaabb685dd576fa2fbd5aee7430a70c7b2ab54269",
+    "source-audit.json": "6746126a349de854eb3c2649eb69d3acb32227f375a587eb204569d3b4e190c4",
+    "topics.json": "348cadc4b087844f980c4bf7954634fc9df45f37e93d4fbdd4359bde1cf2779a"
+  }
+}

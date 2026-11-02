@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "kind": "structured-decoding-integration-evidence",
+  "created_at": "2026-11-02T21:29:05.707132+00:00",
+  "annotation_status": "synthetic syntax probes; no human labels",
+  "files": {
+    "README.md": {
+      "bytes": 3804,
+      "sha256": "ad872a9b715f808589a43283a7bcca8fd34412b3aaddd8e6700063ae4c83c29f"
+    },
+    "cpu-validation.json": {
+      "bytes": 2486,
+      "sha256": "264f6d45aa2ad1d740ac123b4a0014a05b977e93ad610ab3e8ddedde15e2f5ce"
+    },
+    "gpu-smoke-4b.json": {
+      "bytes": 7390,
+      "sha256": "dd0ffd4b93c961cdeaccd9a27e8f870f4c581058eeea6b45964a7d1fd23f9252"
+    },
+    "gpu-smoke-8b.json": {
+      "bytes": 7874,
+      "sha256": "bb75eecfba08f3b60740968e53f5167993f45491b86d9ab2cdb3787eb4ce0d2e"
+    },
+    "recorded-smoke-harness.py": {
+      "bytes": 2753,
+      "sha256": "c33a456fcf6097f390b279e86cc9623c94f1c197722c3843acadbb78cc652b84"
+    },
+    "tests-qwen4b.log": {
+      "bytes": 3591,
+      "sha256": "54a98da9faca91a0c9811cabc82d096126ad41774cec7d952372dff425ae6051"
+    },
+    "tests-qwen8b.log": {
+      "bytes": 3591,
+      "sha256": "e8075c37e34b55a6ebb0267340e12130f10424c8d7016b48d374468c37464eb7"
+    },
+    "tests-stdlib.log": {
+      "bytes": 3737,
+      "sha256": "806ef694e533328309ac91e3c4effa3238bc8c822ddacd2f5e642de73b97f653"
+    }
+  },
+  "source_sha256": {
+    "agent/backend.py": "80125a0ce9f2a405fac41c6eac2866215acce880a4b4e4a29d938d3039ef4ba8",
+    "agent/structured.py": "5c50a27ff64ad7fdaa772b4d3dde141ad36470b974d7a8f730d8059af8fd4cfe",
+    "tests/test_structured_decoding.py": "ef2df717639e24c4674bca39c5eb7e06bddd9f08e39f0d8748698d280ab7f0bc",
+    "scripts/smoke_structured_decoding.py": "25a54d5c2350ccdb81ad2e14d1c78b8c357fa9f285d6990a243ec7f3f2c0a4a6",
+    "requirements-live.txt": "54b86cc94125b2629dbbb9325fea6d85c46beaed3810aa3885eaa408296befd5",
+    "requirements-structured.txt": "9065eb74942f34168f054d396519d8ad7a16c9060ab9afee2b342dcc06de6362"
+  },
+  "model_completions": 6,
+  "forced_truncation_rejections": 2,
+  "quality_evaluation": false,
+  "holdout_used": false
+}

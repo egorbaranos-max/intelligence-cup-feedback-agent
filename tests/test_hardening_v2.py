@@ -10,6 +10,7 @@ from agent.pipeline import extraction_messages, validate_extraction
 from agent.spans import source_spans
 from agent.verifier_v2 import verification_messages, validate_verification
 from agent.runner import run
+from agent.repair import extraction_repair_messages
 from tests.test_live_runner import ScriptedTestBackend, input_source, AS_OF
 
 
@@ -174,9 +175,118 @@ class ReviewAuditTests(unittest.TestCase):
             self.assertEqual({r["source_id"] for r in audit}, {"invalid", "uncertain", "incident", "feature"})
             self.assertEqual(manifest["review_required_sources"], 2)
             self.assertEqual(manifest["audited_sources"], 4)
-            self.assertEqual(manifest["contract_version"], "text-spans-v2")
+            self.assertEqual(manifest["contract_version"], "text-spans-v3-chunked-repair-v1")
             self.assertIn("review-queue.json", manifest["output_sha256"])
             self.assertIn("source-audit.json", manifest["output_sha256"])
+
+
+class BoundedRepairTests(unittest.TestCase):
+    def execute(self, sources, extraction_override, verification_override=None):
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        inputs = root / "inputs.jsonl"
+        inputs.write_text("".join(json.dumps(s, ensure_ascii=False) + "\n" for s in sources))
+        backend = ScriptedTestBackend(extraction_override, verification_override=verification_override)
+        with contextlib.redirect_stdout(io.StringIO()):
+            manifest = run(inputs, root / "run", backend, AS_OF)
+        files = {p.name: ([json.loads(line) for line in p.read_text().splitlines()] if p.suffix == ".jsonl"
+                         else json.loads(p.read_text())) for p in (root / "run").glob("*.json*")}
+        return manifest, files
+
+    def test_one_repair_retains_exact_original_and_reports_both_outcomes(self):
+        broken = '{"status":"ok","intents":[]}}'
+        def output(payload):
+            return response() if "contract_repair" in payload else broken
+        manifest, files = self.execute([input_source("one")], output)
+        row, calls = files["results.jsonl"][0], files["calls.jsonl"]
+        self.assertEqual(row["extraction_attempts"], [1, 2])
+        self.assertEqual(row["extraction_call"], 2)
+        self.assertFalse(row["first_pass_extraction"]["ok"])
+        self.assertTrue(row["extraction"]["ok"])
+        self.assertEqual(calls[0]["raw_response"], broken)
+        self.assertEqual(calls[1]["stage"], "extraction_repair")
+        self.assertEqual(calls[1]["repair_of"], calls[0]["call_id"])
+        payload = json.loads(calls[1]["messages"][-1]["content"])
+        self.assertEqual(payload["contract_repair"]["previous_response"], broken)
+        self.assertEqual(payload["contract_repair"]["validation_errors"], row["first_pass_extraction"]["errors"])
+        self.assertEqual(manifest["first_pass_valid_extractions"], 0)
+        self.assertEqual(manifest["valid_extractions"], 1)
+        self.assertEqual(manifest["extraction_repair_calls"], 1)
+        self.assertEqual(manifest["repaired_valid_extractions"], 1)
+
+    def test_invalid_repair_stops_at_two_attempts_and_remains_visible(self):
+        manifest, files = self.execute([input_source("one")], lambda _: "not JSON")
+        self.assertEqual(manifest["call_count"], 2)
+        self.assertEqual(manifest["extraction_repair_limit"], 1)
+        self.assertEqual(manifest["valid_extractions"], 0)
+        self.assertEqual(manifest["repaired_valid_extractions"], 0)
+        self.assertEqual(files["results.jsonl"][0]["extraction_attempts"], [1, 2])
+        self.assertEqual(files["review-queue.json"][0]["source_id"], "one")
+        self.assertEqual(files["topics.json"], [])
+
+    def test_semantic_refusal_never_triggers_a_retry(self):
+        def refuse(_):
+            return {"verdict": "unsupported", "reason": "Fixture: no actual request", "evidence_span_ids": []}
+        manifest, files = self.execute([input_source("one")], lambda _: response(), refuse)
+        self.assertEqual(manifest["extraction_repair_calls"], 0)
+        self.assertEqual([c["stage"] for c in files["calls.jsonl"]], ["extraction", "verification"])
+        self.assertEqual(files["results.jsonl"][0]["extraction_attempts"], [1])
+        self.assertEqual(files["topics.json"], [])
+
+    def test_valid_but_potentially_wrong_category_is_not_regenerated(self):
+        def ordinary(_):
+            value = response()
+            value["intents"][0]["kind"] = "service_request"
+            return value
+        manifest, files = self.execute([input_source("one")], ordinary)
+        self.assertEqual(manifest["call_count"], 1)
+        self.assertEqual(manifest["extraction_repair_calls"], 0)
+        self.assertEqual(files["results.jsonl"][0]["assignments"][0]["status"], "not_eligible")
+
+    def test_metadata_repair_keeps_unknown_authorship_out_of_automatic_topics(self):
+        def output(payload):
+            value = response()
+            if "contract_repair" in payload:
+                value["status"] = "needs_review"
+                value["intents"][0]["origin"] = "observed_pain"
+                value["intents"][0]["uncertainties"] = ["Авторство неизвестно"]
+            return value
+        manifest, files = self.execute([input_source("one", speaker="unknown")], output)
+        self.assertEqual(manifest["valid_extractions"], 1)
+        self.assertEqual(files["topics.json"], [])
+        for call in files["calls.jsonl"]:
+            self.assertEqual(json.loads(call["messages"][-1]["content"])["metadata"]["speaker"], "unknown")
+        self.assertTrue(files["results.jsonl"][0]["review_required"])
+
+    def test_repair_prompt_never_receives_gold_candidates_or_customer_identity(self):
+        src = {**source(), "gold": "SECRET", "candidates": "SECRET", "customer_id": "PRIVATE"}
+        messages = extraction_repair_messages(src, "bad", ["response: invalid JSON"])
+        payload = json.loads(messages[-1]["content"])
+        self.assertEqual(payload["text"], src["text"])
+        self.assertEqual(payload["contract_repair"]["previous_response"], "bad")
+        self.assertNotIn("SECRET", json.dumps(messages))
+        self.assertNotIn("PRIVATE", json.dumps(messages))
+        with self.assertRaises(ValueError):
+            extraction_repair_messages(src, "valid", [])
+
+    def test_usability_never_counts_even_when_model_claims_user_explicit(self):
+        for origin in ("user_explicit", "observed_pain"):
+            def pain(_):
+                value = response()
+                value["intents"][0]["kind"] = "usability"
+                value["intents"][0]["origin"] = origin
+                return value
+            sources = [input_source(str(i), customer_id=f"customer-{i}") for i in range(3)]
+            manifest, files = self.execute(sources, pain)
+            self.assertEqual(manifest["call_count"], 3)
+            self.assertEqual(manifest["review_required_sources"], 3)
+            self.assertEqual(manifest["delivered_local_cards"], 0)
+            self.assertEqual(files["topics.json"], [])
+            for row in files["results.jsonl"]:
+                self.assertEqual(row["assignments"][0]["status"], "needs_review")
+                self.assertIsNone(row["assignments"][0]["verification_call"])
+                self.assertIsNone(row["assignments"][0]["topic_id"])
 
 
 if __name__ == "__main__":

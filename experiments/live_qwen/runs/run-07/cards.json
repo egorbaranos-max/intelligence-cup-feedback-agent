@@ -1,0 +1,127 @@
+[
+  {
+    "topic_id": "topic_e9387111ebc4013c412878e1",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Добавьте возможность выгружать список заказов в CSV",
+    "decision": "new",
+    "raw_sources": 5,
+    "independent_episodes": 4,
+    "known_customers": 3,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": true,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 65,
+        "quote": "Добавьте, пожалуйста, возможность выгружать список заказов в CSV.",
+        "source_id": "syn-01",
+        "source_version": 1,
+        "digest": "34b36ad381e7be8100eb91327ac52695cc1a4853b841661c38ac7a19e105c236",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 105,
+        "quote": "Хочу скачивать реестр заказов в формате CSV: номер заказа, дата и сумма должны быть в отдельных колонках.",
+        "source_id": "syn-03",
+        "source_version": 1,
+        "digest": "0f17d41113ae7d2f399816a84b484cfc1aa41b30c553708547ae214f56e3ffa5",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 80,
+        "quote": "Еще раз пишу по тому же обращению: прошу добавить выгрузку списка заказов в CSV.",
+        "source_id": "syn-04",
+        "source_version": 1,
+        "digest": "990bb4f5e6d6cd9aad13a41dfedbc357fda44f9207a5e988890fc9197c561a56",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 53,
+        "end": 111,
+        "quote": "Еще отдельно прошу добавить выгрузку списка заказов в CSV.",
+        "source_id": "syn-07",
+        "source_version": 1,
+        "digest": "d6df0f8f2a99ef53ebfb51ea14156c9259023051450350548a04d9da4c59fc5a",
+        "modality": "text",
+        "anchor": "body"
+      },
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 44,
+        "quote": "Прошу добавить экспорт списка заказов в CSV.",
+        "source_id": "syn-08",
+        "source_version": 1,
+        "digest": "d2e7f20c63a5a393058d5eede87dd14befb5eac6a937015b52799064f5ed6002",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_d6c10aa42c34012fb5cec106",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Добавьте скачивание счетов на оплату в CSV, с номером счета и сроком оплаты",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 76,
+        "quote": "Добавьте скачивание счетов на оплату в CSV, с номером счета и сроком оплаты.",
+        "source_id": "syn-10",
+        "source_version": 1,
+        "digest": "b68ba19231c7e098c678078deb15f2f7ef7bdd6f84c48b45163ce75d2591626f",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  },
+  {
+    "topic_id": "topic_b9ce742c5644e98e07072014",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Добавьте уведомление за сутки до окончания срока действия договора",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 0,
+    "known_customers": 0,
+    "sources_with_unknown_customer": 1,
+    "sources_with_unknown_episode": 1,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 0,
+        "end": 67,
+        "quote": "Добавьте уведомление за сутки до окончания срока действия договора.",
+        "source_id": "syn-16",
+        "source_version": 1,
+        "digest": "991da23ddca43c204af89443803f2cd14239702c2dfe3b90da2e13877904beb7",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

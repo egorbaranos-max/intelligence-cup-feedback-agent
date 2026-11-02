@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "snapshots": [
+    {
+      "pipeline_version": "legacy-code-0bb33d02b68ae0c9849ba502",
+      "archive": "legacy-code-0bb33d02b68ae0c9849ba502.zip",
+      "sha256": "5dbb1876ae9bd677abb35b0e2747ff02b9be6cdd25409483771b7ce6b783120e",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+        "agent/pipeline.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "0712549d04874e2f950e71b313fde9d03b828dc2efc2daaa2399a79124abdf57",
+        "agent/runner.py": "923880c2298cf1b2395a13dbb1c5558920bdf194ec4c288bc7e5117f2bfb49d3",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "live_qwen/runs/run-01"
+      ]
+    },
+    {
+      "pipeline_version": "legacy-code-30a32a0d8bc4c0c04953a097",
+      "archive": "legacy-code-30a32a0d8bc4c0c04953a097.zip",
+      "sha256": "2b31c54fccd758c7d920485eaffddeaf504247263cce0a3ee7ff2ccbd0f321ac",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+        "agent/pipeline.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "b93874bbf58ff9d0421cbd70e20d66e533b27c7cf52ea83f7ca01aebe2fd2f34",
+        "agent/runner.py": "923880c2298cf1b2395a13dbb1c5558920bdf194ec4c288bc7e5117f2bfb49d3",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "live_qwen/runs/run-02"
+      ]
+    },
+    {
+      "pipeline_version": "text-209359f2d0281f59d00024ba",
+      "archive": "text-209359f2d0281f59d00024ba.zip",
+      "sha256": "456d8c9e9419bdf2123557b89b16f549033d4f47ca0a63711c9110998326f0f8",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+        "agent/pipeline.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "b93874bbf58ff9d0421cbd70e20d66e533b27c7cf52ea83f7ca01aebe2fd2f34",
+        "agent/runner.py": "bdfaa719d5924862472df5230e48a41cfde21f5d8d3a7bdba3c2e850e8124d3a",
+        "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "fresh_probe/runs/run-01",
+        "live_qwen/runs/run-03"
+      ]
+    },
+    {
+      "pipeline_version": "text-287ebeb52629ff14c7778d0a",
+      "archive": "text-287ebeb52629ff14c7778d0a.zip",
+      "sha256": "2d763e5a246e4a18b864db62d9d93ee79c019e7d13151f062df568f9612ba892",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+        "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+        "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "3fa19cbb475006e90a514d21618f7e1cba38e693ffc8b9fc929e2f0923ea0611",
+        "agent/repair.py": "2d88aedeb9e14608114279f47fa2c43c8a7c9b6980bc732f632843885c806b72",
+        "agent/runner.py": "51af4f804eb99dd76e83c5933afa387686ecd879de85e525a4222420fe444e1e",
+        "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+        "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+        "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "fresh_probe/runs/run-02",
+        "live_qwen/runs/run-07"
+      ]
+    },
+    {
+      "pipeline_version": "text-9aa86fba8b9703f8e6e22b80",
+      "archive": "text-9aa86fba8b9703f8e6e22b80.zip",
+      "sha256": "49d20fb6ae1ff7f21ffe43f1a9ea4e62205d570dc08a10fe2223efcb5e7480bc",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "80125a0ce9f2a405fac41c6eac2866215acce880a4b4e4a29d938d3039ef4ba8",
+        "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+        "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "3fa19cbb475006e90a514d21618f7e1cba38e693ffc8b9fc929e2f0923ea0611",
+        "agent/registry.py": "f9c334e490a7469f48ebba8319fd70c0a3637fb5fabc8236cd38f5ac340524a0",
+        "agent/repair.py": "2d88aedeb9e14608114279f47fa2c43c8a7c9b6980bc732f632843885c806b72",
+        "agent/runner.py": "dfd6ccec3d138252cac54ce4e609ea30da305399be6ba5d45bdf96a582eeafc6",
+        "agent/source_risks.py": "98e439bdeec7bcec814d7a277aedc85dffbef8d4957b0e99ae5b51165eed55c4",
+        "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+        "agent/structured.py": "5c50a27ff64ad7fdaa772b4d3dde141ad36470b974d7a8f730d8059af8fd4cfe",
+        "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+        "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "fresh_probe/runs/run-03",
+        "live_qwen/runs/run-09"
+      ]
+    },
+    {
+      "pipeline_version": "text-9aea150bdb0b12bd79a4a0e2",
+      "archive": "text-9aea150bdb0b12bd79a4a0e2.zip",
+      "sha256": "e94daeaece3d8fa214a7236f0f73748a0bc9512c3828999276a52f8fb75b142f",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+        "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+        "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "28516266557b31e45b6044b2554a44bffe9d83850886d097d30786f762781df1",
+        "agent/runner.py": "b05c177958172326086016ebeb9332e6ef3835cf9fba74889aae5badbb1f9473",
+        "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+        "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+        "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "live_qwen/runs/run-04"
+      ]
+    },
+    {
+      "pipeline_version": "text-b083c64e689b98cb0de6ae22",
+      "archive": "text-b083c64e689b98cb0de6ae22.zip",
+      "sha256": "e94daeaece3d8fa214a7236f0f73748a0bc9512c3828999276a52f8fb75b142f",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+        "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+        "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "28516266557b31e45b6044b2554a44bffe9d83850886d097d30786f762781df1",
+        "agent/runner.py": "b05c177958172326086016ebeb9332e6ef3835cf9fba74889aae5badbb1f9473",
+        "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+        "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+        "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "live_qwen/runs/run-05"
+      ]
+    },
+    {
+      "pipeline_version": "text-bc4a060f17aac70c5228f8c4",
+      "archive": "text-bc4a060f17aac70c5228f8c4.zip",
+      "sha256": "2d763e5a246e4a18b864db62d9d93ee79c019e7d13151f062df568f9612ba892",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+        "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+        "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "3fa19cbb475006e90a514d21618f7e1cba38e693ffc8b9fc929e2f0923ea0611",
+        "agent/repair.py": "2d88aedeb9e14608114279f47fa2c43c8a7c9b6980bc732f632843885c806b72",
+        "agent/runner.py": "51af4f804eb99dd76e83c5933afa387686ecd879de85e525a4222420fe444e1e",
+        "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+        "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+        "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "live_qwen/runs/run-08"
+      ]
+    },
+    {
+      "pipeline_version": "text-eec9c622b76882e7a3e86fad",
+      "archive": "text-eec9c622b76882e7a3e86fad.zip",
+      "sha256": "aa61f70953d3ae6a097610f2b5c05706de1d8de5b54cf1788411a61cba043e8c",
+      "files": {
+        "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+        "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+        "agent/backend.py": "3c6d04ec6b0ec5cead14eaf6e932ce7878bba7da14dc66a41bc5f244a10084eb",
+        "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+        "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+        "agent/prompts.py": "4a4bbc23babb7134e820b8f808c3ede907d9fe152985dabfaadc023f6309f157",
+        "agent/repair.py": "2d88aedeb9e14608114279f47fa2c43c8a7c9b6980bc732f632843885c806b72",
+        "agent/runner.py": "51af4f804eb99dd76e83c5933afa387686ecd879de85e525a4222420fe444e1e",
+        "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+        "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+        "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+        "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b"
+      },
+      "runs": [
+        "live_qwen/runs/run-06"
+      ]
+    }
+  ]
+}

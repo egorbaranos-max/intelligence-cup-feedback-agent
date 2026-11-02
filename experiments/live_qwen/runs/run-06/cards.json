@@ -1,0 +1,29 @@
+[
+  {
+    "topic_id": "topic_89d9a0cf576ebf16892d77ba",
+    "recipient": "local-reviewer",
+    "product_id": "webneft",
+    "title": "Добавить выгрузку списка заказов в CSV",
+    "decision": "new",
+    "raw_sources": 1,
+    "independent_episodes": 1,
+    "known_customers": 1,
+    "sources_with_unknown_customer": 0,
+    "sources_with_unknown_episode": 0,
+    "customer_policy": "require_known",
+    "recurring": false,
+    "evidence": [
+      {
+        "fragment_id": "body",
+        "start": 53,
+        "end": 111,
+        "quote": "Еще отдельно прошу добавить выгрузку списка заказов в CSV.",
+        "source_id": "syn-07",
+        "source_version": 1,
+        "digest": "d6df0f8f2a99ef53ebfb51ea14156c9259023051450350548a04d9da4c59fc5a",
+        "modality": "text",
+        "anchor": "body"
+      }
+    ]
+  }
+]

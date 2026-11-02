@@ -63,7 +63,7 @@ This verifies local reproducibility, not the trustworthiness of model weights.
 
 
 class LocalMLX:
-    def __init__(self, manifest_path, seed=42):
+    def __init__(self, manifest_path, seed=42, structured_json=True):
         # Inference must use downloaded files only; no implicit hub fallback/token.
         os.environ["HF_HUB_OFFLINE"] = "1"
         os.environ["TRANSFORMERS_OFFLINE"] = "1"
@@ -77,6 +77,11 @@ class LocalMLX:
         self.model, self.tokenizer = load(str(model_path), tokenizer_config={"trust_remote_code": False})
         self.seed, self.calls = seed, 0
         self.sampler = make_sampler(temp=0.7, top_p=0.8, top_k=20)
+        self.json_grammar = None
+        if structured_json:
+            from .structured import JSONGrammar
+            config = json.loads((model_path / "config.json").read_text())
+            self.json_grammar = JSONGrammar(self.tokenizer, config["vocab_size"])
         self.provenance = {k: v for k, v in manifest.items() if k != "local_path"}
         self.provenance.update({"backend": "mlx-lm", "python": platform.python_version(),
             "machine": platform.machine(), "macos": platform.mac_ver()[0],
@@ -86,6 +91,10 @@ class LocalMLX:
                          "seed": seed, "per_call_seed": "seed + zero-based call index",
                          "enable_thinking": False},
             "inference_network": "HF offline flags; local model directory; no network client in backend"})
+        self.provenance["decoding"]["structured_json"] = (
+            self.json_grammar.provenance if self.json_grammar else {"enabled": False})
+        if self.json_grammar:
+            self.provenance["packages"]["llguidance"] = importlib.metadata.version("llguidance")
 
     def generate(self, messages, max_tokens=1200):
         self.mx.random.seed(self.seed + self.calls)
@@ -94,19 +103,42 @@ class LocalMLX:
                     add_generation_prompt=True, enable_thinking=False)
         started = datetime.now(timezone.utc).isoformat()
         begin = time.perf_counter()
-        parts, last = [], None
-        for item in self.stream_generate(self.model, self.tokenizer, prompt=prompt,
-                                        max_tokens=max_tokens, sampler=self.sampler):
-            parts.append(item.text)
-            last = item
-        elapsed = time.perf_counter() - begin
-        stats = {"started_at": started, "elapsed_seconds": round(elapsed, 3),
-                 "max_tokens": max_tokens, "seed": self.seed + self.calls - 1,
-                 "rendered_prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest()}
-        if last is not None:
-            for name in ("prompt_tokens", "generation_tokens", "prompt_tps", "generation_tps",
-                         "peak_memory", "finish_reason"):
-                value = getattr(last, name, None)
-                if isinstance(value, (str, int, float)) or value is None:
-                    stats[name] = value
-        return "".join(parts), stats
+        parts, last, processor = [], None, None
+
+        def generation_stats():
+            stats = {"started_at": started, "elapsed_seconds": round(time.perf_counter() - begin, 3),
+                     "max_tokens": max_tokens, "seed": self.seed + self.calls - 1,
+                     "rendered_prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest()}
+            if last is not None:
+                for name in ("prompt_tokens", "generation_tokens", "prompt_tps", "generation_tps",
+                             "peak_memory", "finish_reason"):
+                    value = getattr(last, name, None)
+                    if isinstance(value, (str, int, float)) or value is None:
+                        stats[name] = value
+            if processor is not None:
+                stats["structured_json"] = processor.stats()
+            return stats
+
+        try:
+            kwargs = {}
+            if self.json_grammar:
+                processor = self.json_grammar.new_processor()
+                kwargs["logits_processors"] = [processor]
+            for item in self.stream_generate(self.model, self.tokenizer, prompt=prompt,
+                                            max_tokens=max_tokens, sampler=self.sampler, **kwargs):
+                parts.append(item.text)
+                last = item
+            raw = "".join(parts)
+            if processor is not None:
+                processor.finish(raw, getattr(last, "finish_reason", None))
+            return raw, generation_stats()
+        except Exception as exc:
+            # Preserve the exact prefix already emitted by MLX, including on a
+            # grammar/resource/truncation failure. Never return it as successful.
+            from .structured import StructuredDecodingError
+            error = exc if isinstance(exc, StructuredDecodingError) else StructuredDecodingError(str(exc))
+            error.raw_response = "".join(parts)
+            error.stats = generation_stats()
+            if error is exc:
+                raise
+            raise error from exc

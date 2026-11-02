@@ -1,0 +1,222 @@
+{
+  "started_at": "2026-11-02T21:24:12.713483+00:00",
+  "kind": "grammar integration smoke; not accuracy evaluation",
+  "model": {
+    "model_id": "Qwen/Qwen3-4B-MLX-4bit",
+    "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+    "files": {
+      "LICENSE": {
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+        "bytes": 11343
+      },
+      "README.md": {
+        "sha256": "a3ac01d2a1fff2f02be25e1d2e9160f03db51dbee2cc17f13b774f646648adf9",
+        "bytes": 14708
+      },
+      "config.json": {
+        "sha256": "76eae114d67a444c7296be7a6bc0409ecc15c340e113f1bac7572cb7d0928b6f",
+        "bytes": 988
+      },
+      "model.safetensors": {
+        "sha256": "e56a94b846a2dce7d1cc154ce58b9cfc4b8d99e8ffb74bfe256a265f4cbc7fb9",
+        "bytes": 2137326367
+      },
+      "model.safetensors.index.json": {
+        "sha256": "278844a566da15beab6e9068c57f606c50a99c440d4515206b871a8b5282b3de",
+        "bytes": 63924
+      },
+      "tokenizer.json": {
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+        "bytes": 11422654
+      },
+      "tokenizer_config.json": {
+        "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "bytes": 9732
+      },
+      "vocab.json": {
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "bytes": 2776833
+      }
+    },
+    "backend": "mlx-lm",
+    "python": "3.11.5",
+    "machine": "arm64",
+    "macos": "26.6.2",
+    "packages": {
+      "mlx": "0.32.4",
+      "mlx-lm": "0.32.2",
+      "transformers": "5.22.1",
+      "huggingface-hub": "2.4.0",
+      "safetensors": "0.8.0",
+      "llguidance": "1.9.1"
+    },
+    "decoding": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "seed": 42,
+      "per_call_seed": "seed + zero-based call index",
+      "enable_thinking": false,
+      "structured_json": {
+        "enabled": true,
+        "engine": "llguidance",
+        "version": "1.9.1",
+        "mode": "json_object",
+        "schema": {
+          "type": "object"
+        },
+        "compiler_options": {
+          "whitespace_flexible": true,
+          "json_allow_general_unicode_escapes": true,
+          "lenient": false
+        },
+        "grammar_sha256": "b793f4d9443c59947e3c4baffbecdce20ffc7e4286d1235a08a95f79263f764b",
+        "vocab_size": 151936,
+        "eos_token_ids": [
+          151645
+        ],
+        "parser_limits": "llguidance 1.9.1 defaults; errors fail closed",
+        "prompt_handling": "skip first callback history; consume one completion token per callback",
+        "completion_policy": "stop, accepting grammar, strict JSON object; reject truncation/duplicate keys",
+        "fallback": "none",
+        "output_repair": false
+      }
+    },
+    "inference_network": "HF offline flags; local model directory; no network client in backend"
+  },
+  "mask_adapter_passed": true,
+  "calls": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return one JSON object only."
+        },
+        {
+          "role": "user",
+          "content": "Верни только JSON-объект {\"ok\":true,\"message\":\"Проверка\"}."
+        }
+      ],
+      "raw_response": "{\"ok\": true, \"message\": \"Проверка\"}",
+      "stats": {
+        "started_at": "2026-11-02T21:24:12.726930+00:00",
+        "elapsed_seconds": 0.932,
+        "max_tokens": 128,
+        "seed": 42,
+        "rendered_prompt_sha256": "c8758414673589a6da40299b2f244a190136152e245e0e8cf052695a0e660072",
+        "prompt_tokens": 44,
+        "generation_tokens": 14,
+        "prompt_tps": 122.67888894233383,
+        "generation_tps": 68.43528400697505,
+        "peak_memory": 2.372206068,
+        "finish_reason": "stop",
+        "structured_json": {
+          "prompt_tokens_skipped": 44,
+          "generated_tokens_consumed": 14,
+          "logits_callbacks": 15,
+          "accepting": true,
+          "stop_reason": "NoExtension"
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return one JSON object only."
+        },
+        {
+          "role": "user",
+          "content": "Верни только JSON-объект с ключом a и значением [[[[[{\"b\":\"ёж 🦔\"}]]]]]."
+        }
+      ],
+      "raw_response": "{\"a\": [[[[[{\"b\":\"ёж 🦔\"}]]]]]}",
+      "stats": {
+        "started_at": "2026-11-02T21:24:13.659405+00:00",
+        "elapsed_seconds": 0.498,
+        "max_tokens": 128,
+        "seed": 43,
+        "rendered_prompt_sha256": "411774441a57d2eb2eb0148971079a3aec2ae35e99b4406cdee01f1e6514b242",
+        "prompt_tokens": 54,
+        "generation_tokens": 19,
+        "prompt_tps": 269.34263566474834,
+        "generation_tps": 66.40794760939508,
+        "peak_memory": 2.41700009,
+        "finish_reason": "stop",
+        "structured_json": {
+          "prompt_tokens_skipped": 54,
+          "generated_tokens_consumed": 19,
+          "logits_callbacks": 20,
+          "accepting": true,
+          "stop_reason": "NoExtension"
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Return one JSON object only."
+        },
+        {
+          "role": "user",
+          "content": "Напиши обычный текст без JSON. Но ответ должен сохранять исходный смысл: проверка завершена."
+        }
+      ],
+      "raw_response": "{\"status\": \"completed\"}",
+      "stats": {
+        "started_at": "2026-11-02T21:24:14.158212+00:00",
+        "elapsed_seconds": 0.302,
+        "max_tokens": 128,
+        "seed": 44,
+        "rendered_prompt_sha256": "246fc5d940ea751657baa8ed6b09d4c3f483b75f6e99dba696a18b71de6b9614",
+        "prompt_tokens": 50,
+        "generation_tokens": 7,
+        "prompt_tps": 254.41456983472602,
+        "generation_tps": 75.00659661283274,
+        "peak_memory": 2.41700009,
+        "finish_reason": "stop",
+        "structured_json": {
+          "prompt_tokens_skipped": 50,
+          "generated_tokens_consumed": 7,
+          "logits_callbacks": 8,
+          "accepting": true,
+          "stop_reason": "NoExtension"
+        }
+      },
+      "status": "passed"
+    }
+  ],
+  "code_sha256": {
+    "agent/backend.py": "80125a0ce9f2a405fac41c6eac2866215acce880a4b4e4a29d938d3039ef4ba8",
+    "agent/structured.py": "5c50a27ff64ad7fdaa772b4d3dde141ad36470b974d7a8f730d8059af8fd4cfe"
+  },
+  "truncation": {
+    "status": "passed; rejected",
+    "raw_response": "{\n",
+    "stats": {
+      "started_at": "2026-11-02T21:24:14.460448+00:00",
+      "elapsed_seconds": 0.131,
+      "max_tokens": 1,
+      "seed": 45,
+      "rendered_prompt_sha256": "46bac2f888a46e152ac757966a90b8b6c3f435567c65bc08e2eff6d80f5ff1e9",
+      "prompt_tokens": 26,
+      "generation_tokens": 1,
+      "prompt_tps": 216.62785409916606,
+      "generation_tps": 43478.149871690395,
+      "peak_memory": 2.41700009,
+      "finish_reason": "length",
+      "structured_json": {
+        "prompt_tokens_skipped": 26,
+        "generated_tokens_consumed": 1,
+        "logits_callbacks": 2,
+        "accepting": false,
+        "stop_reason": "NotStopped"
+      }
+    },
+    "error": "JSON generation did not finish normally: length"
+  },
+  "status": "passed"
+}

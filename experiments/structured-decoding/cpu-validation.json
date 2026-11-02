@@ -1,0 +1,56 @@
+{
+  "kind": "CPU grammar and callback validation; no model inference or accuracy evaluation",
+  "verified_on": "2026-11-02T21:26:12.188892+00:00",
+  "checks": [
+    {
+      "runtime": "stdlib",
+      "tests": 22,
+      "skipped": 5,
+      "log": "tests-stdlib.log",
+      "log_sha256": "806ef694e533328309ac91e3c4effa3238bc8c822ddacd2f5e642de73b97f653"
+    },
+    {
+      "runtime": "qwen4b",
+      "tests": 22,
+      "skipped": 0,
+      "log": "tests-qwen4b.log",
+      "log_sha256": "54a98da9faca91a0c9811cabc82d096126ad41774cec7d952372dff425ae6051"
+    },
+    {
+      "runtime": "qwen8b",
+      "tests": 22,
+      "skipped": 0,
+      "log": "tests-qwen8b.log",
+      "log_sha256": "e8075c37e34b55a6ebb0267340e12130f10424c8d7016b48d374468c37464eb7"
+    }
+  ],
+  "package": "llguidance==1.9.1",
+  "wheel_sha256": "a942487cd6221b793df3a11450881a6c9d25a45460a900c56d99b682633c45fe",
+  "wheel_bytes": 3141060,
+  "mandatory_dependencies": [],
+  "code_sha256": {
+    "agent/structured.py": "5c50a27ff64ad7fdaa772b4d3dde141ad36470b974d7a8f730d8059af8fd4cfe",
+    "agent/backend.py": "80125a0ce9f2a405fac41c6eac2866215acce880a4b4e4a29d938d3039ef4ba8",
+    "tests/test_structured_decoding.py": "ef2df717639e24c4674bca39c5eb7e06bddd9f08e39f0d8748698d280ab7f0bc",
+    "scripts/smoke_structured_decoding.py": "25a54d5c2350ccdb81ad2e14d1c78b8c357fa9f285d6990a243ec7f3f2c0a4a6"
+  },
+  "reproduce": {
+    "cwd": "repository root",
+    "stdlib": "python3 -m unittest discover -s tests -p test_structured_decoding.py -v",
+    "actual_qwen": "STRUCTURED_TOKENIZER_MANIFEST=\"$MODEL_MANIFEST\" \"$LIVE_PYTHON\" -m unittest discover -s tests -p test_structured_decoding.py -v"
+  },
+  "sources": [
+    "https://pypi.org/project/llguidance/1.9.1/",
+    "https://github.com/guidance-ai/llguidance",
+    "installed llguidance 1.9.1 wheel: hf.py, mlx.py, numpy.py, _lib.pyi",
+    "installed mlx_lm 0.32.2 generate.py: generate_step callback and one-token look-ahead"
+  ],
+  "limitations": [
+    "generic JSON object syntax only; existing semantic validators remain authoritative",
+    "no human gold or holdout cases accessed",
+    "no GPU work performed by this agent",
+    "grammar resource limits fail closed; max_tokens truncation rejected without patching"
+  ],
+  "original_report_sha256": "c285eee025f4d82b843f600ff9bd9a9878a3061b7a0ce6656276b87949b8bbb9",
+  "packaging_note": "Log paths and reproduction commands normalized to this portable evidence folder; assertions, counts and hashes unchanged."
+}

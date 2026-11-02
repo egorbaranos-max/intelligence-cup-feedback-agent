@@ -24,6 +24,9 @@ from agent.pipeline import validate_extraction, validate_matching
 DISCLAIMER = ("Frozen preliminary AI expectations only; not human gold, not a "
               "corporate accuracy estimate, not an acceptance gate. Text only; "
               "no financial effect, ASR/VL or corporate integration is tested.")
+CHUNKED_CONTRACT = "text-spans-v3-chunked-repair-v1"
+REPAIR_CONTRACTS = {"text-spans-v2-repair-v1", CHUNKED_CONTRACT}
+V2_CONTRACTS = {"text-spans-v2", *REPAIR_CONTRACTS}
 
 
 def sha(path):
@@ -95,7 +98,7 @@ def evaluate_verification(calls, results, source_map, validated, manifest):
         return None
     # New verification runs must bind the verifier contract to recorded source.
     # Old runs without this stage keep exactly their original report structure.
-    v2 = manifest.get("contract_version") == "text-spans-v2"
+    v2 = manifest.get("contract_version") in V2_CONTRACTS
     filename = "verifier_v2.py" if v2 else "verifier.py"
     recorded = manifest.get("code_sha256", {}).get("agent/" + filename,
         manifest.get("code_sha256", {}).get(filename))
@@ -114,6 +117,8 @@ def evaluate_verification(calls, results, source_map, validated, manifest):
         intent_id = assignment.get("intent_id")
         if not call or call.get("source_id") != source_id or call.get("intent_id") != intent_id:
             raise ValueError(f"Verification call/source/intent mismatch: {source_id}")
+        if v2 and call.get("status") != "complete":
+            raise ValueError("Failed verification call cannot supply a completed judgment")
         if call_id in seen:
             raise ValueError("Verification call reused by multiple assignments")
         seen.add(call_id)
@@ -141,6 +146,8 @@ def evaluate_verification(calls, results, source_map, validated, manifest):
         blocks = verdict != "supported"
         blocking_respected = (not blocks or
             (assignment.get("topic_id") is None and assignment.get("matching_call") is None))
+        if manifest.get("contract_version") == CHUNKED_CONTRACT and blocks:
+            blocking_respected = blocking_respected and not assignment.get("matching_calls") and not assignment.get("matching_batches")
         details.append({"call_id": call_id, "source_id": source_id, "intent_id": intent_id,
             "valid_contract": verified.ok, "verdict": verdict, "errors": verified.errors,
             "value": verified.value, "requires_blocking": blocks,
@@ -155,14 +162,67 @@ def evaluate_verification(calls, results, source_map, validated, manifest):
             "details": details}
 
 
+def evaluate_extraction_attempts(source, result, calls, validate_extraction, expectation):
+    """Audit one bounded model retry after a mechanical contract failure only."""
+    from agent.repair import extraction_repair_messages
+    from agent.pipeline import extraction_messages
+    attempts = result.get("extraction_attempts")
+    if (not isinstance(attempts, list) or not 1 <= len(attempts) <= 2
+            or any(type(value) is not int for value in attempts) or len(set(attempts)) != len(attempts)
+            or result.get("extraction_call") != attempts[-1]):
+        raise ValueError("Extraction attempts must contain one or two unique calls, with final selected")
+    selected = [calls.get(identifier) for identifier in attempts]
+    if any(not call or call.get("source_id") != source["id"] for call in selected):
+        raise ValueError("Extraction attempt source/call mismatch")
+    if any(call.get("status") != "complete" for call in selected):
+        raise ValueError("Failed extraction attempt cannot supply a completed result")
+    first = selected[0]
+    if first.get("stage") != "extraction":
+        raise ValueError("First extraction attempt must be an extraction call")
+    initial = validate_extraction(first.get("raw_response"), source)
+    if asdict(initial) != result.get("first_pass_extraction"):
+        raise ValueError("First-pass extraction differs from raw-response revalidation")
+    try:
+        if json.loads(first["messages"][-1]["content"]) != json.loads(extraction_messages(source)[-1]["content"]):
+            raise ValueError("First extraction prompt differs from bound source")
+        if len(selected) == 2:
+            second = selected[1]
+            if initial.ok:
+                raise ValueError("Contract-valid extraction must not receive a repair retry")
+            if second.get("stage") != "extraction_repair" or second.get("repair_of") != first["call_id"]:
+                raise ValueError("Repair stage or original-call binding differs")
+            actual = json.loads(second["messages"][-1]["content"])
+            expected = json.loads(extraction_repair_messages(source, first.get("raw_response"), initial.errors)[-1]["content"])
+            if actual != expected:
+                raise ValueError("Repair prompt differs from source, original raw response or validation errors")
+    except (KeyError, IndexError, TypeError) as exc:
+        raise ValueError("Malformed saved extraction/repair prompt") from exc
+    raw = parsed_model(first.get("raw_response"))
+    statuses = expectation["expected_status"]
+    statuses = [statuses] if isinstance(statuses, str) else statuses
+    expected_explicit = expectation["expected_explicit_feature"]
+    match = (initial.ok and bool(kinds(raw)) and set(kinds(raw)).issubset(expectation["accepted_kinds"])
+             and (expected_explicit is None or explicit_feature(raw) == expected_explicit)
+             and raw.get("status") in statuses)
+    return {"source_id": source["id"], "attempt_call_ids": attempts,
+        "first_pass_valid_contract": initial.ok, "first_pass_contract_errors": initial.errors,
+        "first_pass_parseable": bool(raw), "first_pass_model_kinds": kinds(raw),
+        "first_pass_model_status": raw.get("status"),
+        "first_pass_matched_preliminary_expectation": match, "repair_requested": len(selected) == 2}
+
+
 def evaluate(run_path, inputs_path, expectations_path):
     """Pure post-run read and deterministic comparisons; write nothing here."""
     run_path, inputs_path, expectations_path = map(Path, (run_path, inputs_path, expectations_path))
     manifest = load(run_path / "manifest.json")
     version = manifest.get("contract_version")
-    if version not in {None, "text-spans-v2"}:
+    if version not in {None, *V2_CONTRACTS}:
         raise ValueError(f"Unsupported saved contract version: {version}")
-    v2 = version == "text-spans-v2"
+    v2 = version in V2_CONTRACTS
+    repair_version = version in REPAIR_CONTRACTS
+    chunked_version = version == CHUNKED_CONTRACT
+    if repair_version and manifest.get("extraction_repair_limit") != 1:
+        raise ValueError("Repair contract requires an explicit limit of one")
     if v2:
         from agent.pipeline import validate_extraction, validate_matching
     else:
@@ -191,6 +251,12 @@ def evaluate(run_path, inputs_path, expectations_path):
         for name in ("pipeline.py", "spans.py", "verifier_v2.py"):
             if manifest.get("code_sha256", {}).get("agent/" + name) != sha(ROOT / "agent" / name):
                 raise ValueError(f"Missing or changed v2 validator source after run: {name}")
+        if repair_version and manifest.get("code_sha256", {}).get("agent/repair.py") != sha(ROOT / "agent" / "repair.py"):
+            raise ValueError("Missing or changed repair source after run: repair.py")
+        if chunked_version and manifest.get("code_sha256", {}).get("agent/registry.py") != sha(ROOT / "agent" / "registry.py"):
+            raise ValueError("Missing or changed registry source after run: registry.py")
+        if chunked_version and manifest.get("code_sha256", {}).get("agent/source_risks.py") != sha(ROOT / "agent" / "source_risks.py"):
+            raise ValueError("Missing or changed source-risk guard after run: source_risks.py")
         for filename, digest in manifest.get("output_sha256", {}).items():
             if Path(filename).name != filename or sha(run_path / filename) != digest:
                 raise ValueError(f"Saved output SHA-256 differs: {filename}")
@@ -213,11 +279,17 @@ def evaluate(run_path, inputs_path, expectations_path):
         raise ValueError("A complete run must contain every source result")
     if manifest.get("call_count") != len(calls):
         raise ValueError("Manifest call count differs")
+    allowed_stages = {"extraction", "matching", "verification"}
+    if repair_version:
+        allowed_stages.add("extraction_repair")
     for call in calls.values():
-        if call.get("source_id") not in source_map or call.get("stage") not in {"extraction", "matching", "verification"}:
+        if call.get("source_id") not in source_map or call.get("stage") not in allowed_stages:
             raise ValueError("Unknown source or stage in saved call")
+        if v2 and manifest["status"] == "complete" and call.get("status") != "complete":
+            raise ValueError("Complete run contains a failed or non-complete model call")
 
     details, raw_by_id, validated, referenced = [], {}, {}, set()
+    attempt_details, attempt_references = [], set()
     for source in sources:
         identifier, exp = source["id"], expected[source["id"]]
         result = results.get(identifier)
@@ -227,8 +299,17 @@ def evaluate(run_path, inputs_path, expectations_path):
                 "matched_preliminary_expectation": False, "disagreements": ["not processed"]})
             continue
         call = calls.get(result.get("extraction_call"))
-        if not call or call["source_id"] != identifier or call["stage"] != "extraction":
+        if repair_version:
+            attempt = evaluate_extraction_attempts(source, result, calls, validate_extraction, exp)
+            if attempt_references.intersection(attempt["attempt_call_ids"]):
+                raise ValueError("Extraction attempt reused by multiple results")
+            attempt_references.update(attempt["attempt_call_ids"])
+            attempt_details.append(attempt)
+        valid_stages = {"extraction", "extraction_repair"} if repair_version else {"extraction"}
+        if not call or call["source_id"] != identifier or call["stage"] not in valid_stages:
             raise ValueError(f"Extraction call/source mismatch: {identifier}")
+        if v2 and call.get("status") != "complete":
+            raise ValueError("Failed extraction call cannot supply a completed result")
         if call["call_id"] in referenced:
             raise ValueError("Extraction call reused by multiple results")
         referenced.add(call["call_id"])
@@ -266,9 +347,32 @@ def evaluate(run_path, inputs_path, expectations_path):
             "matched_preliminary_expectation": valid.ok and kind_match and explicit_match and status_match,
             "disagreements": disagreements})
 
+    if repair_version:
+        extraction_calls = {identifier for identifier, call in calls.items()
+                            if call["stage"] in {"extraction", "extraction_repair"}}
+        if manifest["status"] == "complete" and extraction_calls != attempt_references:
+            raise ValueError("Extraction/repair calls are not all linked to results")
+        for attempt in attempt_details:
+            final = validated[attempt["source_id"]]
+            attempt["final_valid_contract"] = final.ok
+            attempt["final_contract_errors"] = final.errors
+        attempt_counts = {
+            "first_pass_valid_extractions": sum(a["first_pass_valid_contract"] for a in attempt_details),
+            "extraction_repair_calls": sum(a["repair_requested"] for a in attempt_details),
+            "repaired_valid_extractions": sum(a["repair_requested"] and a["final_valid_contract"] for a in attempt_details)}
+        if manifest["status"] == "complete" and any(manifest.get(k) != v for k, v in attempt_counts.items()):
+            raise ValueError("Manifest extraction-attempt counts differ")
+        if manifest["status"] == "complete" and manifest.get("valid_extractions") != sum(
+                a["final_valid_contract"] for a in attempt_details):
+            raise ValueError("Manifest final extraction count differs")
+
     matching = []
     for call in calls.values():
         if call["stage"] != "matching":
+            continue
+        if v2 and call.get("status") != "complete":
+            matching.append({"call_id": call["call_id"], "source_id": call["source_id"],
+                "valid_contract": False, "errors": ["Failed call: partial raw response is not a completed matching judgment"]})
             continue
         try:
             payload = json.loads(call["messages"][-1]["content"])
@@ -280,6 +384,10 @@ def evaluate(run_path, inputs_path, expectations_path):
                          "valid_contract": valid.ok, "errors": valid.errors})
 
     verification = evaluate_verification(calls, results, source_map, validated, manifest)
+    registry_audit = None
+    if chunked_version:
+        from scripts.audit_registry import audit_registry
+        registry_audit = audit_registry(calls, results, source_map, validated, manifest, run_path)
 
     summary = {}
     for label, origin in (("all", None), ("case_pdf", "case_pdf"), ("synthetic", "synthetic")):
@@ -378,6 +486,16 @@ def evaluate(run_path, inputs_path, expectations_path):
         "disagreements": [d for d in details if not d["matched_preliminary_expectation"]]}
     if verification is not None:
         report["verification_contracts"] = verification
+    if registry_audit is not None:
+        report["registry_comparison"] = registry_audit
+    if repair_version:
+        report["extraction_attempts"] = {
+            "disclaimer": "At most one model retry after a mechanical validator rejection. Original raw responses are retained. Contract-valid semantic mistakes are never retried automatically; a retry may still change meaning and needs semantic review.",
+            **attempt_counts,
+            "first_pass_matched_preliminary_expectations": sum(a["first_pass_matched_preliminary_expectation"] for a in attempt_details),
+            "final_valid_extractions": sum(a["final_valid_contract"] for a in attempt_details),
+            "final_matched_preliminary_expectations": summary["all"]["matched_preliminary_expectations"],
+            "details": attempt_details}
     if v2:
         from scripts.evaluate_semantics import evaluate_semantics
         report["contract_version"] = version
@@ -392,6 +510,24 @@ def markdown(report):
            "|---|---:|---:|---:|---:|"]
     for label, s in report["summary"].items():
         out.append(f"| {label} | {s['sources']} | {s['processed']} | {s['valid_extraction_contracts']} | {s['matched_preliminary_expectations']} |")
+    if "extraction_attempts" in report:
+        attempts = report["extraction_attempts"]
+        out += ["", "## Первая попытка и повтор после ошибки контракта", "",
+            "Модель получает одну повторную попытку только после ошибки программной проверки. Семантически неверный ответ с правильным форматом автоматически не переписывается. Обе версии ответа сохранены.", "",
+            f"- Формат с первой попытки: {attempts['first_pass_valid_extractions']}; после повторов: {attempts['final_valid_extractions']}.",
+            f"- Повторных запросов: {attempts['extraction_repair_calls']}; из них дали допустимый формат: {attempts['repaired_valid_extractions']}.",
+            f"- Совпадений с предварительными ожиданиями по классу и статусу: сначала {attempts['first_pass_matched_preliminary_expectations']}, в конце {attempts['final_matched_preliminary_expectations']}.",
+            "", "Улучшение формата не равно улучшению понимания. При повторе модель может изменить и смысл; исходный ответ остаётся доступным для сравнения."]
+    if "registry_comparison" in report:
+        registry = report["registry_comparison"]
+        out += ["", "## Полнота сравнения с существующими темами", "",
+            f"Для каждого продукта проверяются все темы в пределах бюджета {registry['candidate_limit']}, группами не более {registry['batch_size']}. Частичный просмотр не позволяет создать новую тему.",
+            f"- Вызовов сопоставления: {registry['matching_calls']}; сравнений с реестром больше пяти тем: {registry['comparisons_beyond_first_five']}.",
+            f"- Решений вне автоматического бюджета: {registry['dispositions_over_budget']}; они требуют разбора.",
+            "", "Полнота просмотра и повторение программного решения не доказывают, что модель правильно понимает сходство тем."]
+        guard = registry["source_risk_guard"]
+        out += ["", f"Явные инструкции обработчику или признаки запроса выдумать доказательства: {guard['flagged_sources']} обращений направлено на разбор и исключено из автоматического учёта.",
+            "Это ограниченный набор текстовых правил, а не полная защита от инструкций внутри данных. Возможны пропуски и ложные срабатывания, например при цитировании нормального текста."]
     if "provisional_semantics" in report:
         semantic = report["provisional_semantics"]
         s = semantic["summary"]

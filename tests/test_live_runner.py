@@ -177,16 +177,17 @@ class RunnerIntegrationTests(unittest.TestCase):
         self.assertEqual({t["product_id"] for t in topics}, {"test-product", "other"})
         self.assertEqual(len({t["id"] for t in topics}), 2)
 
-    def test_truncated_candidate_search_does_not_claim_novelty(self):
+    def test_complete_registry_search_can_establish_novelty_after_five(self):
         sources = [input_source(str(i), text=f"Отдельная потребность {i}") for i in range(7)]
         manifest, out = self.execute(sources, ScriptedTestBackend(relation="different"))
         results = self.lines(out / "results.jsonl")
         final = results[-1]["assignments"][0]
         self.assertEqual(final["candidate_pool_size"], 6)
-        self.assertEqual(len(final["candidate_ids"]), 5)
-        self.assertEqual(final["status"], "needs_review")
-        self.assertIn("truncated", final["reason"])
-        self.assertEqual(len(self.read(out / "topics.json")), 6)
+        self.assertEqual(len(final["candidate_ids"]), 6)
+        self.assertEqual([len(batch["candidate_ids"]) for batch in final["matching_batches"]], [5, 1])
+        self.assertTrue(final["registry_compared"])
+        self.assertEqual(final["status"], "new")
+        self.assertEqual(len(self.read(out / "topics.json")), 7)
 
     def test_unconfirmed_support_never_enters_matching_or_counts(self):
         for verdict in ("unsupported", "unclear", "invalid"):

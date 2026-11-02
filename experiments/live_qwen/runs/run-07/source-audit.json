@@ -1,0 +1,370 @@
+[
+  {
+    "source_id": "case-01",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "needs_review",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-02",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "needs_review",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-03",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-04",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "needs_review",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-05",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-06",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "needs_review",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "case-07",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-01",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "new",
+      "needs_review"
+    ],
+    "topic_ids": [
+      "topic_e9387111ebc4013c412878e1"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-02",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "not_eligible",
+      "not_eligible"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-03",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "not_eligible",
+      "matched"
+    ],
+    "topic_ids": [
+      "topic_e9387111ebc4013c412878e1"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-04",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "matched"
+    ],
+    "topic_ids": [
+      "topic_e9387111ebc4013c412878e1"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-05",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 3,
+    "assignment_statuses": [
+      "needs_review",
+      "needs_review",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-06",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "not_eligible"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-07",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "not_eligible",
+      "matched"
+    ],
+    "topic_ids": [
+      "topic_e9387111ebc4013c412878e1"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-08",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "matched"
+    ],
+    "topic_ids": [
+      "topic_e9387111ebc4013c412878e1"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-09",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-10",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "new",
+      "needs_review"
+    ],
+    "topic_ids": [
+      "topic_d6c10aa42c34012fb5cec106"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-11",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "not_eligible",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-12",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "needs_review",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-13",
+    "review_required": true,
+    "review_reasons": [
+      "source_requires_review",
+      "intent_requires_review"
+    ],
+    "extraction_status": "needs_review",
+    "intent_count": 2,
+    "assignment_statuses": [
+      "needs_review",
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "held for review or no intents",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-14",
+    "review_required": false,
+    "review_reasons": [],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "not_eligible"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-15",
+    "review_required": true,
+    "review_reasons": [
+      "intent_requires_review"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "needs_review"
+    ],
+    "topic_ids": [],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  },
+  {
+    "source_id": "syn-16",
+    "review_required": true,
+    "review_reasons": [
+      "missing_recurrence_identity"
+    ],
+    "extraction_status": "ok",
+    "intent_count": 1,
+    "assignment_statuses": [
+      "new"
+    ],
+    "topic_ids": [
+      "topic_b9ce742c5644e98e07072014"
+    ],
+    "counting": "local contract accepted; unknown identities do not add episodes/customers",
+    "audit_note": "All categories need human sampling to discover missed wishes"
+  }
+]

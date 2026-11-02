@@ -13,7 +13,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-from scripts.evaluate_live_run import evaluate, load, lines, indexed, sha
+from scripts.evaluate_live_run import evaluate, load, lines, indexed, sha, V2_CONTRACTS
 from scripts.evaluate_semantics import evaluate_semantics
 
 
@@ -22,7 +22,7 @@ def benchmark(run_path, inputs_path, expectations_path):
     # First run the established integrity audit and raw-response revalidation.
     evaluation = evaluate(run_path, inputs_path, expectations_path)
     manifest = load(run_path / "manifest.json")
-    legacy = manifest.get("contract_version") != "text-spans-v2"
+    legacy = manifest.get("contract_version") not in V2_CONTRACTS
     if legacy:
         from agent.pipeline_v1 import validate_extraction
     else:

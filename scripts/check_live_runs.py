@@ -5,6 +5,7 @@ run folders must be registered explicitly after their evidence is complete.
 """
 import json
 from pathlib import Path
+import zipfile
 
 try:
     from .evaluate_live_run import evaluate
@@ -38,6 +39,11 @@ def registered_runs(root):
 
 def verify(root):
     runs = registered_runs(root)
+    try:
+        from .verify_code_snapshots import verify as verify_source_snapshots
+    except ImportError:
+        from verify_code_snapshots import verify as verify_source_snapshots
+    verify_source_snapshots(root)
     for run in runs:
         folder = run.parent.parent
         actual = evaluate(run, folder / "inputs.jsonl", folder / "expectations.json")
@@ -60,9 +66,9 @@ def main():
     root = Path(__file__).resolve().parents[1]
     try:
         count = verify(root)
-    except (OSError, ValueError, KeyError, TypeError) as exc:
+    except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile) as exc:
         raise SystemExit(f"Saved-run verification failed: {exc}") from exc
-    print(f"Verified {count} registered saved live runs: input/output hashes, contracts and recorded comparisons. No model inference or quality acceptance.")
+    print(f"Verified {count} registered saved live runs: exact runtime source snapshots, input/output hashes, contracts and recorded comparisons. No model inference or quality acceptance.")
 
 
 if __name__ == "__main__":
