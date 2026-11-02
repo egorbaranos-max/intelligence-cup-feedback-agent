@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "recorded_before_inference_at_utc": "2026-11-02T22:06:18.430589+00:00",
+  "candidate_commit": "ca055d170d674a44109aa456a358a13e825f1532",
+  "baseline_commit": "a76c2753569185588eda8be50c8f9433374e7ca1",
+  "data_sha256": {
+    "inputs.jsonl": "93f3551878146ee40aa81df15bc3cb24edb3e637beb7f2754b0fcdfe690223e7",
+    "expectations.json": "fb98601b7221d99eeb7085989d266bb6193091b604747d9c4979a1808f3768d0"
+  },
+  "code_sha256": {
+    "agent/__init__.py": "0bb12181ee146d17d2858842dba395e4a98d9325ef6b1026efad5eee64e2a34f",
+    "agent/__main__.py": "982976b5921afbc741885fea6bf3377366cd60bec745f35f456b973dc67f08cd",
+    "agent/backend.py": "49fdcec1b69c1592e72143f5cd12069bd75cc96dd7f7e18cd4158ec7465abc5f",
+    "agent/pipeline.py": "e8988699489b00a3e59dfaf0c7da41a015b819116311f7c76779a7e782f84be7",
+    "agent/pipeline_v1.py": "24a07b3edf6323e64fe5c7d80fc1893bf99a3286a0c281132cabc35467ba4f06",
+    "agent/prompts.py": "3fa19cbb475006e90a514d21618f7e1cba38e693ffc8b9fc929e2f0923ea0611",
+    "agent/registry.py": "f9c334e490a7469f48ebba8319fd70c0a3637fb5fabc8236cd38f5ac340524a0",
+    "agent/repair.py": "2d88aedeb9e14608114279f47fa2c43c8a7c9b6980bc732f632843885c806b72",
+    "agent/response_schemas.py": "a9c20822e7509f7583b0affeaabe3f4e2400d3285fb9aaea73385e1ae5a41276",
+    "agent/runner.py": "e8a47059e494a3df4a06f27fc34f214da831d5672f8940fda29708e29e94f809",
+    "agent/source_risks.py": "98e439bdeec7bcec814d7a277aedc85dffbef8d4957b0e99ae5b51165eed55c4",
+    "agent/spans.py": "8c63de6da98d74595a0213d48c5d336971437d8d8bbd9d2472fd7e391a3e73aa",
+    "agent/structured.py": "241b9e4e7d7189dc45d9827d646ece844fcfcab595955336d63341648ef4d25a",
+    "agent/verifier.py": "2523d9c113da6170b1dce5503beed3b30e6d788258ac75e94ce14e36e49aaacc",
+    "agent/verifier_v2.py": "c9447a16fcf378c7cb3c4c85ece4be6f48486d670ec6d70b06b1d34f102934e2",
+    "demo/case_contract_demo.py": "39ad183689ffa93b016fc70708eae99317d8c1b98c61a3e6d65808702396ea1b",
+    "scripts/audit_registry.py": "c462899a8d7fa5024ae77ce51a037623972333c072f36705b6ec0896b89efe49",
+    "scripts/benchmark_live_run.py": "8fa55f88621aefb84f761ea986514eabc7b4dc571a9f166ce4bd9c6af1346a8f",
+    "scripts/evaluate_live_run.py": "9270aff07b5abd191654d433931ffcbe8ad76b1a12dd6fdadec04c79a0ced8af",
+    "scripts/evaluate_semantics.py": "6feb0e37e987fa0bf1beda2bf02b850b9d00596f58be9544fdc63c3dca950cb1"
+  },
+  "models": {
+    "live-qwen-model.json": {
+      "model_id": "Qwen/Qwen3-4B-MLX-4bit",
+      "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+      "model_manifest_sha256": "826e85c6848864634b7a7c3e543d4c4c6ced73c1ffd296a94a08459febda0f82"
+    },
+    "live-qwen-8b-model.json": {
+      "model_id": "Qwen/Qwen3-8B-MLX-4bit",
+      "revision": "383413e909f3bc5303ce195ebbdf0339c5a1a2a3",
+      "model_manifest_sha256": "a9cc473c738293299104d5ebb80cf1fabafa91c77b0956695b0af8e110fded58"
+    }
+  },
+  "as_of": "2026-11-02T12:00:00Z",
+  "runs": [
+    {
+      "path": "runs/run-01",
+      "implementation": "baseline a76c275",
+      "model": "4B",
+      "role": "primary comparator"
+    },
+    {
+      "path": "runs/run-02",
+      "implementation": "frozen candidate",
+      "model": "4B",
+      "role": "primary candidate"
+    },
+    {
+      "path": "runs/run-03",
+      "implementation": "frozen candidate",
+      "model": "8B",
+      "role": "secondary exploratory model comparison"
+    }
+  ],
+  "policy": [
+    "Use every one of the 48 records in frozen order and preserve every attempt, including failures.",
+    "Freeze candidate code and evaluation code before inference. No semantic prompt or routing edits based on these results in this comparison.",
+    "Primary comparison is baseline 4B versus candidate 4B. Candidate 8B is secondary; default remains 4B, no model selection based on held-out results.",
+    "No expected labels enter model prompts. Evaluation happens after raw model outputs are saved.",
+    "Code changes, decoder constraints and retry policy are a bundle; changes in call order alter per-call seeds. Do not attribute differences to one isolated cause.",
+    "Do not claim production acceptance from this experiment. Report all primary outcomes even when they worsen."
+  ],
+  "predeclared_annotation_audit": [
+    "After code freeze, inspect whether review_required labels conflate uncertain meaning/authorship with missing recurrence identity. Do not edit frozen labels or primary scorer. If ambiguous, retain primary result and report separately labeled sensitivity/unscored interpretation."
+  ],
+  "primary_outcomes": [
+    "supported recurring themes delivered / 4 provisional expected recurring themes",
+    "delivered cards contradicting provisional labels, plus unscored/ambiguous cards separately",
+    "expected intents with aligned evidence/class/origin/new-demand flag / 54 provisional expected intents",
+    "sources requiring human review / 48 (v1 post-hoc proxy versus candidate materialized queue; not identical measurements)"
+  ],
+  "secondary_outcomes": [
+    "first-pass and final extraction contract validity",
+    "repair calls and total model calls",
+    "elapsed local inference time",
+    "missed or unconfirmed themes"
+  ],
+  "limitations": [
+    "All 48 cases and labels are AI-authored synthetic examples; no human gold or corporate data.",
+    "Quote/class alignment cannot establish faithful paraphrase; review actual titles and statements manually.",
+    "Implementer/coordinator did not read case texts or labels before freeze. Dataset author subsequently implemented a generic decoder and fixed field schemas without consulting holdout; this is limited separation, not an external independent audit.",
+    "One ordered batch, one seed schedule, two small quantized open models on one Mac; no statistical or production prevalence claim.",
+    "No audio/image pipeline, corporate ACL integration, business effect or weight training is tested."
+  ]
+}
