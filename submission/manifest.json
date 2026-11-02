@@ -1,19 +1,19 @@
 {
   "schema": "case-artifacts-v1",
-  "revision": "iteration-3",
+  "revision": "editorial-4",
   "verified_on": "2026-11-02",
-  "source_characters": 14985,
+  "source_characters": 14972,
   "solution_pdf_pages": 6,
   "presentation_slides": 10,
   "sha256": {
-    "docs/solution.md": "dd7062b7121d556e8ae8aeaa211218801b36e3b3151fb2f7f5621b19ec6f4542",
-    "docs/metrics.md": "8e191b0bd098f0166e2e8ed386648a10f8417e7dbe922104de26790fd2c34d8f",
-    "docs/ai-footnotes.md": "80674b11c8ca9fd73ebfe30bb7cc3a0bf7707847c74cf8057e13e46ec761c663",
-    "submission/solution.docx": "3ce14cb126035d11523613040ac241fd194b4df13e37bbfd4cec6a2dd60127d6",
-    "submission/solution.pdf": "be470226a3c578309b42601043bbcaf033d592821a180805979b2816b72806db",
-    "submission/metrics.md": "8e191b0bd098f0166e2e8ed386648a10f8417e7dbe922104de26790fd2c34d8f",
-    "submission/presentation.pptx": "76c192a1fb0daac063fabd36a52ef9566c399ef995ed4dd1e4950365173643c4",
-    "submission/ai-footnotes.docx": "74e42924a5e5092df132915838fcb07a92be85185c4259978ae591e23863f764"
+    "docs/solution.md": "b26e7f217a49f4a7e9b00d07bf2b65930d3f100b37d84cbd7cd07677dd52c3b8",
+    "docs/metrics.md": "c81cde1d0faed2ab9534103394e70413701fe9ba63ccd5cce8800763078e1647",
+    "docs/ai-footnotes.md": "181abb1d586560f1bf118d28303c4b40a756b2542da0424641738df404c1f078",
+    "submission/solution.docx": "5a48e0f7877dfb5dcfbf9e3e3908f4262256674df9c770199add9df085f0373e",
+    "submission/solution.pdf": "d64bd305e4d250dc9002b8b54dbd4cb78c5224870beb98b22d8048d86c7a4e97",
+    "submission/metrics.md": "c81cde1d0faed2ab9534103394e70413701fe9ba63ccd5cce8800763078e1647",
+    "submission/presentation.pptx": "5b76ec4d89ebc182dc11bd04e8267ac647314a3f41232c3858c6244781666430",
+    "submission/ai-footnotes.docx": "bfa26f85d71edac62f83075226b87de8163dbe458aebf1d000d9bad2c83f22d9"
   },
   "verification_scope": "Source length, matching metrics, hashes of locally rendered and visually inspected artifacts. No production model or business-effect claim."
 }
