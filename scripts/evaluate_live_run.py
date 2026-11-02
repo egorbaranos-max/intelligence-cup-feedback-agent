@@ -94,10 +94,13 @@ def evaluate(run_path, inputs_path, expectations_path):
     for filename in ("calls.jsonl", "results.jsonl"):
         if manifest.get("output_sha256", {}).get(filename) != sha(run_path / filename):
             raise ValueError(f"Saved output SHA-256 differs: {filename}")
-    for name in ("pipeline.py", "prompts.py"):
-        recorded = manifest.get("code_sha256", {}).get(name)
-        if recorded and recorded != sha(ROOT / "agent" / name):
-            raise ValueError(f"Validator source changed after run: {name}")
+    # Prompt revisions are retained verbatim in calls.jsonl and may differ across
+    # experiments. Revalidation must use the same deterministic validator code.
+    name = "pipeline.py"
+    recorded = manifest.get("code_sha256", {}).get("agent/" + name,
+        manifest.get("code_sha256", {}).get(name))
+    if recorded and recorded != sha(ROOT / "agent" / name):
+        raise ValueError(f"Validator source changed after run: {name}")
 
     sources = lines(inputs_path)
     source_map = indexed(sources, "id", "inputs")
