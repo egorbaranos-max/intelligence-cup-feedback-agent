@@ -2,18 +2,18 @@
   "schema": "case-artifacts-v1",
   "revision": "build-2026-11-09",
   "verified_on": "2026-11-09",
-  "source_characters": 14704,
+  "source_characters": 14677,
   "solution_pdf_pages": 9,
   "presentation_slides": 10,
   "sha256": {
-    "docs/solution.md": "3472548ad33680f01f138df2cb132b102a219b12648742d3b00aa030b1b8f760",
+    "docs/solution.md": "6056a2b0f681650bfb0d0c535c0922272eb9ae34a276d5e9d9e7131be439cb0e",
     "docs/metrics.md": "500f46e7c8a7d14599e610fa2953c468d0736ffa89e7bb25ce7cdf61904f3025",
     "docs/ai-footnotes.md": "969670e9ee60598275ab63c1ffab82d63fa8574ab054e5d5d581b735a9842d5e",
-    "submission/solution.docx": "708abc51fdc002bd19a0f4e8862b1e2125248c071a49d0b6290edd4ed152f888",
+    "submission/solution.docx": "d6809293b1b48d3a326ba4c81033a824623a500958333cd1bd1677e0a2f72891",
     "submission/solution.pdf": "c487097259b55f89926549a4edc10f06a9c2411838a39ba4bb97185f75b4f069",
     "submission/metrics.md": "500f46e7c8a7d14599e610fa2953c468d0736ffa89e7bb25ce7cdf61904f3025",
-    "submission/presentation.pptx": "d6f1cc738ac484c0b8b46d784be42361c2ec08d5940309b1773595e9481f843d",
-    "submission/ai-footnotes.docx": "5cc6ab668bffee2f8122d0c32e6445ed43bc3812983216019da170a861ef6b90"
+    "submission/presentation.pptx": "1b125455c27f52ce8f58dd3ae4ee4cd8ec8f6fd122f6cfad98a1915db3c60818",
+    "submission/ai-footnotes.docx": "7df0e9baba84a6d27211d239f46480d482b07df07c435fa856817fa9a1454b86"
   },
   "verification_scope": "Собрано scripts/build_submission.py из docs/*.md. Проверены длина исходника, совпадение копий метрик и SHA-256 всех файлов комплекта. Качество моделей и бизнес-эффект этим не подтверждаются."
 }

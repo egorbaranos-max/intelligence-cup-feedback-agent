@@ -145,7 +145,7 @@ python3 tools/coverage_model.py --example | python3 tools/coverage_model.py -
 
 ### 5.2. Сборка сабмишна (скрипт создать в первую очередь, ТЗ в `team/sprint-plan.md`)
 
-`scripts/build_submission.py` делает пять шагов (пятый — вызов `presentation/build_deck.py`, если он есть): рендерит `.mmd` из `docs/diagrams/` в PNG; собирает `docs/solution.md` в `submission/solution.docx` (python-docx, шрифт 12 пт, таблицы 10,5 пт, PNG-схемы вставлены); конвертирует docx в pdf через `soffice --headless`; копирует `docs/metrics.md` в `submission/`, пересчитывает SHA-256 и число символов в `submission/manifest.json`. Выход скрипта — таблица «файл — размер — символов — хеш» и статус лимита.
+`scripts/build_submission.py` делает пять шагов (пятый — вызов `presentation/build_deck.py`, если он есть): берёт готовые PNG схем из `docs/diagrams/` (перерисовка `.mmd` через `mmdc` — только с флагом `--render-diagrams`); собирает `docs/solution.md` в `submission/solution.docx` (python-docx, шрифт 12 пт, таблицы 10,5 пт, PNG-схемы вставлены); конвертирует docx в pdf через `soffice --headless`; копирует `docs/metrics.md` в `submission/`, пересчитывает SHA-256 и число символов в `submission/manifest.json`. Выход скрипта — таблица «файл — размер — символов — хеш» и статус лимита.
 
 ### 5.3. Git
 

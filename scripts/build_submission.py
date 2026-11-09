@@ -2,8 +2,8 @@
 """Сборка комплекта для сдачи из исходных markdown-файлов.
 
 Шаги по порядку:
-  1. Рендер схем docs/diagrams/*.mmd → *.png (если установлен mmdc; иначе
-     используются уже лежащие PNG и выводится предупреждение).
+  1. Рендер схем docs/diagrams/*.mmd → *.png только с флагом --render-diagrams
+     (нужен mmdc); по умолчанию используются уже лежащие PNG.
   2. docs/solution.md → submission/solution.docx (шрифт 12 пт, таблицы 10,5 пт,
      схемы вставлены по ширине страницы).
   3. submission/solution.docx → submission/solution.pdf через soffice --headless.
@@ -16,7 +16,7 @@
 Флаг --check ничего не пишет: сверяет manifest с текущими файлами и падает при
 расхождении. Этим пользуется CI и команда /build.
 
-Запуск из корня репозитория: python3 scripts/build_submission.py [--check]
+Запуск из корня репозитория: python3 scripts/build_submission.py [--check] [--render-diagrams]
 Зависимости: python-docx (pip install python-docx), soffice для PDF, pdfinfo
 для числа страниц, python-pptx для числа слайдов, mmdc для схем. Любая из
 последних четырёх может отсутствовать — шаг пропускается с предупреждением.
@@ -213,11 +213,11 @@ def _ensure_styles(document) -> None:
 
 
 MAX_IMAGE_WIDTH_CM = 16.0
-MAX_IMAGE_HEIGHT_CM = 11.0
+MAX_IMAGE_HEIGHT_CM = 8.0
 
 
 def _fit_width(image_path: Path):
-    """Ширина картинки в docx: не шире 16 см и не выше 11 см, пропорции сохраняются."""
+    """Ширина картинки в docx: не шире 16 см и не выше 8 см, пропорции сохраняются."""
     from docx.shared import Cm
     from docx.image.image import Image as DocxImage
 
@@ -502,7 +502,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Сборка комплекта для сдачи")
     parser.add_argument("--check", action="store_true", help="только сверить manifest с файлами")
     parser.add_argument("--no-pdf", action="store_true", help="не конвертировать в PDF")
-    parser.add_argument("--no-diagrams", action="store_true", help="не рендерить схемы")
+    parser.add_argument("--render-diagrams", action="store_true", help="перерисовать PNG схем через mmdc (по умолчанию берутся лежащие PNG)")
     parser.add_argument("--no-deck", action="store_true", help="не запускать presentation/build_deck.py")
     args = parser.parse_args()
 
@@ -521,7 +521,7 @@ def main() -> int:
         print(f"ОШИБКА: docs/solution.md содержит {chars} символов, лимит {LIMIT_HARD}. Сборка остановлена.", file=sys.stderr)
         return 1
 
-    if not args.no_diagrams:
+    if args.render_diagrams:
         rendered = render_diagrams()
         if rendered:
             print(f"Схемы: {len(rendered)} PNG")
