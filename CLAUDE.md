@@ -129,7 +129,7 @@
 - 10 слайдов, по одному тезису на слайд, не больше 30 слов текста на слайде вне таблиц.
 - На каждом слайде визуальный объект: схема, диаграмма, таблица с подсветкой, карточка с числом.
 - Обязательный слайд-дифференциатор: «Мы уже запустили прототип на открытой Qwen» с цифрами из `experiments/holdout_v2` и честной строкой «что исправляем».
-- Единая тема: палитра, шрифт, сетка — задаются в `presentation/theme.json`, сборка через `presentation/build_deck.py` на python-pptx. Никаких белых слайдов с таблицей по центру.
+- Единая тема: палитра, шрифт, сетка — в `presentation/theme.json`; контент слайдов — в `presentation/build_deck.js` (pptxgenjs), запуск через `presentation/build_deck.py`. Никаких белых слайдов с таблицей по центру.
 
 ## 5. Рабочие процессы
 
@@ -145,7 +145,7 @@ python3 tools/coverage_model.py --example | python3 tools/coverage_model.py -
 
 ### 5.2. Сборка сабмишна (скрипт создать в первую очередь, ТЗ в `team/sprint-plan.md`)
 
-`scripts/build_submission.py` делает четыре шага: рендерит `.mmd` из `docs/diagrams/` в PNG; собирает `docs/solution.md` в `submission/solution.docx` (python-docx, шрифт 12 пт, таблицы 10,5 пт, PNG-схемы вставлены); конвертирует docx в pdf через `soffice --headless`; копирует `docs/metrics.md` в `submission/`, пересчитывает SHA-256 и число символов в `submission/manifest.json`. Выход скрипта — таблица «файл — размер — символов — хеш» и статус лимита.
+`scripts/build_submission.py` делает пять шагов (пятый — вызов `presentation/build_deck.py`, если он есть): рендерит `.mmd` из `docs/diagrams/` в PNG; собирает `docs/solution.md` в `submission/solution.docx` (python-docx, шрифт 12 пт, таблицы 10,5 пт, PNG-схемы вставлены); конвертирует docx в pdf через `soffice --headless`; копирует `docs/metrics.md` в `submission/`, пересчитывает SHA-256 и число символов в `submission/manifest.json`. Выход скрипта — таблица «файл — размер — символов — хеш» и статус лимита.
 
 ### 5.3. Git
 
