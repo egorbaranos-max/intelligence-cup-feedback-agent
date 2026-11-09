@@ -12,3 +12,8 @@ htmlcov/
 *.log
 artifacts/
 .local-models/
+
+# Локальные материалы и сборка
+case/*.pdf
+node_modules/
+tests_tools/__pycache__/

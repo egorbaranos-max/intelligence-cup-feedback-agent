@@ -1,7 +1,7 @@
 {
   "schema": "case-artifacts-v1",
-  "revision": "editorial-6",
-  "verified_on": "2026-11-03",
+  "revision": "build-2026-11-09",
+  "verified_on": "2026-11-09",
   "source_characters": 14972,
   "solution_pdf_pages": 6,
   "presentation_slides": 10,
@@ -9,11 +9,11 @@
     "docs/solution.md": "b26e7f217a49f4a7e9b00d07bf2b65930d3f100b37d84cbd7cd07677dd52c3b8",
     "docs/metrics.md": "c81cde1d0faed2ab9534103394e70413701fe9ba63ccd5cce8800763078e1647",
     "docs/ai-footnotes.md": "9e5ac77a05c3164bd43a3320243d5616a8b1c87adcaab0e9915badc9fe78ae47",
-    "submission/solution.docx": "5a48e0f7877dfb5dcfbf9e3e3908f4262256674df9c770199add9df085f0373e",
-    "submission/solution.pdf": "d64bd305e4d250dc9002b8b54dbd4cb78c5224870beb98b22d8048d86c7a4e97",
+    "submission/solution.docx": "e7a96917f93bf7591840fc6ebf62ddad82c8fbf75fc35f06db049b879eee43f0",
+    "submission/solution.pdf": "de6d9ad81b401ace23ea64a3d2ca601645152283bd76f2277d6c5de063c0c6ac",
     "submission/metrics.md": "c81cde1d0faed2ab9534103394e70413701fe9ba63ccd5cce8800763078e1647",
     "submission/presentation.pptx": "5b76ec4d89ebc182dc11bd04e8267ac647314a3f41232c3858c6244781666430",
-    "submission/ai-footnotes.docx": "40fcd7fe8b66f4b2bd82fb5426bf1b97fb460ae35251d15db9835c6373144fcf"
+    "submission/ai-footnotes.docx": "75fbd94e2d5080b343995d9b68c01bd9796d33289032e523cdc43e837d6e7ebf"
   },
-  "verification_scope": "Source length, matching metrics, hashes of locally rendered and visually inspected artifacts. No production model or business-effect claim."
+  "verification_scope": "Собрано scripts/build_submission.py из docs/*.md. Проверены длина исходника, совпадение копий метрик и SHA-256 всех файлов комплекта. Качество моделей и бизнес-эффект этим не подтверждаются."
 }
