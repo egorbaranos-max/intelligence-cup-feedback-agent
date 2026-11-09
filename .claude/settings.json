@@ -1,0 +1,100 @@
+{
+  "_comment": "Права Claude Code для автономного Исполнителя. Синтаксис правил и хуков сверить с docs.claude.com (settings, permissions, hooks) перед первым запуском.",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "MultiEdit",
+      "Write",
+      "Bash(python3 *)",
+      "Bash(python *)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(source .venv/bin/activate*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git switch *)",
+      "Bash(git checkout -b *)",
+      "Bash(git branch*)",
+      "Bash(git fetch*)",
+      "Bash(git pull*)",
+      "Bash(git push -u origin *)",
+      "Bash(git push origin *)",
+      "Bash(git stash*)",
+      "Bash(gh pr *)",
+      "Bash(gh run *)",
+      "Bash(soffice *)",
+      "Bash(pdftoppm *)",
+      "Bash(npm install*)",
+      "Bash(npx *)",
+      "Bash(mmdc *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(find *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(sha256sum *)",
+      "Bash(shasum *)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git branch -D *)",
+      "Bash(git clean *)",
+      "Bash(git rebase *)",
+      "Bash(git filter-branch*)",
+      "Bash(curl * -d *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Edit(agent/**)",
+      "Edit(demo/**)",
+      "Edit(tools/**)",
+      "Edit(tests/**)",
+      "Edit(experiments/**)",
+      "Edit(submission/**)",
+      "Write(agent/**)",
+      "Write(demo/**)",
+      "Write(tools/**)",
+      "Write(tests/**)",
+      "Write(experiments/**)",
+      "Write(submission/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/protect_frozen.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/guard_bash.py"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Intelligence Cup 2026",
+  "fonts": { "head": "Cambria", "body": "Calibri" },
+  "colors": {
+    "navy": "0B2447",
+    "navyDeep": "061A36",
+    "ice": "E8EEF9",
+    "iceDark": "CBD8EE",
+    "ink": "1F2937",
+    "muted": "6B7280",
+    "amber": "F29F05",
+    "amberLight": "FDEBC8",
+    "green": "2E7D32",
+    "greenLight": "DFF0E0",
+    "red": "B3261E",
+    "redLight": "F8DAD7",
+    "white": "FFFFFF",
+    "grid": "D7DEE9"
+  },
+  "footer": "Intelligence Cup 2026 · ИИ-агент для передачи пожеланий",
+  "sizes": { "title": 30, "section": 20, "body": 14, "caption": 11, "stat": 44 }
+}

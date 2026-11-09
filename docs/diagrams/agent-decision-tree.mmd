@@ -1,0 +1,12 @@
+flowchart TB
+    S[Обращение + фрагменты<br/>+ контекст продукта] --> A{Автор известен?}
+    A -->|нет| R1[needs_review:<br/>origin observed_pain]
+    A -->|оператор| H[origin hypothesis:<br/>не считается спросом]
+    A -->|пользователь| K{Тип намерения}
+    K --> I[incident:<br/>сбой ожидаемой функции]
+    K --> SR[service_request:<br/>разовая операция, доступ]
+    K --> FR[feature_request:<br/>прямая просьба изменить продукт,<br/>origin user_explicit]
+    K --> U[usability:<br/>неудобство без<br/>названного изменения]
+    K --> UN[unknown →<br/>needs_review]
+    FR -->|цитата span_id<br/>подтверждает| OK[status ok →<br/>сопоставление с темами]
+    FR -->|цитаты нет| R2[needs_review]
